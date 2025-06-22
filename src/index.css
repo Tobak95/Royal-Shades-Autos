@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+.layout{
+    @apply lg:max-w-[1240px] mx-auto px-2.5
+}
+
