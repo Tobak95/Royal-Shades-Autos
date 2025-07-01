@@ -7,6 +7,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "../../utils/formValidator";
+import { axiosInstance } from "../../utils/axiosInstance";
+import SuccessfulRegistrationModal from "../component/layout/SuccessfulRegistrationModal";
+import ErrorRegistrationModal from "../component/layout/ErrorRegistrationModal";
 
 const RegisterPage = () => {
   const redirect = useNavigate();
@@ -17,28 +20,47 @@ const RegisterPage = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
+
   //creating handle-form for form handling and validation
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
+
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(signUpSchema),
   });
 
   //handle form submit
-  const handleRegister = (data) => {
-    setIsSubmitting(true);
+  const handleRegister = async (data) => {
     console.log(data);
-    setIsSubmitting(false);
-    // Simulate a successful registration
-    reset(); // Reset the form fields
+    setIsSubmitting(true);
+    try {
+      const response = await axiosInstance.post("/auth/register", data);
+      if (response.status === 201) {
+        reset();
+        setShowModal(true);
+        console.log("Registration successful", response.data);
+      }
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error?.response?.data?.message || "Registration failed");
+      setShowModal2(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <div>
       <Nav />
       <div className="layout flex flex-row-reverse justify-center items-center  gap-5 ">
+        {showModal && (
+          <SuccessfulRegistrationModal setShowModal={setShowModal} />
+        )}
+        {showModal2 && <ErrorRegistrationModal setShowModal2={setShowModal2} />}
         <div className=" mt-8 ">
           <img src={car} alt="empty" className="h-[500px] rounded-xl" />
         </div>
