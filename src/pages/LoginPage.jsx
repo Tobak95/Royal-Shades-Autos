@@ -7,12 +7,16 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../utils/formValidator";
+import { axiosInstance } from "../../utils/axiosInstance";
+import { useAppContext } from "../../hooks/UseAppContext";
 
 const LoginPage = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const redirect = useNavigate();
 
+  const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const { login } = useAppContext;
 
   //creating handle-form for form handling and validation
   const {
@@ -24,14 +28,30 @@ const LoginPage = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const handleRegister = (data) => {
+  const handleLogin = async (data) => {
     setSubmitting(true);
-    console.log(data);
-    
-    // Simulate a successful login
-    setSubmitting(false);
-    reset(); // Reset the form fields
-  }
+    try {
+      console.log("Login Data", data);
+      const { data: mydata } = await axiosInstance.post("/auth/login", {
+        email,
+        password,
+      });
+      console.log(mydata);
+      login(mydata.token, mydata.user);
+      if (response.status === 200) {
+        redirect("/car-listing");
+      } else {
+        redirect("/");
+      }
+      setErrorMessage("");
+    } catch (error) {
+      console.log(error);
+      setErrorMessage(error?.response?.data?.message || "Login failed");
+    } finally {
+      setSubmitting(false);
+      reset(); // Reset the form fields
+    }
+  };
   return (
     <div>
       <Nav />
@@ -43,7 +63,7 @@ const LoginPage = () => {
 
         <div className="layout w-[500px] ">
           <form
-            onSubmit={handleSubmit(handleRegister)}
+            onSubmit={handleSubmit(handleLogin)}
             className="mt-8 border p-6 rounded-lg shadow-lg"
           >
             <h1 className="text-[45px] font-bold">Prime Autos</h1>
@@ -91,6 +111,9 @@ const LoginPage = () => {
                 {errors.password?.message}{" "}
               </p>
             </div>
+            {errorMessage && (
+              <p className="text-red-500 text-center mt-2">{errorMessage}</p>
+            )}
             <button
               disabled={submitting}
               type="submit"

@@ -7,6 +7,8 @@ const LoginPage = lazy(() => import("./pages/LoginPage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 const ForgotPasswordPage = lazy(() => import("./pages/ForgotPasswordPage"));
+const ListOfCars = lazy(() => import("./pages/ListOfCars"));
+const VerifyEmail = lazy(() => import("./pages/VerifyEmail"));
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/verify-email/:token" element={<VerifyEmail />} />
+          <Route path="/car-listing" element={<ListOfCars />} />
         </Routes>
       </Suspense>
     </Router>

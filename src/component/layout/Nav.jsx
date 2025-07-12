@@ -11,7 +11,7 @@ const Nav = () => {
     { title: "pages", path: "#" },
     { title: "About", path: "#" },
     { title: "Contact", path: "#" },
-    { title: "Sign-in", path: "#" },
+    { title: "Sign-in", path: "/register" },
   ];
   return (
     <nav className="bg-blue-950 text-white p-4 h-[100.75px] sticky top-0 z-50 ">

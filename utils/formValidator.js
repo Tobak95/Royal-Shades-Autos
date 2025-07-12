@@ -9,7 +9,7 @@ export const loginSchema = yup.object().shape({
   password: yup.string()
   .required("Password is required")
   .min(8, "Password must be at least 8 characters")
-  .matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, "Password must contain at least one letter and one number"),
+  //.matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/, "Password must contain at least one letter and one number"),
 });
 
 export const signUpSchema = yup.object().shape({
@@ -21,7 +21,6 @@ export const signUpSchema = yup.object().shape({
     .required("Phone number is required"),
     password: yup
     .string()
-   
     .min(8, "Password must be at least 8 characters"),
     confirmPassword: yup.string()
     .oneOf([yup.ref("password")], "Passwords must match")

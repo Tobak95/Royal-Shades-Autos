@@ -41,6 +41,7 @@ const RegisterPage = () => {
     try {
       const response = await axiosInstance.post("/auth/register", data);
       if (response.status === 201) {
+        
         reset();
         setShowModal(true);
         console.log("Registration successful", response.data);
@@ -174,7 +175,8 @@ const RegisterPage = () => {
                 {errors.confirmPassword?.message}
               </p>
             </div>
-
+          {errorMessage && (
+            <p className="text-red-500 text-center mt-2">{errorMessage}</p>)}
             <button
               disabled={isSubmitting}
               type="submit"
