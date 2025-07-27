@@ -86,7 +86,7 @@ const LoginPage = () => {
               </p>
             </div>
 
-            <div>
+            <div className="relative">
               <label
                 htmlFor="password"
                 className="block mb-1 text-lg font-medium text-blue-800 mt-3"
@@ -100,7 +100,7 @@ const LoginPage = () => {
                 {...register("password")}
               />
               <span
-                className="cursor-pointer relative left-[380px] bottom-7"
+                className="cursor-pointer absolute right-3 top-1/2"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? <FiEye /> : <FiEyeOff />}
