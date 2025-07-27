@@ -65,7 +65,7 @@ const Nav = () => {
           )}
 
           {showMenuHamburger && (
-            <div className="flex flex-col px-5 py-4 absolute top-[55px] right-0 bg-black text-white rounded-lg cursor-pointer lg:hidden">
+            <div className="flex flex-col px-5 py-4 mr-1 absolute top-[55px] right-0 bg-black text-white rounded-lg cursor-pointer lg:hidden">
               {links.map((link, index) => {
                 return (
                   <a
