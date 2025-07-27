@@ -18,8 +18,8 @@ const AppProvider = ({ children }) => {
   }, []);
 
   const login = (accessToken, user) => {
-    setToken("accessToken");
-    setUser("user");
+    setToken(accessToken);
+    setUser(user);
     localStorage.setItem("accessToken", accessToken);
     localStorage.setItem("user", JSON.stringify(user));
   };

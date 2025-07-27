@@ -16,7 +16,7 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const { login } = useAppContext;
+  const { login } = useAppContext();
 
   //creating handle-form for form handling and validation
   const {
@@ -31,14 +31,12 @@ const LoginPage = () => {
   const handleLogin = async (data) => {
     setSubmitting(true);
     try {
-      console.log("Login Data", data);
       const { data: mydata } = await axiosInstance.post("/auth/login", {
-        email,
-        password,
+        ...data,
       });
       console.log(mydata);
       login(mydata.token, mydata.user);
-      if (response.status === 200) {
+      if (mydata.status === 200) {
         redirect("/car-listing");
       } else {
         redirect("/");
@@ -46,25 +44,25 @@ const LoginPage = () => {
       setErrorMessage("");
     } catch (error) {
       console.log(error);
-      setErrorMessage(error?.response?.data?.message || "Login failed");
+      setErrorMessage(error?.response?.data?.message || "Login Failed");
     } finally {
       setSubmitting(false);
-      reset(); // Reset the form fields
+      reset();
     }
   };
   return (
     <div>
       <Nav />
 
-      <div className="layout flex flex-row-reverse justify-between items-center gap-5">
-        <div className="mt-8">
-          <img src={car} alt="..." />
+      <div className="layout lg:flex flex-row-reverse justify-between items-center gap-5 mt-10">
+        <div className="mt-8 lg:w-[900px]">
+          <img src={car} alt="..." className="h-[450px]" />
         </div>
 
         <div className="layout w-[500px] ">
           <form
             onSubmit={handleSubmit(handleLogin)}
-            className="mt-8 border p-6 rounded-lg shadow-lg"
+            className="mt-8 border p-6 rounded-lg shadow-lg lg:max-w-[500px]"
           >
             <h1 className="text-[45px] font-bold">Prime Autos</h1>
             <h1 className="text-[25px] font-semibold">Log in</h1>

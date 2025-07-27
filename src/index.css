@@ -2,6 +2,6 @@
 @plugin "daisyui";
 
 .layout{
-    @apply lg:max-w-[1240px] mx-auto px-2.5
+    @apply lg:max-w-[1240px] w-full mx-auto 
 }
 

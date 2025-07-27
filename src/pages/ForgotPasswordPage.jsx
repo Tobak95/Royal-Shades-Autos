@@ -33,8 +33,11 @@ const ForgotPasswordPage = () => {
   return (
     <div>
       <Nav />
-      <div className="flex gap-10 justify-center">
-        <div className=" border border-gray-300 rounded-lg shadow-lg p-5 w-[450px]  mt-40 ml-30">
+      <div className="layout lg:flex gap-10 justify-center">
+        <div>
+          <img src={car} alt="..." className="mt-5 rounded-[10%]" />
+        </div>
+        <div className=" border border-gray-300 rounded-lg shadow-lg p-5 lg:w-[450px]  mt-5">
           <h1 className="text-3xl text-center mt-">Forgot Password</h1>
           <div className="flex justify-center mt-5">
             <MdVpnKeyOff className="text-6xl text-gray-500" />
@@ -74,10 +77,6 @@ const ForgotPasswordPage = () => {
               </p>
             </Link>
           </form>
-        </div>
-
-        <div>
-          <img src={car} alt="..." className="mt-40 rounded-[10%]" />
         </div>
       </div>
     </div>

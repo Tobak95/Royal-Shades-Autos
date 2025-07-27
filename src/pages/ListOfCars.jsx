@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import Nav from "../component/layout/Nav";
 
 const ListOfCars = () => {
   return (
-    <div>ListOfCars</div>
-  )
-}
+    <div>
+      <Nav />
 
-export default ListOfCars
+      <h1>
+
+      ListOfCars
+      </h1>
+    </div>
+  );
+};
+
+export default ListOfCars;

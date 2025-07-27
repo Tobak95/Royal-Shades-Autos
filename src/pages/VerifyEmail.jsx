@@ -37,10 +37,8 @@ const VerifyEmail = () => {
   //handling token for verification
   const checkToken = async () => {
     try {
-      const response = await axiosInstance.post(
-        `/auth/verify-email/${token}   `,
-        { token }
-      );
+      const response = await axiosInstance.post(`/auth/verify-email/${token}`);
+      console.log(response);
       if (response.status === 200) {
         setStatus("success");
       }
@@ -72,15 +70,15 @@ const VerifyEmail = () => {
 
   if (status === "success") {
     return (
-      <div className="flex items-center justify-center h-screen bg-blue-950">
-        <div className="max-w-[500px] w-full rounded-lg text-center py-[29px] px-[26px]">
-          <img src={group} alt="...." />
-          <h1>Email Verification Successfully</h1>
+      <div className="flex flex-col items-center justify-center h-screen bg-blue-950">
+        <div className="max-w-[500px] w-full rounded-lg items-center text-center py-[29px] px-[26px]">
+          <img src={group} alt="...." className="ml-40" />
+          <h1 className="mt-5">Email Verification Successfully</h1>
           <p className="mb-4">Your Account have been verified Successfully</p>
         </div>
 
         <Link to={"/login"}>
-          <button className="w-full font-semibold rounded-lg bg-black text-white h-[56px]">
+          <button className="w-full font-semibold rounded-lg bg-black text-white h-[56px] px-5 fon-bold">
             Proceed to LogIn
           </button>
         </Link>

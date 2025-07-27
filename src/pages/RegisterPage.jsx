@@ -57,18 +57,18 @@ const RegisterPage = () => {
   return (
     <div>
       <Nav />
-      <div className="layout flex flex-row-reverse justify-center items-center  gap-5 ">
+      <div className="layout lg:flex flex-row-reverse justify-center items-center  gap-5 ">
         {showModal && (
           <SuccessfulRegistrationModal setShowModal={setShowModal} />
         )}
         {showModal2 && <ErrorRegistrationModal setShowModal2={setShowModal2} />}
         <div className=" mt-8 ">
-          <img src={car} alt="empty" className="h-[500px] rounded-xl" />
+          <img src={car} alt="empty" className="h-[500px] rounded-xl " />
         </div>
-        <div className="layout flex flex-col w-[400px] ">
+        <div className="layout lg:flex flex-col max-w-[400px] ">
           <form
             onSubmit={handleSubmit(handleRegister)}
-            className="mt-8 border p-6 rounded-lg shadow-lg  "
+            className="mt-8 border p-6 rounded-lg shadow-lg lg:max-w-[450px]  "
           >
             <h1 className=" text-2xl text-center">Sign up to get started</h1>
 

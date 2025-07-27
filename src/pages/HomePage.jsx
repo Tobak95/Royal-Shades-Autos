@@ -12,6 +12,7 @@ const HomePage = () => {
         <div className="flex flex-col items-start ml-[120px]">
           <div>
             <h1 className="font bold font-satoshi text-[80px] ">Prime Autos</h1>
+            <p className="text-white mt-4">Find your next ride with ease.</p>
           </div>
           <div>
             <Link to="/register">
