@@ -5,13 +5,12 @@ const ListOfCars = () => {
   return (
     <div>
       <Nav />
-
-      <h1>
-
-      ListOfCars
-      </h1>
+      <div className="layout mt-10">
+        <h1>ListOfCars</h1>
+      </div>
     </div>
   );
 };
 
 export default ListOfCars;
+// This is the ListOfCars component that displays a list of cars available for users.

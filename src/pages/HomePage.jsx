@@ -2,8 +2,8 @@ import React from "react";
 import Nav from "../component/layout/Nav";
 import { Link, useNavigate } from "react-router-dom";
 
-
 const HomePage = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   const redirect = useNavigate();
   return (
     <div>
@@ -15,11 +15,19 @@ const HomePage = () => {
             <p className="text-white mt-4">Find your next ride with ease.</p>
           </div>
           <div>
-            <Link to="/register">
-              <button className="bg-white text-black font-bold text-[20px] rounded-lg px-4 py-2 hover:bg-gray-600 cursor-pointer">
-                click here to sign up
-              </button>
-            </Link>
+            {user ? (
+              <Link to="/car-listing">
+                <button className="bg-white text-black font-bold text-[20px] rounded-lg px-4 py-2 hover:bg-gray-600 cursor-pointer">
+                  View Available cars
+                </button>
+              </Link>
+            ) : (
+              <Link to="/register">
+                <button className="bg-white text-black font-bold text-[20px] rounded-lg px-4 py-2 hover:bg-gray-600 cursor-pointer">
+                  click here to sign up
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

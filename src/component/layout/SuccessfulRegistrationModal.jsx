@@ -6,6 +6,8 @@ const SuccessfulRegistrationModal = ({setShowModal}) => {
   return (
     <div>
       <div className="fixed inset-0 z-50 p-3 bg-[#00000080] bg-opacity-40 flex items-center justify-center">
+        
+
         <div className="bg-blue-900 rounded-xl shadow-lg p-6 max-w-[500px] h-[326px] w-full relative">
           {/* Close button */}
           <button
@@ -28,6 +30,8 @@ const SuccessfulRegistrationModal = ({setShowModal}) => {
             </p>
           </div>
         </div>
+
+
       </div>
     </div>
   );

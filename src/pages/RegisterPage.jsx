@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "../../utils/formValidator";
 import { axiosInstance } from "../../utils/axiosInstance";
+
 import SuccessfulRegistrationModal from "../component/layout/SuccessfulRegistrationModal";
 import ErrorRegistrationModal from "../component/layout/ErrorRegistrationModal";
 
@@ -48,7 +49,8 @@ const RegisterPage = () => {
       }
     } catch (error) {
       console.log(error);
-      setErrorMessage(error?.response?.data?.message || "Registration failed");
+      setErrorMessage(error?.response?.data?.message);
+    
       setShowModal2(true);
     } finally {
       setIsSubmitting(false);

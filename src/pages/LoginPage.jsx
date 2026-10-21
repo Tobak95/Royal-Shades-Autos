@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../component/layout/Nav";
 import car from "../assets/car.avif";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -11,7 +11,11 @@ import { axiosInstance } from "../../utils/axiosInstance";
 import { useAppContext } from "../../hooks/UseAppContext";
 
 const LoginPage = () => {
-  const redirect = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user) {
+    return <Navigate to="/car-listing" replace />;
+  }
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -31,15 +35,15 @@ const LoginPage = () => {
   const handleLogin = async (data) => {
     setSubmitting(true);
     try {
-      const { data: mydata } = await axiosInstance.post("/auth/login", {
+      const response = await axiosInstance.post("/auth/login", {
         ...data,
       });
+      
+      const mydata = response.data;
       console.log(mydata);
       login(mydata.token, mydata.user);
       if (mydata.status === 200) {
-        redirect("/car-listing");
-      } else {
-        redirect("/");
+        navigate("/car-listing");
       }
       setErrorMessage("");
     } catch (error) {
@@ -106,7 +110,7 @@ const LoginPage = () => {
                 {showPassword ? <FiEye /> : <FiEyeOff />}
               </span>
               <p className="text-red-500 text-sm mt-1">
-                {errors.password?.message}{" "}
+                {errors.password?.message}
               </p>
             </div>
             {errorMessage && (
