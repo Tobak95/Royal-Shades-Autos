@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Royal Shades Autos — Login</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0A0A0B}
+a{color:#DEBB6E;text-decoration:none}a:hover{color:#F0D9A4}
+.auth-bg{background-image:linear-gradient(90deg,rgba(10,10,11,.15) 0%,rgba(10,10,11,.55) 45%,rgba(10,10,11,.95) 70%,#0A0A0B 100%),linear-gradient(0deg,#0A0A0B 0%,rgba(10,10,11,0) 35%),url("../src/assets/carrrrrrrs.avif");background-size:cover;background-position:left center}
+.navlink{color:#D4D4D8}.navlink:hover{color:#DEBB6E}
+.btn-gold:hover{background:#F0D9A4!important}
+.field:focus{outline:none;border-color:#DEBB6E!important;box-shadow:0 0 0 3px rgba(222,187,110,.18)}
+</style>
+</helmet>
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #FFFFFF; background: #0A0A0B; min-width: 0;">
+
+<header style="border-bottom: 1px solid rgba(255,255,255,.06);">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+    <a href="home.html" aria-label="Royal Shades Autos home"><img src="../src/assets/logo.png" alt="The Royal Shades Autos Limited" style="height: 54px; width: auto; display: block;"></a>
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 14px; font-weight: 500;">
+      <a class="navlink" href="home.html">Home</a><a class="navlink" href="home.html">Showroom</a><a class="navlink" href="home.html">Track</a><a class="navlink" href="home.html">Contact</a>
+    </nav>
+    <a href="signup.html" style="font-size: 14px; font-weight: 600;">Create account</a>
+  </div>
+</header>
+
+<section class="auth-bg" style="min-height: 760px; display: flex; align-items: center;">
+  <div style="max-width: 1240px; width: 100%; margin: 0 auto; padding: 56px 24px; box-sizing: border-box; display: flex; justify-content: flex-end;">
+    <div style="flex: 0 1 460px; background: rgba(20,20,23,.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(222,187,110,.3); border-radius: 20px; padding: 40px 36px; box-sizing: border-box;">
+      <div style="font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: #DEBB6E; font-weight: 600;">Welcome back</div>
+      <h1 style="margin: 10px 0 0; font-size: 38px; font-weight: 800; letter-spacing: -0.025em;">Log in to your <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; color: #DEBB6E; font-size: 1.15em;">Garage</span></h1>
+      <p style="margin: 8px 0 0; font-size: 14px; color: #A1A1AA;">Don't have an account? <a href="signup.html" style="font-weight: 600;">Create one</a></p>
+
+      <form style="display: flex; flex-direction: column; gap: 16px; margin-top: 28px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label for="lg-email" style="font-size: 13px; font-weight: 600; color: #D4D4D8;">Email or phone</label>
+          <input id="lg-email" class="field" type="text" placeholder="you@example.com" style="height: 50px; background: #1C1C21; border: 1px solid #2A2A30; border-radius: 10px; color: #FFFFFF; font: inherit; font-size: 14px; padding: 0 16px;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label for="lg-pass" style="font-size: 13px; font-weight: 600; color: #D4D4D8;">Password</label>
+            <a href="#" style="font-size: 13px;">Forgot password?</a>
+          </div>
+          <div style="position: relative;">
+            <input id="lg-pass" class="field" type="{{passType}}" placeholder="Enter your password" style="width: 100%; box-sizing: border-box; height: 50px; background: #1C1C21; border: 1px solid #2A2A30; border-radius: 10px; color: #FFFFFF; font: inherit; font-size: 14px; padding: 0 52px 0 16px;">
+            <button type="button" aria-label="{{toggleLabel}}" onClick="{{togglePass}}" style="position: absolute; right: 3px; top: 3px; width: 44px; height: 44px; border: 0; background: transparent; color: #A1A1AA; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+          </div>
+        </div>
+        <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #B4B4BC; min-height: 44px;">
+          <input type="checkbox" style="width: 18px; height: 18px; accent-color: #DEBB6E;"> Keep me signed in
+        </label>
+        <a class="btn-gold" href="home.html" style="height: 52px; border-radius: 10px; background: #DEBB6E; color: #0A0A0B; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center;">Log in</a>
+      </form>
+
+      <div style="display: flex; align-items: center; gap: 12px; margin-top: 26px; padding-top: 20px; border-top: 1px solid #2A2A30; font-size: 13px; color: #A1A1AA;">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#DEBB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+        Log in to see your reservations and track your cars.
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="border-top: 1px solid #1E1E23;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #8A8A94;">
+    <span>© 2026 The Royal Shades Autos Limited</span><span>Lagos, Nigeria</span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { show: false }; }
+  renderVals() {
+    var self = this;
+    var show = this.state.show;
+    return {
+      passType: show ? 'text' : 'password',
+      toggleLabel: show ? 'Hide password' : 'Show password',
+      togglePass: function () { self.setState({ show: !show }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

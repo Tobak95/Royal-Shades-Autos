@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Royal Shades Autos — Your Garage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0A0A0B}
+a{color:#DEBB6E;text-decoration:none}a:hover{color:#F0D9A4}
+.navlink{color:#D4D4D8}.navlink:hover{color:#DEBB6E}
+.btn-gold:hover{background:#F0D9A4!important}
+.btn-ghost:hover{border-color:#DEBB6E!important;color:#DEBB6E!important}
+.rm:hover{color:#F2A3A0!important;border-color:#D9534F!important}
+</style>
+</helmet>
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #FFFFFF; background: #0A0A0B; min-width: 0;">
+
+<header style="border-bottom: 1px solid rgba(255,255,255,.06);">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+    <a href="home.html" aria-label="Royal Shades Autos home"><img src="../src/assets/logo.png" alt="The Royal Shades Autos Limited" style="height: 54px; width: auto; display: block;"></a>
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 14px; font-weight: 500;">
+      <a class="navlink" href="home.html">Home</a><a class="navlink" href="home.html">Showroom</a><a class="navlink" href="home.html">Track</a><a class="navlink" href="home.html">Contact</a>
+    </nav>
+    <a href="login.html" style="font-size: 14px; font-weight: 600;">My account</a>
+  </div>
+</header>
+
+<main style="max-width: 1240px; margin: 0 auto; padding: 40px 24px 96px;">
+  <div style="font-size: 13px; color: #A1A1AA;"><a href="home.html" style="color: #A1A1AA;">Home</a> <span style="margin: 0 6px;">›</span> <span style="color: #DEBB6E;">Your Garage</span></div>
+  <h1 style="margin: 14px 0 0; font-size: 46px; font-weight: 800; letter-spacing: -0.025em;">Your <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; color: #DEBB6E; font-size: 1.15em;">Garage</span></h1>
+  <p style="margin: 8px 0 0; font-size: 15px; color: #A1A1AA;">{{countText}}</p>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 28px; margin-top: 32px; align-items: flex-start;">
+    <!-- Items -->
+    <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+      <sc-for list="{{items}}" as="it" hint-placeholder-count="2">
+        <article style="background: #141417; border: 1px solid #2A2A30; border-radius: 16px; padding: 18px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+          <div style="width: 200px; height: 124px; flex: none; border-radius: 12px; background: radial-gradient(ellipse at 50% 75%, #2A2A31 0%, #18181C 60%, #111113 100%); display: flex; align-items: flex-end; justify-content: center;">
+            <svg role="img" aria-label="Car photo placeholder" width="176" height="72" viewBox="0 0 320 130" style="margin-bottom: 10px;">
+              <ellipse cx="160" cy="116" rx="140" ry="7" fill="#000000" opacity=".55"></ellipse>
+              <path d="M18 98 L20 80 Q24 68 40 65 L92 58 Q116 36 146 30 L214 28 Q236 28 252 44 L270 60 Q296 63 306 72 Q312 80 310 98 Z" fill="#26262C" stroke="#DEBB6E" stroke-opacity=".55" stroke-width="1.4"></path>
+              <path d="M104 58 Q124 40 148 36 L176 35 L176 58 Z M186 35 L212 35 Q228 36 240 50 L246 58 L186 58 Z" fill="#0F0F12"></path>
+              <circle cx="78" cy="100" r="19" fill="#0B0B0D" stroke="#3A3A42" stroke-width="3"></circle><circle cx="252" cy="100" r="19" fill="#0B0B0D" stroke="#3A3A42" stroke-width="3"></circle>
+            </svg>
+          </div>
+          <div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 8px;">
+            <span style="{{it.badgeStyle}}"><span style="{{it.dotStyle}}"></span>{{it.statusLabel}}</span>
+            <h2 style="margin: 0; font-size: 20px; font-weight: 700;">{{it.year}} {{it.name}}</h2>
+            <div style="font-size: 13px; color: #A1A1AA;">{{it.body}} · {{it.color}} · from {{it.origin}}</div>
+            <div style="font-size: 13px; color: #B4B4BC;">{{it.note}}</div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 12px; margin-left: auto;">
+            <div style="font-size: 22px; font-weight: 800; letter-spacing: -0.02em;">{{it.priceText}}</div>
+            <button type="button" class="rm" onClick="{{it.remove}}" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #3A3A42; background: transparent; color: #A1A1AA; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+              <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"></path></svg>
+              Remove
+            </button>
+          </div>
+        </article>
+      </sc-for>
+      <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+        <div style="background: #141417; border: 1px dashed #3A3A42; border-radius: 16px; padding: 48px 24px; text-align: center;">
+          <div style="font-size: 20px; font-weight: 700;">Your garage is empty</div>
+          <p style="margin: 8px 0 20px; font-size: 14px; color: #A1A1AA;">Add cars from the showroom to reserve them.</p>
+          <button type="button" class="btn-gold" onClick="{{reset}}" style="height: 48px; padding: 0 22px; border-radius: 10px; border: 0; background: #DEBB6E; color: #0A0A0B; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer;">Restore sample cars</button>
+        </div>
+      </sc-if>
+      <a href="home.html" style="font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; min-height: 44px;">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>
+        Continue browsing the showroom
+      </a>
+    </div>
+
+    <!-- Summary -->
+    <aside style="flex: 1 1 340px; background: #141417; border: 1px solid rgba(222,187,110,.35); border-radius: 18px; padding: 26px; box-sizing: border-box;">
+      <h2 style="margin: 0; font-size: 20px; font-weight: 700;">Reservation summary</h2>
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 20px; font-size: 14px;">
+        <div style="display: flex; justify-content: space-between; gap: 12px;"><span style="color: #A1A1AA;">Cars ({{count}})</span><span style="font-weight: 600;">{{subtotalText}}</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px;"><span style="color: #A1A1AA;">Delivery within Lagos</span><span style="font-weight: 600; color: #7FE0AA;">Free</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px;"><span style="color: #A1A1AA;">Customs &amp; clearing</span><span style="font-weight: 600;">Included</span></div>
+        <div style="height: 1px; background: #2A2A30;"></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px;"><span style="color: #A1A1AA;">Balance on pickup</span><span style="font-weight: 600;">{{balanceText}}</span></div>
+      </div>
+      <div style="margin-top: 20px; background: #1C1C21; border-radius: 12px; padding: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;">
+          <span style="font-size: 13px; color: #D4D4D8; font-weight: 600;">Due today · 10% deposit</span>
+          <span style="font-size: 26px; font-weight: 800; color: #DEBB6E; letter-spacing: -0.02em;">{{depositText}}</span>
+        </div>
+        <div style="font-size: 12px; color: #A1A1AA; margin-top: 6px; line-height: 1.5;">Fully refundable if the car fails inspection on arrival.</div>
+      </div>
+      <a class="btn-gold" href="home.html" style="margin-top: 20px; height: 52px; border-radius: 10px; background: #DEBB6E; color: #0A0A0B; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;">Continue to reservation
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+      <div style="display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; font-size: 12px; color: #A1A1AA; line-height: 1.5;">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DEBB6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px;"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path></svg>
+        Pay by bank transfer. You'll get a tracking number for every incoming car as soon as your deposit clears.
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer style="border-top: 1px solid #1E1E23;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #8A8A94;">
+    <span>© 2026 The Royal Shades Autos Limited</span><span>Lagos, Nigeria</span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { removed: [] }; }
+  renderVals() {
+    var self = this;
+    var ALL = [
+      { id: 'camry', name: 'Toyota Camry XSE', year: '2021', body: 'Sedan', color: 'Celestial Silver', origin: 'Canada', price: 32000000, status: 'available', note: 'In our Lagos yard. Inspect any day this week.' },
+      { id: 'rx', name: 'Lexus RX 350', year: '2022', body: 'SUV', color: 'Obsidian Black', origin: 'USA', price: 68500000, status: 'incoming', note: 'At sea on MV Grande Lagos. ETA 14 Nov 2026.' }
+    ];
+    var META = {
+      available: { label: 'Available', fg: '#7FE0AA', bg: 'rgba(52,199,123,.16)', dot: '#34C77B' },
+      incoming: { label: 'Incoming', fg: '#8EC5F0', bg: 'rgba(91,164,230,.16)', dot: '#5BA4E6' }
+    };
+    var fmt = function (n) { return '₦' + new Intl.NumberFormat('en-NG').format(Math.round(n)); };
+    var removed = this.state.removed;
+    var list = ALL.filter(function (c) { return removed.indexOf(c.id) === -1; });
+    var items = list.map(function (c) {
+      var m = META[c.status];
+      return Object.assign({}, c, {
+        priceText: fmt(c.price), statusLabel: m.label,
+        badgeStyle: 'align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 999px; color: ' + m.fg + '; background: ' + m.bg + ';',
+        dotStyle: 'width: 6px; height: 6px; border-radius: 999px; background: ' + m.dot + ';',
+        remove: function () { self.setState({ removed: removed.concat([c.id]) }); }
+      });
+    });
+    var subtotal = list.reduce(function (s, c) { return s + c.price; }, 0);
+    var deposit = subtotal * 0.1;
+    return {
+      items: items, count: list.length, empty: list.length === 0,
+      countText: list.length === 0 ? 'No cars saved yet.' : list.length + (list.length === 1 ? ' car' : ' cars') + ' ready to reserve. No quantities, every car is one of one.',
+      subtotalText: fmt(subtotal), depositText: fmt(deposit), balanceText: fmt(subtotal - deposit),
+      reset: function () { self.setState({ removed: [] }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
