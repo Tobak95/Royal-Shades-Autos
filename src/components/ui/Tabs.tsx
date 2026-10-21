@@ -63,7 +63,7 @@ export function Tabs<T extends string>({ items, value, onChange, label, idPrefix
             tabIndex={selected ? 0 : -1}
             onClick={() => onChange(item.value)}
             className={cn(
-              "relative min-h-11 rounded-[9px] px-4 text-sm font-semibold transition-colors duration-200",
+              "relative min-h-11 rounded-[9px] px-2.5 text-[13px] font-semibold transition-colors duration-200 sm:px-4 sm:text-sm",
               selected ? "text-obsidian" : "text-muted hover:text-white",
             )}
           >
@@ -77,7 +77,7 @@ export function Tabs<T extends string>({ items, value, onChange, label, idPrefix
             )}
             <span className="relative">
               {item.label}
-              {item.count !== undefined && <span className="ml-1.5 font-medium opacity-60">{item.count}</span>}
+              {item.count !== undefined && <span className="ml-1 font-medium opacity-60 sm:ml-1.5">{item.count}</span>}
             </span>
           </button>
         );

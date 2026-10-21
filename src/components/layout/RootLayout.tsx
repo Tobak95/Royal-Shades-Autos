@@ -1,7 +1,8 @@
-import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
+import { ScrollManager } from "./ScrollManager";
 
 export function RootLayout() {
   const { pathname } = useLocation();
@@ -14,6 +15,7 @@ export function RootLayout() {
       >
         Skip to content
       </a>
+      <ScrollManager />
       <Navbar />
       <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
         {/* Subtle fade on each page change */}
@@ -27,8 +29,6 @@ export function RootLayout() {
         </motion.div>
       </main>
       <Footer />
-      {/* Scrolls to top on navigation, to #hash targets, and restores position on back/forward */}
-      <ScrollRestoration />
     </div>
   );
 }

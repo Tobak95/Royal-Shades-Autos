@@ -1,4 +1,4 @@
-import { useId, useState, type FormEvent } from "react";
+import { useId, useState, type SubmitEvent } from "react";
 import { CircleCheck } from "lucide-react";
 import { z } from "zod";
 import { AccentText } from "@/components/ui/AccentText";
@@ -13,7 +13,7 @@ export function NewsletterBand() {
   const [error, setError] = useState<string | null>(null);
   const [subscribed, setSubscribed] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     const result = emailSchema.safeParse(email.trim());
     if (!result.success) {

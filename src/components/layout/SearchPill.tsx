@@ -1,4 +1,4 @@
-import { useId, useState, type FormEvent } from "react";
+import { useId, useState, type SubmitEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -14,7 +14,7 @@ export function SearchPill({ className, onSearch }: SearchPillProps) {
   const navigate = useNavigate();
   const [query, setQuery] = useState("");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
     const q = query.trim();
     navigate(q ? `/cars?q=${encodeURIComponent(q)}` : "/cars");

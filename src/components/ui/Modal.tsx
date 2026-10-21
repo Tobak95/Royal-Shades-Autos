@@ -1,7 +1,8 @@
-import { useEffect, useId, useRef, type KeyboardEvent, type ReactNode } from "react";
+import { useId, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import { useDialog } from "@/hooks/useDialog";
 import { cn } from "@/lib/utils";
 
 interface ModalProps {
@@ -9,6 +10,8 @@ interface ModalProps {
   onClose: () => void;
   title: string;
   description?: string;
+  /** Optional icon above the title (e.g. success / error) */
+  icon?: ReactNode;
   children?: ReactNode;
   footer?: ReactNode;
   size?: "sm" | "md" | "lg";
@@ -17,47 +20,10 @@ interface ModalProps {
 
 const SIZES = { sm: "max-w-sm", md: "max-w-lg", lg: "max-w-3xl" };
 
-const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])';
-
-export function Modal({ open, onClose, title, description, children, footer, size = "md", className }: ModalProps) {
+export function Modal({ open, onClose, title, description, icon, children, footer, size = "md", className }: ModalProps) {
   const titleId = useId();
   const descriptionId = useId();
-  const dialogRef = useRef<HTMLDivElement>(null);
-
-  // Lock page scroll, move focus into the dialog, and restore it on close
-  useEffect(() => {
-    if (!open) return;
-    const previouslyFocused = document.activeElement as HTMLElement | null;
-    const { overflow } = document.body.style;
-    document.body.style.overflow = "hidden";
-    const first = dialogRef.current?.querySelector<HTMLElement>(FOCUSABLE);
-    (first ?? dialogRef.current)?.focus();
-    return () => {
-      document.body.style.overflow = overflow;
-      previouslyFocused?.focus();
-    };
-  }, [open]);
-
-  function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
-    if (event.key === "Escape") {
-      event.stopPropagation();
-      onClose();
-      return;
-    }
-    if (event.key !== "Tab" || !dialogRef.current) return;
-    // Keep Tab focus inside the dialog
-    const nodes = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE));
-    if (nodes.length === 0) return;
-    const first = nodes[0];
-    const last = nodes[nodes.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    }
-  }
+  const { ref, onKeyDown } = useDialog<HTMLDivElement>(open, onClose);
 
   return createPortal(
     <AnimatePresence>
@@ -71,13 +37,13 @@ export function Modal({ open, onClose, title, description, children, footer, siz
         >
           <div aria-hidden="true" onClick={onClose} className="absolute inset-0 bg-obsidian/80 backdrop-blur-sm" />
           <motion.div
-            ref={dialogRef}
+            ref={ref}
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
             aria-describedby={description ? descriptionId : undefined}
             tabIndex={-1}
-            onKeyDown={handleKeyDown}
+            onKeyDown={onKeyDown}
             initial={{ opacity: 0, y: 24, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
@@ -96,6 +62,7 @@ export function Modal({ open, onClose, title, description, children, footer, siz
             >
               <X aria-hidden="true" className="size-5" />
             </button>
+            {icon && <div className="mb-4">{icon}</div>}
             <h2 id={titleId} className="pr-10 text-2xl font-extrabold tracking-[-0.02em]">
               {title}
             </h2>

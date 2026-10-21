@@ -9,6 +9,7 @@ import type {
   CarSort,
   InventoryStats,
   NewReservation,
+  Origin,
   Reservation,
   Shipment,
   StatusCounts,
@@ -85,6 +86,31 @@ export async function getCars(filters: CarFilters = {}): Promise<CarListResult> 
     pageSize,
     totalPages,
     counts,
+  };
+}
+
+export interface FilterOptions {
+  makes: string[];
+  origins: Origin[];
+  minPrice: number;
+  maxPrice: number;
+  minYear: number;
+  maxYear: number;
+}
+
+/** Choices for the showroom filter sidebar, derived from the inventory */
+export async function getFilterOptions(): Promise<FilterOptions> {
+  await wait(LATENCY_MS);
+  const prices = cars.map((c) => c.price);
+  const years = cars.map((c) => c.year);
+  const million = 1_000_000;
+  return {
+    makes: [...new Set(cars.map((c) => c.make))].sort(),
+    origins: [...new Set(cars.map((c) => c.origin))].sort(),
+    minPrice: Math.floor(Math.min(...prices) / (5 * million)) * 5 * million,
+    maxPrice: Math.ceil(Math.max(...prices) / (5 * million)) * 5 * million,
+    minYear: Math.min(...years),
+    maxYear: Math.max(...years),
   };
 }
 

@@ -19,7 +19,7 @@ export default function PlaceholderPage({ title, crumb }: PlaceholderPageProps) 
           icon={<Hammer aria-hidden="true" className="size-6" />}
           title="This page is coming in a later phase"
           description="The layout, navbar, PageHero and footer are live. The page content comes next."
-          action={<ButtonLink to="/">Back to the design system</ButtonLink>}
+          action={<ButtonLink to="/">Back to home</ButtonLink>}
         />
       </Container>
     </>
