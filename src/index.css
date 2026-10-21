@@ -1,7 +1,191 @@
 @import "tailwindcss";
-@plugin "daisyui";
 
-.layout{
-    @apply lg:max-w-[1240px] w-full mx-auto 
+/* "Obsidian & Champagne" design tokens */
+@theme {
+  /* Surfaces */
+  --color-obsidian: #0a0a0b;
+  --color-graphite: #141417;
+  --color-graphite-2: #1c1c21;
+  --color-line: #2a2a30;
+  --color-line-strong: #3a3a42;
+  --color-section-alt: #111113;
+  --color-section-line: #1e1e23;
+
+  /* Gold */
+  --color-gold: #debb6e;
+  --color-gold-deep: #b8913f;
+  --color-gold-light: #f0d9a4;
+
+  /* Ivory footer */
+  --color-ivory: #f4efe6;
+  --color-ivory-line: #ddd3c2;
+  --color-ink: #1a1714;
+  --color-ink-soft: #4a443c;
+  --color-ink-link: #3f3a33;
+  --color-ink-muted: #5a5249;
+  --color-footer-heading: #8a6a2c;
+
+  /* Text */
+  --color-muted: #a1a1aa;
+  --color-soft: #b4b4bc;
+  --color-silver: #d4d4d8;
+  --color-haze: #c4c4cc;
+  --color-subtle: #8a8a94;
+  --color-faint: #71717a;
+
+  /* Status */
+  --color-available: #34c77b;
+  --color-available-text: #7fe0aa;
+  --color-incoming: #5ba4e6;
+  --color-incoming-text: #8ec5f0;
+  --color-sold: #d9534f;
+  --color-sold-text: #f2a3a0;
+
+  /* Radii */
+  --radius-control: 10px;
+  --radius-card: 16px;
+  --radius-panel: 20px;
+
+  /* Type */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-accent: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --tracking-eyebrow: 0.22em;
+
+  /* Effects */
+  --shadow-glow: 0 18px 40px -18px rgb(222 187 110 / 0.35);
+
+  --animate-pulse-gold: pulse-gold 1.8s infinite;
+  --animate-arc-sweep: arc-sweep 1.4s ease-in-out infinite alternate;
+
+  @keyframes pulse-gold {
+    0% {
+      box-shadow: 0 0 0 0 rgb(222 187 110 / 0.6);
+    }
+    70% {
+      box-shadow: 0 0 0 12px rgb(222 187 110 / 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgb(222 187 110 / 0);
+    }
+  }
+
+  @keyframes arc-sweep {
+    from {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: -175;
+    }
+  }
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Keeps #hash targets clear of the sticky navbar */
+    scroll-padding-top: 96px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-obsidian);
+    color: #fff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: rgb(222 187 110 / 0.35);
+    color: #fff;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Car photos sit on a radial graphite "stage" */
+@utility car-stage {
+  background: radial-gradient(ellipse at 50% 75%, #2a2a31 0%, #18181c 55%, #111113 100%);
+}
+
+/* Glass card over dark photos (hero, auth) */
+@utility glass {
+  background: rgb(20 20 23 / 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgb(222 187 110 / 0.3);
+}
+
+/* Cards lift 4px with a gold border and glow on hover */
+@utility card-lift {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgb(222 187 110 / 0.55);
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+/* Dual-thumb range slider: the inputs overlap, so only the thumbs take pointer events */
+@utility range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: auto;
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    background: var(--color-gold);
+    border: 3px solid var(--color-obsidian);
+    box-shadow: 0 0 0 1px var(--color-gold);
+    cursor: grab;
+  }
+  &::-moz-range-thumb {
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    background: var(--color-gold);
+    border: 3px solid var(--color-obsidian);
+    box-shadow: 0 0 0 1px var(--color-gold);
+    cursor: grab;
+  }
+  &::-webkit-slider-runnable-track {
+    background: transparent;
+  }
+  &::-moz-range-track {
+    background: transparent;
+  }
+}

@@ -1,0 +1,40 @@
+import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
+
+export interface FieldProps {
+  id: string;
+  label: string;
+  error?: string;
+  hint?: string;
+  /** Rendered on the right of the label row, e.g. "Forgot password?" */
+  labelAction?: ReactNode;
+  /** Keeps the label for screen readers only */
+  hideLabel?: boolean;
+  className?: string;
+  children: ReactNode;
+}
+
+/** Label + control + hint/error, shared by every form control */
+export function Field({ id, label, error, hint, labelAction, hideLabel, className, children }: FieldProps) {
+  return (
+    <div className={cn("flex flex-col gap-2", className)}>
+      <div className={cn("flex items-center justify-between gap-3", hideLabel && "sr-only")}>
+        <label htmlFor={id} className="text-[13px] font-semibold text-silver">
+          {label}
+        </label>
+        {labelAction}
+      </div>
+      {children}
+      {hint && !error && (
+        <p id={`${id}-hint`} className="text-xs text-muted">
+          {hint}
+        </p>
+      )}
+      {error && (
+        <p id={`${id}-error`} role="alert" className="text-xs font-medium text-sold-text">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}

@@ -1,0 +1,34 @@
+import { useId, type ComponentProps, type ReactNode } from "react";
+import { cn } from "@/lib/utils";
+
+type CheckboxProps = Omit<ComponentProps<"input">, "type"> & {
+  label: ReactNode;
+  error?: string;
+  containerClassName?: string;
+};
+
+export function Checkbox({ label, error, containerClassName, className, id, ...props }: CheckboxProps) {
+  const autoId = useId();
+  const inputId = id ?? autoId;
+
+  return (
+    <div className={containerClassName}>
+      <label htmlFor={inputId} className="flex min-h-11 items-center gap-2.5 text-[13px] text-soft">
+        <input
+          id={inputId}
+          type="checkbox"
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? `${inputId}-error` : undefined}
+          className={cn("size-[18px] flex-none accent-gold", className)}
+          {...props}
+        />
+        <span>{label}</span>
+      </label>
+      {error && (
+        <p id={`${inputId}-error`} role="alert" className="text-xs font-medium text-sold-text">
+          {error}
+        </p>
+      )}
+    </div>
+  );
+}
