@@ -20,7 +20,7 @@ export function SpecTable({ car }: { car: Car }) {
   ];
 
   return (
-    <dl className="grid overflow-hidden rounded-card border border-line bg-graphite sm:grid-cols-2">
+    <dl className="grid overflow-hidden rounded-card border border-line bg-surface sm:grid-cols-2">
       {/* Even number of rows, so the last pair drops its bottom border on two columns */}
       {rows.map(([label, value]) => (
         <div

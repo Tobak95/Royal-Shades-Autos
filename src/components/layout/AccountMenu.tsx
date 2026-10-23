@@ -10,7 +10,7 @@ import { cn, getInitials } from "@/lib/utils";
 
 const itemClass =
   "flex min-h-11 w-full items-center gap-3 rounded-lg px-3 text-left text-sm font-medium transition-colors focus:outline-none";
-const linkItemClass = cn(itemClass, "text-silver hover:bg-white/5 hover:text-gold focus:bg-white/5 focus:text-gold");
+const linkItemClass = cn(itemClass, "text-muted hover:bg-navy/5 hover:text-gold-text focus:bg-navy/5 focus:text-gold-text");
 
 /** Initials button + dropdown (WAI-ARIA menu button pattern). Only rendered when logged in. */
 export function AccountMenu() {
@@ -102,7 +102,7 @@ export function AccountMenu() {
         onClick={() => (open ? close(false) : openMenu("first"))}
         onKeyDown={onButtonKeyDown}
         className={cn(
-          "flex size-11 flex-none items-center justify-center rounded-full bg-gold text-sm font-extrabold tracking-wide text-obsidian transition-shadow",
+          "flex size-11 flex-none items-center justify-center rounded-full bg-gold text-sm font-extrabold tracking-wide text-navy transition-shadow",
           "hover:shadow-[0_0_0_3px_rgb(222_187_110/0.25)]",
           open && "shadow-[0_0_0_3px_rgb(222_187_110/0.35)]",
         )}
@@ -118,7 +118,7 @@ export function AccountMenu() {
             exit={{ opacity: 0, scale: 0.96, y: -4, transition: { duration: 0.12 } }}
             transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
             style={{ transformOrigin: "top right" }}
-            className="absolute top-[calc(100%+10px)] right-0 z-50 w-72 max-w-[calc(100vw-2rem)] rounded-xl border border-line bg-graphite p-1.5 shadow-[0_18px_40px_-12px_rgb(0_0_0/0.7)]"
+            className="absolute top-[calc(100%+10px)] right-0 z-50 w-72 max-w-[calc(100vw-2rem)] rounded-xl border border-line bg-surface p-1.5 shadow-[0_18px_40px_-12px_rgb(0_0_0/0.7)]"
           >
             <div className="border-b border-line px-3 pt-2.5 pb-3">
               <p className="truncate text-sm font-bold" title={user.fullName}>
@@ -136,7 +136,7 @@ export function AccountMenu() {
               <Link role="menuitem" tabIndex={-1} to="/garage" onClick={() => close(true)} className={linkItemClass}>
                 <GarageIcon size={16} /> My garage
                 {garage.count > 0 && (
-                  <span className="ml-auto rounded-full bg-gold/15 px-2 py-0.5 text-xs font-bold text-gold">
+                  <span className="ml-auto rounded-full bg-gold/15 px-2 py-0.5 text-xs font-bold text-gold-text">
                     {garage.count}
                     <span className="sr-only"> {garage.count === 1 ? "car" : "cars"}</span>
                   </span>
@@ -156,7 +156,7 @@ export function AccountMenu() {
                   setOpen(false);
                   signOut();
                 }}
-                className={cn(itemClass, "text-sold-text hover:bg-sold/10 focus:bg-sold/10")}
+                className={cn(itemClass, "text-sold hover:bg-sold/10 focus:bg-sold/10")}
               >
                 <LogOut aria-hidden="true" className="size-4" /> Sign out
               </button>

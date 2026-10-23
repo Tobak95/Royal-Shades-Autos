@@ -35,7 +35,7 @@ export function Modal({ open, onClose, title, description, icon, children, foote
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <div aria-hidden="true" onClick={onClose} className="absolute inset-0 bg-obsidian/80 backdrop-blur-sm" />
+          <div aria-hidden="true" onClick={onClose} className="absolute inset-0 bg-navy/80 backdrop-blur-sm" />
           <motion.div
             ref={ref}
             role="dialog"
@@ -49,7 +49,7 @@ export function Modal({ open, onClose, title, description, icon, children, foote
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
             className={cn(
-              "relative max-h-[90vh] w-full overflow-y-auto rounded-panel border border-gold/30 bg-graphite p-6 shadow-2xl focus:outline-none sm:p-8",
+              "relative max-h-[90vh] w-full overflow-y-auto rounded-panel border border-gold/30 bg-surface p-6 shadow-2xl focus:outline-none sm:p-8",
               SIZES[size],
               className,
             )}
@@ -58,7 +58,7 @@ export function Modal({ open, onClose, title, description, icon, children, foote
               type="button"
               onClick={onClose}
               aria-label="Close dialog"
-              className="absolute top-3 right-3 flex size-11 items-center justify-center rounded-full text-muted transition-colors hover:bg-white/5 hover:text-gold"
+              className="absolute top-3 right-3 flex size-11 items-center justify-center rounded-full text-muted transition-colors hover:bg-navy/5 hover:text-gold-text"
             >
               <X aria-hidden="true" className="size-5" />
             </button>

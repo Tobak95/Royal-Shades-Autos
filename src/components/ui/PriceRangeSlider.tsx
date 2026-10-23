@@ -31,10 +31,10 @@ export function PriceRangeSlider({
   return (
     <div role="group" aria-labelledby={labelId} className={cn("flex flex-col gap-3", className)}>
       <div className="flex items-baseline justify-between gap-3">
-        <span id={labelId} className="text-[13px] font-semibold text-silver">
+        <span id={labelId} className="text-[13px] font-semibold text-muted">
           {label}
         </span>
-        <span className="text-[13px] font-semibold text-gold" aria-live="polite">
+        <span className="text-[13px] font-semibold text-gold-text" aria-live="polite">
           {format(low)} – {format(high)}
         </span>
       </div>

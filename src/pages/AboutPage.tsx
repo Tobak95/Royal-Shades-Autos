@@ -28,16 +28,16 @@ export default function AboutPage() {
       <section className="py-20">
         <Container className="grid gap-6 md:grid-cols-2">
           {statements.map(({ title, body, icon: Icon }, index) => (
-            <FadeUp key={title} delay={index * 0.1} className="h-full rounded-panel border border-gold/30 bg-graphite p-8 sm:p-10">
-              <Icon aria-hidden="true" className="size-7 text-gold" strokeWidth={1.6} />
-              <h2 className="mt-5 text-xs font-semibold tracking-eyebrow text-gold uppercase">{title}</h2>
+            <FadeUp key={title} delay={index * 0.1} className="h-full rounded-panel border border-gold/30 bg-surface p-8 sm:p-10">
+              <Icon aria-hidden="true" className="size-7 text-gold-text" strokeWidth={1.6} />
+              <h2 className="mt-5 text-xs font-semibold tracking-eyebrow text-gold-text uppercase">{title}</h2>
               <p className="mt-3 text-2xl leading-snug font-bold tracking-[-0.01em] text-balance sm:text-[26px]">{body}</p>
             </FadeUp>
           ))}
         </Container>
       </section>
 
-      <section className="border-y border-section-line bg-section-alt py-20">
+      <section className="border-y border-line bg-surface py-20">
         <Container>
           <FadeUp>
             <SectionHeading
@@ -50,7 +50,7 @@ export default function AboutPage() {
           <ul className="mt-12 grid gap-5 md:grid-cols-3">
             {VALUES.map((value, index) => (
               <li key={value.title}>
-                <FadeUp delay={index * 0.08} className="h-full rounded-card border border-line bg-graphite p-7">
+                <FadeUp delay={index * 0.08} className="h-full rounded-card border border-line bg-surface p-7">
                   <span aria-hidden="true" className="block h-px w-10 bg-gold" />
                   <h3 className="mt-5 text-lg font-bold">{value.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted">{value.body}</p>

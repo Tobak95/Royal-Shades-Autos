@@ -31,7 +31,7 @@ export function Gallery({ car, name }: GalleryProps) {
           eager
           className="aspect-[16/10] w-full transition-transform duration-500 group-hover:scale-[1.02]"
         />
-        <span className="absolute right-4 bottom-4 flex items-center gap-2 rounded-full bg-obsidian/70 px-3.5 py-2 text-xs font-semibold backdrop-blur-sm">
+        <span className="absolute right-4 bottom-4 flex items-center gap-2 rounded-full bg-navy/70 px-3.5 py-2 text-xs font-semibold backdrop-blur-sm">
           <Expand aria-hidden="true" className="size-3.5" /> View photos
         </span>
         {sold && (

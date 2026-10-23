@@ -50,7 +50,7 @@ export default function LoginPage() {
       subtitle={
         <>
           Don't have an account?{" "}
-          <Link to="/register" state={location.state} className="font-semibold text-gold hover:text-gold-light">
+          <Link to="/register" state={location.state} className="font-semibold text-gold-text hover:text-gold-text">
             Create one
           </Link>
         </>
@@ -77,7 +77,7 @@ export default function LoginPage() {
           {...register("password")}
           error={errors.password?.message}
           labelAction={
-            <Link to="/forgot-password" className="text-[13px] text-gold hover:text-gold-light">
+            <Link to="/forgot-password" className="text-[13px] text-gold-text hover:text-gold-text">
               Forgot password?
             </Link>
           }
@@ -90,7 +90,7 @@ export default function LoginPage() {
       </form>
 
       <p className="mt-[26px] flex items-center gap-3 border-t border-line pt-5 text-[13px] text-muted">
-        <ShieldCheck aria-hidden="true" className="size-[18px] flex-none text-gold" strokeWidth={1.8} />
+        <ShieldCheck aria-hidden="true" className="size-[18px] flex-none text-gold-text" strokeWidth={1.8} />
         Log in to see your reservations and track your cars.
       </p>
     </AuthScreen>

@@ -30,7 +30,7 @@ export function CarSummaryPanel({ car }: { car: Car }) {
         </p>
       </div>
 
-      <p className={cn("text-[34px] font-extrabold tracking-[-0.02em]", sold ? "text-faint line-through" : "text-white")}>
+      <p className={cn("text-[34px] font-extrabold tracking-[-0.02em]", sold ? "text-faint line-through" : "text-ink")}>
         {formatNaira(car.price)}
       </p>
 
@@ -40,9 +40,9 @@ export function CarSummaryPanel({ car }: { car: Car }) {
           { icon: <GearboxIcon size={16} />, label: "Gearbox", value: car.transmission },
           { icon: <GaugeIcon size={16} />, label: "Mileage", value: formatMileage(car.mileage, car.mileageUnit) },
         ].map((spec) => (
-          <li key={spec.label} className="rounded-control bg-graphite-2 p-3">
+          <li key={spec.label} className="rounded-control bg-page p-3">
             <span className="flex items-center gap-1.5 text-xs text-muted">
-              <span className="text-gold">{spec.icon}</span>
+              <span className="text-gold-text">{spec.icon}</span>
               {spec.label}
             </span>
             <span className="mt-1 block font-semibold">{spec.value}</span>
@@ -51,7 +51,7 @@ export function CarSummaryPanel({ car }: { car: Car }) {
       </ul>
 
       {car.status === "incoming" && car.shipment && (
-        <p className="rounded-control border border-incoming/30 bg-incoming/10 px-4 py-3 text-sm text-incoming-text">
+        <p className="rounded-control border border-arriving/30 bg-arriving/10 px-4 py-3 text-sm text-arriving-text">
           On the water now. Expected in Lagos on <strong>{formatDate(car.shipment.eta)}</strong>. Reserve it today with a{" "}
           {DEPOSIT_PERCENT} deposit.
         </p>
@@ -72,7 +72,7 @@ export function CarSummaryPanel({ car }: { car: Car }) {
       </div>
 
       <p className="flex items-start gap-2.5 text-xs leading-relaxed text-muted">
-        <ShieldCheck aria-hidden="true" className="mt-px size-4 flex-none text-gold" />
+        <ShieldCheck aria-hidden="true" className="mt-px size-4 flex-none text-gold-text" />
         {POLICY.priceIncludesText} A {DEPOSIT_PERCENT} deposit holds the car. {POLICY.refundText}
       </p>
     </div>

@@ -56,7 +56,7 @@ export default function SignUpPage() {
       subtitle={
         <>
           Already have an account?{" "}
-          <Link to="/login" state={location.state} className="font-semibold text-gold hover:text-gold-light">
+          <Link to="/login" state={location.state} className="font-semibold text-gold-text hover:text-gold-text">
             Log in
           </Link>
         </>
@@ -105,7 +105,7 @@ export default function SignUpPage() {
           label={
             <>
               I agree to the Terms of Service and{" "}
-              <Link to="/privacy" target="_blank" className="text-gold hover:text-gold-light">
+              <Link to="/privacy" target="_blank" className="text-gold-text hover:text-gold-text">
                 Privacy Policy
               </Link>
             </>

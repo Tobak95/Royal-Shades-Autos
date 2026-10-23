@@ -35,7 +35,7 @@ export function GarageCta({ car, variant = "outline", size = "sm", fullWidth, cl
 
   if (garage.has(car.id)) {
     return (
-      <ButtonLink to="/garage" {...styles} variant="outline" className={cn(className, "border-gold/40 text-gold")}>
+      <ButtonLink to="/garage" {...styles} variant="outline" className={cn(className, "border-gold/40 text-gold-text")}>
         In Garage <Check aria-hidden="true" className="size-4" strokeWidth={2.4} />
       </ButtonLink>
     );

@@ -26,11 +26,12 @@ export function SearchPill({ className, onSearch }: SearchPillProps) {
       <label
         htmlFor={inputId}
         className={cn(
-          "flex h-11 items-center gap-2 rounded-full border border-line bg-graphite-2 px-3.5 transition-[border-color,box-shadow]",
-          "focus-within:border-gold focus-within:shadow-[0_0_0_3px_rgb(222_187_110/0.18)]",
+          // Used inside the navy mobile menu
+          "flex h-11 items-center gap-2 rounded-full border border-white/15 bg-white/8 px-3.5 transition-[border-color,box-shadow]",
+          "focus-within:border-gold-light focus-within:shadow-[0_0_0_3px_rgb(212_175_90/0.25)]",
         )}
       >
-        <Search aria-hidden="true" className="size-4 flex-none text-muted" strokeWidth={2} />
+        <Search aria-hidden="true" className="size-4 flex-none text-on-navy-muted" strokeWidth={2} />
         <span className="sr-only">Search cars</span>
         <input
           id={inputId}
@@ -38,7 +39,7 @@ export function SearchPill({ className, onSearch }: SearchPillProps) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search make, model, VIN"
-          className="w-full min-w-0 bg-transparent text-[13px] text-white placeholder:text-muted focus:outline-none"
+          className="w-full min-w-0 bg-transparent text-[13px] text-white placeholder:text-on-navy-muted focus:outline-none"
         />
       </label>
     </form>

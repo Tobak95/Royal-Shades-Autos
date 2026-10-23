@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Royal Shades Autos — Home v2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F6F8}
+a{color:#8A6620;text-decoration:none}a:hover{color:#5F4510}
+.nav a{color:#D8DEE8}.nav a:hover{color:#E5C27A}
+.btn-gold{transition:transform .2s ease,background .2s ease}.btn-gold:hover{background:#E5C27A!important;transform:translateY(-1px)}
+.btn-line:hover{border-color:#E5C27A!important;color:#E5C27A!important}
+.btn-navy:hover{background:#1B3556!important}
+.car{transition:transform .3s ease,box-shadow .3s ease}
+.car:hover{transform:translateY(-6px);box-shadow:0 24px 48px -24px rgba(11,27,46,.35)!important}
+.car img{transition:transform .6s ease}.car:hover img{transform:scale(1.06)}
+.chip-tab:hover{border-color:#0B1B2E!important}
+.feature{transition:transform .25s ease,border-color .25s ease}.feature:hover{transform:translateY(-4px);border-color:#D4AF5A!important}
+.foot a{color:#AEB8C6}.foot a:hover{color:#E5C27A}
+@keyframes kenburns{0%{transform:scale(1)}100%{transform:scale(1.08) translateY(-8px)}}
+.kb{animation:kenburns 14s ease-in-out infinite alternate}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.bob{animation:bob 4.5s ease-in-out infinite}.bob2{animation:bob 5.5s ease-in-out .8s infinite}
+@keyframes sail{0%{left:0%}100%{left:62%}}
+.ship{animation:sail 2.8s cubic-bezier(.22,1,.36,1) .3s both}
+@keyframes grow{0%{width:0%}100%{width:62%}}
+.trail{animation:grow 2.8s cubic-bezier(.22,1,.36,1) .3s both}
+@keyframes rise{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:none}}
+.rise{animation:rise .8s cubic-bezier(.22,1,.36,1) both}.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.45s}
+@media (prefers-reduced-motion: reduce){.kb,.bob,.bob2,.ship,.trail,.rise{animation:none}.car,.car img,.feature{transition:none}}
+</style>
+</helmet>
+
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #0B1B2E; background: #F5F6F8; min-width: 0;">
+
+<!-- ============ HERO (navy) ============ -->
+<section style="position: relative; background: radial-gradient(120% 90% at 85% 10%, #1B3556 0%, #0F2238 45%, #0B1B2E 100%); color: #FFFFFF; border-radius: 0 0 40px 40px; overflow: hidden;">
+  <!-- decorative arc (logo motif) -->
+  <svg aria-hidden="true" width="760" height="760" viewBox="0 0 760 760" fill="none" style="position: absolute; right: -180px; top: -120px; opacity: .14;"><circle cx="380" cy="380" r="340" stroke="#E5C27A" stroke-width="1.5" stroke-dasharray="2 14"></circle><circle cx="380" cy="380" r="280" stroke="#E5C27A" stroke-width="1"></circle></svg>
+
+  <!-- top bar -->
+  <div style="border-bottom: 1px solid rgba(255,255,255,.08); font-size: 13px; color: #AEB8C6;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;">
+      <span>[Showroom address], Lagos · Mon–Sat, [opening hours]</span>
+      <span style="display: flex; gap: 20px;"><span>[Phone number]</span><span style="color: #E5C27A; font-weight: 600;">WhatsApp us</span></span>
+    </div>
+  </div>
+
+  <!-- nav -->
+  <header style="position: relative; z-index: 2;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;">
+      <a href="#" aria-label="Royal Shades Autos home"><img src="../src/assets/logo.png" alt="The Royal Shades Autos Limited" style="height: 56px; width: auto; display: block;"></a>
+      <nav class="nav" aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 30px; font-size: 15px; font-weight: 600;">
+        <a href="#cars" style="color: #FFFFFF;">Buy a car</a>
+        <a href="#swap">Swap</a>
+        <a href="#sell">Sell</a>
+        <a href="#track">Track import</a>
+        <a href="#why">About</a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <a href="garage-v2.html" aria-label="Your Garage" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); color: #FFFFFF; display: flex; align-items: center; justify-content: center;">
+          <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path><path d="M8 20v-5h8v5"></path></svg>
+        </a>
+        <a class="btn-gold" href="login.html" style="background: #D4AF5A; color: #0B1B2E; font-weight: 700; font-size: 14px; padding: 0 20px; height: 44px; border-radius: 999px; display: inline-flex; align-items: center;">Sign in</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- hero body -->
+  <div style="position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: 36px 24px 150px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 48px;">
+    <div style="flex: 1 1 500px; max-width: 600px;">
+      <div class="rise" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(212,175,90,.14); border: 1px solid rgba(212,175,90,.35); color: #E5C27A; font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 999px;">
+        <span style="width: 6px; height: 6px; border-radius: 999px; background: #E5C27A;"></span>Buy · Sell · Swap · Import — Lagos
+      </div>
+      <h1 class="rise d1" style="margin: 22px 0 0; font-size: 64px; line-height: 1.04; font-weight: 800; letter-spacing: -0.035em;">Your next car,<br><span style="color: #E5C27A;">the royal way.</span></h1>
+      <p class="rise d2" style="margin: 20px 0 0; font-size: 18px; line-height: 1.65; color: #C9D2DE; max-width: 500px;">Clean, inspected cars ready to drive in Lagos. Swap your current car, sell it fast, or import one and track it all the way home.</p>
+      <div class="rise d3" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
+        <a class="btn-gold" href="#cars" style="background: #D4AF5A; color: #0B1B2E; font-weight: 700; font-size: 15px; padding: 0 26px; height: 54px; border-radius: 12px; display: inline-flex; align-items: center; gap: 10px;">Browse cars
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+        </a>
+        <a class="btn-line" href="#swap" style="border: 1.5px solid rgba(255,255,255,.35); color: #FFFFFF; font-weight: 700; font-size: 15px; padding: 0 26px; height: 54px; border-radius: 12px; display: inline-flex; align-items: center; gap: 10px;">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4L3 8l4 4"></path><path d="M3 8h13a5 5 0 010 10h-2"></path><path d="M17 20l4-4-4-4" opacity="0"></path></svg>
+          Swap my car
+        </a>
+      </div>
+      <div class="rise d4" style="display: flex; flex-wrap: wrap; gap: 26px; margin-top: 38px; font-size: 14px; color: #C9D2DE;">
+        <span style="display: inline-flex; align-items: center; gap: 8px;"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E5C27A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>Inspected before sale</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px;"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E5C27A" stroke-width="2" stroke-linecap="round"><path d="M4 7h11l-3-3M20 17H9l3 3"></path></svg>Fair swap value</span>
+        <span style="display: inline-flex; align-items: center; gap: 8px;"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E5C27A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Papers sorted for you</span>
+      </div>
+    </div>
+
+    <!-- arch photo -->
+    <div style="flex: 0 1 460px; position: relative; display: flex; justify-content: center;">
+      <div style="position: absolute; inset: -14px; max-width: 488px; margin: 0 auto; border-radius: 260px 260px 34px 34px; border: 1px solid rgba(229,194,122,.45);"></div>
+      <div role="region" aria-roledescription="carousel" aria-label="Available cars" onMouseEnter="{{pause}}" onMouseLeave="{{resume}}" style="position: relative; width: 100%; max-width: 460px; height: 560px; border-radius: 240px 240px 26px 26px; overflow: hidden; box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); background: #0F2238;">
+        <sc-for list="{{slides}}" as="s" hint-placeholder-count="4">
+          <img class="kb" src="{{s.img}}" alt="{{s.alt}}" style="{{s.style}}">
+        </sc-for>
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,27,46,0) 45%, rgba(11,27,46,.88) 100%);"></div>
+        <a href="car-details-v2.html" aria-label="View {{hero.name}}" style="position: absolute; inset: 0; z-index: 1;"></a>
+        <div aria-live="polite" style="position: absolute; left: 24px; right: 24px; bottom: 22px; z-index: 2; display: flex; flex-direction: column; gap: 14px; pointer-events: none;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px;">
+            <div><div style="font-size: 12px; color: #C9D2DE; letter-spacing: .12em; text-transform: uppercase;">In our garage · {{hero.count}}</div><div style="font-size: 22px; font-weight: 800; margin-top: 3px; color: #FFFFFF;">{{hero.name}}</div><div style="font-size: 14px; color: #E5C27A; font-weight: 700; margin-top: 2px;">₦ [Price]</div></div>
+            <span style="background: #1F9D61; color: #FFFFFF; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px;">Available</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; pointer-events: auto;">
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <sc-for list="{{dots}}" as="d" hint-placeholder-count="4">
+                <button type="button" aria-label="{{d.label}}" aria-current="{{d.current}}" onClick="{{d.pick}}" style="width: 28px; height: 28px; border: 0; background: transparent; padding: 0; cursor: pointer; display: flex; align-items: center; justify-content: center;"><span style="{{d.style}}"></span></button>
+              </sc-for>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button type="button" aria-label="Previous car" onClick="{{prev}}" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35); background: rgba(11,27,46,.4); color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"></path></svg></button>
+              <button type="button" aria-label="Next car" onClick="{{next}}" style="width: 44px; height: 44px; border-radius: 999px; border: 0; background: #D4AF5A; color: #0B1B2E; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bob" style="position: absolute; left: -36px; top: 120px; background: #FFFFFF; color: #0B1B2E; border-radius: 14px; padding: 12px 16px; box-shadow: 0 20px 40px -18px rgba(0,0,0,.5); display: flex; align-items: center; gap: 10px;">
+        <span style="width: 36px; height: 36px; border-radius: 10px; background: #FBF3E1; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="2" stroke-linecap="round"><path d="M4 7h11l-3-3M20 17H9l3 3"></path></svg></span>
+        <div><div style="font-size: 13px; font-weight: 800;">Swap accepted</div><div style="font-size: 12px; color: #5A6474;">Bring your car, top up</div></div>
+      </div>
+      <div class="bob2" style="position: absolute; right: -24px; top: 300px; background: #FFFFFF; color: #0B1B2E; border-radius: 14px; padding: 12px 16px; box-shadow: 0 20px 40px -18px rgba(0,0,0,.5); display: flex; align-items: center; gap: 10px;">
+        <span style="width: 36px; height: 36px; border-radius: 10px; background: #E8F6EE; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1F9D61" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
+        <div><div style="font-size: 13px; font-weight: 800;">Inspected</div><div style="font-size: 12px; color: #5A6474;">Engine · body · papers</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINDER (overlaps hero) ============ -->
+<section aria-label="Find, swap or sell" style="position: relative; z-index: 3; margin-top: -96px;">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px;">
+    <div style="background: #FFFFFF; border-radius: 20px; box-shadow: 0 30px 60px -30px rgba(11,27,46,.4); padding: 22px 24px 24px; border: 1px solid #E3E6EB;">
+      <div role="tablist" aria-label="What do you want to do?" style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <sc-for list="{{modes}}" as="m" hint-placeholder-count="3">
+          <button type="button" role="tab" aria-selected="{{m.selected}}" onClick="{{m.pick}}" style="{{m.style}}">{{m.label}}</button>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-top: 18px; align-items: end;">
+        <sc-for list="{{fields}}" as="f" hint-placeholder-count="3">
+          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #5A6474;">{{f.label}}
+            <span style="height: 50px; border: 1px solid #E3E6EB; border-radius: 12px; background: #F5F6F8; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; font-size: 14px; font-weight: 500; color: #0B1B2E;">{{f.value}}
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5A6474" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"></path></svg>
+            </span>
+          </label>
+        </sc-for>
+        <button type="button" class="btn-navy" style="height: 50px; border: 0; border-radius: 12px; background: #0B1B2E; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>{{cta}}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRACKING (right after hero) ============ -->
+<section id="track" style="padding: 88px 0 24px;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+    <div style="flex: 1 1 340px; max-width: 420px;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #8A6620;">Importing from abroad?</div>
+      <h2 style="margin: 10px 0 0; font-size: 40px; line-height: 1.1; font-weight: 800; letter-spacing: -0.03em;">Track your car <span style="color: #8A6620;">live</span>, port to driveway.</h2>
+      <p style="margin: 14px 0 0; font-size: 16px; line-height: 1.7; color: #5A6474;">See the vessel, every stage and the arrival date, all in one place.</p>
+      <form style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px;">
+        <label for="trk" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">VIN or tracking number</label>
+        <input id="trk" type="text" placeholder="VIN or tracking number" style="flex: 1 1 200px; height: 52px; border: 1px solid #E3E6EB; border-radius: 12px; background: #FFFFFF; font: inherit; font-size: 14px; padding: 0 16px; color: #0B1B2E;">
+        <button type="button" class="btn-gold" style="height: 52px; padding: 0 22px; border: 0; border-radius: 12px; background: #D4AF5A; color: #0B1B2E; font: inherit; font-weight: 700; cursor: pointer;">Track</button>
+      </form>
+    </div>
+    <div style="flex: 1 1 600px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 22px; padding: 26px 28px; box-sizing: border-box; box-shadow: 0 20px 50px -34px rgba(11,27,46,.35);">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <img src="../public/cars/lexus-rx.jpg" alt="Silver Lexus RX 350" style="width: 64px; height: 64px; border-radius: 14px; object-fit: cover;">
+          <div><div style="font-size: 18px; font-weight: 800;">Lexus RX 350</div><div style="font-size: 13px; color: #5A6474; margin-top: 2px;">RS-24817 · MV Grande Lagos</div></div>
+        </div>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <span style="background: #EAF1FD; color: #1F4FA8; font-size: 12px; font-weight: 700; padding: 7px 12px; border-radius: 999px;">At sea</span>
+          <span style="background: #FBF3E1; color: #6B4E12; font-size: 12px; font-weight: 700; padding: 7px 12px; border-radius: 999px;">ETA 14 Nov 2026</span>
+        </div>
+      </div>
+      <div style="position: relative; margin: 34px 6px 10px; height: 34px;">
+        <div style="position: absolute; left: 0; right: 0; top: 16px; border-top: 2px dashed #CBD2DC;"></div>
+        <div class="trail" style="position: absolute; left: 0; top: 15px; height: 4px; background: linear-gradient(90deg, #0B1B2E, #D4AF5A); border-radius: 4px; width: 62%;"></div>
+        <div style="position: absolute; left: -4px; top: 10px; width: 16px; height: 16px; border-radius: 999px; background: #0B1B2E;"></div>
+        <div style="position: absolute; right: -4px; top: 10px; width: 16px; height: 16px; border-radius: 999px; background: #FFFFFF; border: 3px solid #CBD2DC; box-sizing: border-box;"></div>
+        <div class="ship" style="position: absolute; left: 62%; top: 0; margin-left: -17px; width: 34px; height: 34px; border-radius: 999px; background: #D4AF5A; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 6px rgba(212,175,90,.25);">
+          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0B1B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15l2 4h14l2-4"></path><path d="M5 15V10h14v5"></path><path d="M12 10V5"></path></svg>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 600;"><span>Baltimore, USA</span><span style="color: #5A6474;">Tin Can, Lagos</span></div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 22px;">
+        <sc-for list="{{stages}}" as="s" hint-placeholder-count="5">
+          <div style="{{s.style}}"><div style="font-size: 12px; font-weight: 700;">{{s.label}}</div><div style="font-size: 11px; margin-top: 3px; opacity: .8;">{{s.date}}</div></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CARS ============ -->
+<section id="cars" style="padding: 72px 0 40px;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 18px;">
+      <div>
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #8A6620;">In the showroom</div>
+        <h2 style="margin: 10px 0 0; font-size: 40px; font-weight: 800; letter-spacing: -0.03em;">Fresh <span style="color: #8A6620;">arrivals</span></h2>
+      </div>
+      <div role="tablist" aria-label="Filter by body type" style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <sc-for list="{{bodyTabs}}" as="t" hint-placeholder-count="4">
+          <button type="button" role="tab" class="chip-tab" aria-selected="{{t.selected}}" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 22px; margin-top: 32px;">
+      <sc-for list="{{cars}}" as="c" hint-placeholder-count="6">
+        <article class="car" style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 0 rgba(11,27,46,.03);">
+          <div style="position: relative; height: 230px; overflow: hidden; background: #E9ECF1;">
+            <img src="{{c.img}}" alt="{{c.alt}}" style="width: 100%; height: 100%; object-fit: cover; object-position: {{c.pos}}; display: block;">
+            <span style="{{c.badgeStyle}}"><span style="{{c.dotStyle}}"></span>{{c.statusLabel}}</span>
+            <button type="button" aria-label="Save to wishlist" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; border-radius: 999px; border: 0; background: rgba(255,255,255,.92); color: #0B1B2E; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+              <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.2-8.6C1.3 8.3 3.2 5 6.5 5c2 0 3.3 1.1 4.1 2.3h2.8C14.2 6.1 15.5 5 17.5 5c3.3 0 5.2 3.3 3.7 6.4C19 15.6 12 20 12 20z"></path></svg>
+            </button>
+          </div>
+          <div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
+            <div>
+              <h3 style="margin: 0; font-size: 17px; font-weight: 800;">{{c.name}}</h3>
+              <div style="font-size: 13px; color: #5A6474; margin-top: 3px;">{{c.body}} · [Year] · [Mileage]</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; border-top: 1px solid #EEF0F3;">
+              <div style="font-size: 19px; font-weight: 800;">₦ [Price]</div>
+              <a href="car-details-v2.html" class="btn-navy" style="{{c.ctaStyle}}">{{c.cta}}</a>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+    <div style="display: flex; justify-content: center; margin-top: 30px;">
+      <a href="#cars" style="border: 1.5px solid #0B1B2E; color: #0B1B2E; font-weight: 700; font-size: 14px; padding: 0 26px; height: 50px; border-radius: 12px; display: inline-flex; align-items: center; gap: 10px;">See all cars
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECENTLY SOLD (status = sold, set in admin) ============ -->
+<section id="sold" style="padding: 56px 0 24px;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 18px;">
+      <div>
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #8A6620;">Proof, not promises</div>
+        <h2 style="margin: 10px 0 0; font-size: 40px; font-weight: 800; letter-spacing: -0.03em;">Recently <span style="color: #8A6620;">sold</span></h2>
+        <p style="margin: 8px 0 0; font-size: 16px; color: #5A6474;">Cars that have already found new owners in Lagos.</p>
+      </div>
+      <a href="#cars" style="font-weight: 700; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px;">See all sold cars
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 22px; margin-top: 30px;">
+      <sc-for list="{{sold}}" as="s" hint-placeholder-count="2">
+        <article style="position: relative; background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 18px; overflow: hidden;">
+          <div style="position: relative; height: 210px; overflow: hidden;">
+            <img src="{{s.img}}" alt="{{s.alt}}" style="width: 100%; height: 100%; object-fit: cover; object-position: {{s.pos}}; display: block; filter: grayscale(.55) brightness(.92);">
+            <div style="position: absolute; top: 20px; left: -42px; transform: rotate(-35deg); background: #B23B35; color: #FFFFFF; font-size: 12px; font-weight: 800; letter-spacing: .22em; padding: 7px 54px;">SOLD</div>
+          </div>
+          <div style="padding: 16px 18px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px;">
+            <div><h3 style="margin: 0; font-size: 17px; font-weight: 800;">{{s.name}}</h3><div style="font-size: 13px; color: #5A6474; margin-top: 3px;">{{s.body}} · Sold [Month]</div></div>
+            <a href="#swap" style="font-size: 13px; font-weight: 700; min-height: 44px; display: inline-flex; align-items: center;">Find similar</a>
+          </div>
+        </article>
+      </sc-for>
+      <div style="background: #0B1B2E; color: #FFFFFF; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; min-height: 270px; box-sizing: border-box;">
+        <div>
+          <svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E5C27A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+          <h3 style="margin: 14px 0 0; font-size: 22px; font-weight: 800; line-height: 1.2;">Missed one? <span style="color: #E5C27A;">We'll source it for you.</span></h3>
+          <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.6; color: #AEB8C6;">Tell us the make, model and budget, and we'll find it abroad or locally.</p>
+        </div>
+        <a class="btn-gold" href="#" style="align-self: flex-start; background: #D4AF5A; color: #0B1B2E; font-weight: 700; font-size: 14px; padding: 0 20px; height: 48px; border-radius: 12px; display: inline-flex; align-items: center;">Request a car</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SWAP ============ -->
+<section id="swap" style="padding: 56px 0;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px;">
+    <div style="background: #0B1B2E; color: #FFFFFF; border-radius: 28px; overflow: hidden; display: flex; flex-wrap: wrap;">
+      <div style="flex: 1 1 420px; min-height: 420px; position: relative;">
+        <img src="../public/cars/gle-rear.jpg" alt="Silver Mercedes-Benz GLE in a carport" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11,27,46,0) 40%, rgba(11,27,46,.9) 100%);"></div>
+      </div>
+      <div style="flex: 1 1 480px; padding: 48px 44px; box-sizing: border-box;">
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #E5C27A;">Swap &amp; upgrade</div>
+        <h2 style="margin: 10px 0 0; font-size: 38px; line-height: 1.12; font-weight: 800; letter-spacing: -0.03em;">Trade in your car.<br><span style="color: #E5C27A;">Drive out in a better one.</span></h2>
+        <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 28px;">
+          <div style="display: flex; gap: 14px; align-items: flex-start;"><span style="width: 34px; height: 34px; flex: none; border-radius: 999px; border: 1.5px solid #E5C27A; color: #E5C27A; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center;">1</span><div><div style="font-weight: 700;">Bring or send your car's details</div><div style="font-size: 14px; color: #AEB8C6; margin-top: 2px;">Make, model, year, mileage and a few photos.</div></div></div>
+          <div style="display: flex; gap: 14px; align-items: flex-start;"><span style="width: 34px; height: 34px; flex: none; border-radius: 999px; border: 1.5px solid #E5C27A; color: #E5C27A; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center;">2</span><div><div style="font-weight: 700;">Get a fair valuation</div><div style="font-size: 14px; color: #AEB8C6; margin-top: 2px;">We inspect it and give you a clear trade-in value.</div></div></div>
+          <div style="display: flex; gap: 14px; align-items: flex-start;"><span style="width: 34px; height: 34px; flex: none; border-radius: 999px; border: 1.5px solid #E5C27A; color: #E5C27A; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center;">3</span><div><div style="font-weight: 700;">Top up the difference</div><div style="font-size: 14px; color: #AEB8C6; margin-top: 2px;">Pay only the balance and drive your new car home.</div></div></div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;">
+          <a class="btn-gold" href="#" style="background: #D4AF5A; color: #0B1B2E; font-weight: 700; font-size: 15px; padding: 0 24px; height: 52px; border-radius: 12px; display: inline-flex; align-items: center;">Get a swap quote</a>
+          <a class="btn-line" href="#" style="border: 1.5px solid rgba(255,255,255,.35); color: #FFFFFF; font-weight: 700; font-size: 15px; padding: 0 24px; height: 52px; border-radius: 12px; display: inline-flex; align-items: center;">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SELL ============ -->
+<section id="sell" style="padding: 24px 0 56px;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px;">
+    <div style="background: #FBF3E1; border: 1px solid #EBD9AE; border-radius: 24px; padding: 36px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+      <div style="flex: 1 1 420px;">
+        <h2 style="margin: 0; font-size: 32px; font-weight: 800; letter-spacing: -0.025em;">Want to sell your car? <span style="color: #8A6620;">We'll buy it.</span></h2>
+        <p style="margin: 8px 0 0; font-size: 16px; color: #5A4A2A;">Send the details, get an offer, and get paid without the stress of strangers and endless calls.</p>
+      </div>
+      <a class="btn-navy" href="#" style="background: #0B1B2E; color: #FFFFFF; font-weight: 700; font-size: 15px; padding: 0 26px; height: 54px; border-radius: 12px; display: inline-flex; align-items: center; gap: 10px;">Get an offer
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY ============ -->
+<section id="why" style="padding: 40px 0 96px;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px;">
+    <div style="text-align: center;">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #8A6620;">Why Royal Shades</div>
+      <h2 style="margin: 10px 0 0; font-size: 40px; font-weight: 800; letter-spacing: -0.03em;">Buying a car should feel <span style="color: #8A6620;">safe</span>.</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 40px;">
+      <div class="feature" style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 18px; padding: 24px;"><span style="width: 46px; height: 46px; border-radius: 12px; background: #FBF3E1; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span><h3 style="margin: 16px 0 0; font-size: 17px;">Inspected cars</h3><p style="margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: #5A6474;">Engine, body and papers checked before any car is listed.</p></div>
+      <div class="feature" style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 18px; padding: 24px;"><span style="width: 46px; height: 46px; border-radius: 12px; background: #FBF3E1; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="2" stroke-linecap="round"><path d="M4 7h11l-3-3M20 17H9l3 3"></path></svg></span><h3 style="margin: 16px 0 0; font-size: 17px;">Easy swaps</h3><p style="margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: #5A6474;">Trade in your current car and only pay the difference.</p></div>
+      <div class="feature" style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 18px; padding: 24px;"><span style="width: 46px; height: 46px; border-radius: 12px; background: #FBF3E1; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg></span><h3 style="margin: 16px 0 0; font-size: 17px;">Clear pricing</h3><p style="margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: #5A6474;">One price, no hidden charges, explained before you pay.</p></div>
+      <div class="feature" style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 18px; padding: 24px;"><span style="width: 46px; height: 46px; border-radius: 12px; background: #FBF3E1; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15l2 4h14l2-4"></path><path d="M5 15V10h14v5"></path><path d="M12 10V5"></path></svg></span><h3 style="margin: 16px 0 0; font-size: 17px;">Tracked imports</h3><p style="margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: #5A6474;">Follow your car from the port abroad to Tin Can or Apapa.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot" style="background: #0B1B2E; color: #FFFFFF; border-radius: 40px 40px 0 0;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 30px;">
+    <div style="display: flex; flex-wrap: wrap; gap: 44px; justify-content: space-between;">
+      <div style="flex: 1 1 260px; max-width: 320px;">
+        <img src="../src/assets/logo.png" alt="The Royal Shades Autos Limited" style="height: 58px; width: auto; display: block;">
+        <p style="margin: 16px 0 0; font-size: 14px; line-height: 1.7; color: #AEB8C6;">Buy, sell, swap and import cars in Lagos, with every step done properly.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 30px; flex: 2 1 520px;">
+        <div><div style="font-size: 13px; font-weight: 700; color: #E5C27A; letter-spacing: .12em; text-transform: uppercase;">Cars</div><div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 14px;"><a href="#cars">Buy a car</a><a href="#swap">Swap</a><a href="#sell">Sell</a></div></div>
+        <div><div style="font-size: 13px; font-weight: 700; color: #E5C27A; letter-spacing: .12em; text-transform: uppercase;">Import</div><div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 14px;"><a href="#track">Track a car</a><a href="#track">Incoming cars</a><a href="#why">FAQs</a></div></div>
+        <div><div style="font-size: 13px; font-weight: 700; color: #E5C27A; letter-spacing: .12em; text-transform: uppercase;">Company</div><div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 14px;"><a href="#why">About</a><a href="#">Contact</a><a href="#">Privacy</a></div></div>
+        <div><div style="font-size: 13px; font-weight: 700; color: #E5C27A; letter-spacing: .12em; text-transform: uppercase;">Visit</div><div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px; font-size: 14px; color: #AEB8C6;"><span>[Showroom address], Lagos</span><span>[Phone number]</span><span>[Email address]</span></div></div>
+      </div>
+    </div>
+    <div style="margin-top: 44px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #8E99A9;"><span>© 2026 The Royal Shades Autos Limited</span><span>Lagos, Nigeria</span></div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4700}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { mode: 'buy', body: 'All', slide: 0, paused: false }; }
+  componentDidMount() {
+    var self = this;
+    this.timer = setInterval(function () {
+      if (!self.state.paused) self.setState({ slide: (self.state.slide + 1) % 4 });
+    }, 4500);
+  }
+  componentWillUnmount() { clearInterval(this.timer); }
+  renderVals() {
+    var self = this;
+    var mode = this.state.mode, body = this.state.body, slide = this.state.slide;
+    // Hero rotation: only cars with status "available" (set in the admin dashboard)
+    var HERO = [
+      { name: 'Toyota Avalon XLE', img: '../public/cars/avalon-front.jpg', alt: 'Plum Toyota Avalon XLE under trees', pos: 'center 60%' },
+      { name: 'Mercedes-Benz GLE 450', img: '../public/cars/gle-front.jpg', alt: 'Silver Mercedes-Benz GLE, front view', pos: 'center 55%' },
+      { name: 'Lexus RX 350', img: '../public/cars/lexus-rx.jpg', alt: 'Silver Lexus RX 350', pos: '40% 62%' },
+      { name: 'Hyundai Sonata Sport', img: '../public/cars/sonata-grey.jpg', alt: 'Grey Hyundai Sonata Sport', pos: '55% 62%' }
+    ];
+    var slides = HERO.map(function (h, i) {
+      return { img: h.img, alt: h.alt, style: 'position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: ' + h.pos + '; transition: opacity 1.1s ease; opacity: ' + (i === slide ? '1' : '0') + ';' };
+    });
+    var dots = HERO.map(function (h, i) {
+      var on = i === slide;
+      return { label: 'Show ' + h.name, current: on ? 'true' : 'false', pick: function () { self.setState({ slide: i }); },
+        style: 'display: block; height: 8px; border-radius: 999px; transition: width .3s ease; ' + (on ? 'width: 26px; background: #E5C27A;' : 'width: 8px; background: rgba(255,255,255,.55);') };
+    });
+    var hero = { name: HERO[slide].name, count: (slide + 1) + ' of ' + HERO.length };
+    var next = function () { self.setState({ slide: (slide + 1) % HERO.length }); };
+    var prev = function () { self.setState({ slide: (slide + HERO.length - 1) % HERO.length }); };
+    var pause = function () { self.setState({ paused: true }); };
+    var resume = function () { self.setState({ paused: false }); };
+    var MODES = [['buy', 'Buy a car'], ['swap', 'Swap my car'], ['sell', 'Sell my car']];
+    var modes = MODES.map(function (m) {
+      var on = m[0] === mode;
+      return { label: m[1], selected: on ? 'true' : 'false', pick: function () { self.setState({ mode: m[0] }); },
+        style: 'min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: inherit; font-size: 14px; font-weight: 700; ' + (on ? 'background: #0B1B2E; color: #FFFFFF; border: 1px solid #0B1B2E;' : 'background: #FFFFFF; color: #5A6474; border: 1px solid #E3E6EB;') };
+    });
+    var FIELDS = {
+      buy: [['Make', 'Any make'], ['Body type', 'SUV, sedan…'], ['Budget', 'Any budget']],
+      swap: [['Your car', 'e.g. Toyota Camry 2015'], ['Car you want', 'Any car in stock'], ['Your phone', 'For the quote']],
+      sell: [['Make & model', 'e.g. Lexus RX 350'], ['Year', 'Select year'], ['Mileage', 'Approx. km or mi']]
+    };
+    var CTA = { buy: 'Search cars', swap: 'Get swap quote', sell: 'Get an offer' };
+    var fields = FIELDS[mode].map(function (f) { return { label: f[0], value: f[1] }; });
+    var CARS = [
+      { name: 'Mercedes-Benz GLE 450', body: 'SUV', status: 'available', img: '../public/cars/gle-front.jpg', alt: 'Silver Mercedes-Benz GLE, front view', pos: 'center 55%' },
+      { name: 'Lexus RX 350', body: 'SUV', status: 'available', img: '../public/cars/lexus-rx.jpg', alt: 'Silver Lexus RX 350 on a Lagos street', pos: 'center 62%' },
+      { name: 'Toyota Venza', body: 'SUV', status: 'inspection', img: '../public/cars/venza-black.jpg', alt: 'Black Toyota Venza, front view', pos: 'center 62%' },
+      { name: 'Hyundai Sonata Sport', body: 'Sedan', status: 'available', img: '../public/cars/sonata-grey.jpg', alt: 'Grey Hyundai Sonata Sport', pos: 'center 62%' },
+      { name: 'Toyota Avalon XLE', body: 'Sedan', status: 'available', img: '../public/cars/avalon-rear.jpg', alt: 'Plum Toyota Avalon XLE, rear view', pos: 'center 62%' },
+      { name: 'Lexus RX 350', body: 'SUV', status: 'arrived', img: '../public/cars/lexus-rx.jpg', alt: 'Silver Lexus RX 350', pos: '30% 62%' }
+    ];
+    var STATUS = {
+      available: { label: 'Available', fg: '#1F7A4D', dot: '#1F9D61', cta: 'View car', ctaBg: '#0B1B2E', ctaFg: '#FFFFFF' },
+      inspection: { label: 'Coming soon · Inspection', fg: '#8A6620', dot: '#D4AF5A', cta: 'Notify me', ctaBg: '#FBF3E1', ctaFg: '#6B4E12' },
+      arrived: { label: 'Arrived · At port', fg: '#1F4FA8', dot: '#2F6FDB', cta: 'Reserve', ctaBg: '#EAF1FD', ctaFg: '#1F4FA8' }
+    };
+    var bodyTabs = ['All', 'SUV', 'Sedan', 'Minivan'].map(function (b) {
+      var on = b === body;
+      return { label: b, selected: on ? 'true' : 'false', pick: function () { self.setState({ body: b }); },
+        style: 'min-height: 44px; padding: 0 18px; border-radius: 999px; cursor: pointer; font: inherit; font-size: 14px; font-weight: 600; ' + (on ? 'background: #0B1B2E; color: #FFFFFF; border: 1px solid #0B1B2E;' : 'background: #FFFFFF; color: #0B1B2E; border: 1px solid #E3E6EB;') };
+    });
+    var cars = CARS.filter(function (c) { return body === 'All' || c.body === body; }).map(function (c) {
+      var m = STATUS[c.status];
+      return Object.assign({}, c, {
+        statusLabel: m.label, cta: m.cta,
+        badgeStyle: 'position: absolute; top: 12px; left: 12px; background: #FFFFFF; color: ' + m.fg + '; font-size: 12px; font-weight: 700; padding: 6px 11px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px;',
+        dotStyle: 'width: 6px; height: 6px; border-radius: 999px; background: ' + m.dot + ';',
+        ctaStyle: 'background: ' + m.ctaBg + '; color: ' + m.ctaFg + '; font-size: 13px; font-weight: 700; padding: 0 16px; height: 44px; border-radius: 10px; display: inline-flex; align-items: center;'
+      });
+    });
+    // Recently sold: cars with status "sold" (set in the admin dashboard)
+    var sold = [
+      { name: 'Hyundai Sonata', body: 'Sedan', img: '../public/cars/sonata-blue.jpg', alt: 'Blue Hyundai Sonata, sold', pos: 'center 55%' },
+      { name: 'Toyota Sienna', body: 'Minivan', img: '../public/cars/sienna-front.jpg', alt: 'Black Toyota Sienna, sold', pos: 'center 50%' }
+    ];
+    var STAGES = [['Purchased', '12 Oct', 'done'], ['Left Baltimore', '22 Oct', 'done'], ['At sea', 'Now', 'now'], ['Arrived Lagos', 'Est. 14 Nov', 'next'], ['Ready', '—', 'next']];
+    var stages = STAGES.map(function (s) {
+      var st = s[2];
+      return { label: s[0], date: s[1], style: 'border-radius: 12px; padding: 10px 12px; ' + (st === 'done' ? 'background: #0B1B2E; color: #FFFFFF;' : st === 'now' ? 'background: #D4AF5A; color: #0B1B2E;' : 'background: #F5F6F8; color: #5A6474; border: 1px dashed #CBD2DC;') };
+    });
+    return { modes: modes, fields: fields, cta: CTA[mode], bodyTabs: bodyTabs, cars: cars, sold: sold, stages: stages,
+      slides: slides, dots: dots, hero: hero, next: next, prev: prev, pause: pause, resume: resume };
+  }
+}
+</script>
+</body>
+</html>

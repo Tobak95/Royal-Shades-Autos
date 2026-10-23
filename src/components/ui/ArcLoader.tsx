@@ -31,7 +31,7 @@ export function ArcLoader({ size = 72, label = "Loading", withLogo = false, full
           cy="60"
           r="50"
           fill="none"
-          stroke="#2A2A30"
+          stroke="#E3E6EB"
           strokeWidth="8"
           strokeDasharray="235 314"
           strokeLinecap="round"
@@ -42,14 +42,14 @@ export function ArcLoader({ size = 72, label = "Loading", withLogo = false, full
           cy="60"
           r="50"
           fill="none"
-          stroke="#DEBB6E"
+          stroke="#D4AF5A"
           strokeWidth="8"
           strokeDasharray="60 314"
           strokeLinecap="round"
           transform="rotate(135 60 60)"
           className="animate-arc-sweep"
         />
-        <circle cx="60" cy="60" r="5" fill="#DEBB6E" />
+        <circle cx="60" cy="60" r="5" fill="#D4AF5A" />
       </svg>
       <span className="sr-only">{label}</span>
     </div>

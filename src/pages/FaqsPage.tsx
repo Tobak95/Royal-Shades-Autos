@@ -21,7 +21,7 @@ export default function FaqsPage() {
               <li key={group.id}>
                 <a
                   href={`#${group.id}`}
-                  className="flex min-h-11 items-center rounded-control px-3 text-sm font-semibold text-silver transition-colors hover:bg-white/[0.04] hover:text-gold"
+                  className="flex min-h-11 items-center rounded-control px-3 text-sm font-semibold text-muted transition-colors hover:bg-navy/[0.04] hover:text-gold-text"
                 >
                   {group.title}
                 </a>
@@ -34,7 +34,7 @@ export default function FaqsPage() {
           {FAQ_GROUPS.map((group) => (
             <FadeUp key={group.id}>
               <section id={group.id} aria-labelledby={`${group.id}-heading`}>
-                <h2 id={`${group.id}-heading`} className="text-xs font-semibold tracking-eyebrow text-gold uppercase">
+                <h2 id={`${group.id}-heading`} className="text-xs font-semibold tracking-eyebrow text-gold-text uppercase">
                   {group.title}
                 </h2>
                 <Accordion
@@ -45,7 +45,7 @@ export default function FaqsPage() {
             </FadeUp>
           ))}
 
-          <div className="flex flex-wrap items-center justify-between gap-5 rounded-panel border border-gold/30 bg-graphite p-7">
+          <div className="flex flex-wrap items-center justify-between gap-5 rounded-panel border border-gold/30 bg-surface p-7">
             <div>
               <h2 className="text-xl font-bold">Still have a question?</h2>
               <p className="mt-1 text-sm text-muted">Our Lagos team usually replies within {POLICY.responseTime}.</p>

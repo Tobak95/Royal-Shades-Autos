@@ -57,7 +57,7 @@ export default function GaragePage() {
               action={<ButtonLink to="/cars">Explore the showroom</ButtonLink>}
             />
           )}
-          <Link to="/cars" className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-gold hover:text-gold-light">
+          <Link to="/cars" className="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-gold-text hover:text-gold-text">
             <ArrowLeft aria-hidden="true" className="size-4" strokeWidth={2} />
             Continue browsing the showroom
           </Link>
@@ -65,7 +65,7 @@ export default function GaragePage() {
 
         <aside
           aria-labelledby="summary-heading"
-          className="w-full flex-[1_1_340px] rounded-[18px] border border-gold/35 bg-graphite p-[26px]"
+          className="w-full flex-[1_1_340px] rounded-[18px] border border-gold/35 bg-surface p-[26px]"
         >
           <h2 id="summary-heading" className="text-xl font-bold">
             Reservation summary
@@ -74,7 +74,7 @@ export default function GaragePage() {
             <TotalsBreakdown totals={totals} carCount={reservable.length} />
           </div>
           {hasSold && (
-            <p role="alert" className="mt-4 text-xs text-sold-text">
+            <p role="alert" className="mt-4 text-xs text-sold">
               Sold cars aren't included. Remove them before you continue.
             </p>
           )}
@@ -89,7 +89,7 @@ export default function GaragePage() {
             </Button>
           )}
           <p className="mt-[18px] flex items-start gap-2.5 text-xs leading-normal text-muted">
-            <ShieldCheck aria-hidden="true" className="mt-px size-4 flex-none text-gold" />
+            <ShieldCheck aria-hidden="true" className="mt-px size-4 flex-none text-gold-text" />
             Pay by bank transfer. You'll get a tracking number for every incoming car as soon as your deposit clears.
           </p>
         </aside>

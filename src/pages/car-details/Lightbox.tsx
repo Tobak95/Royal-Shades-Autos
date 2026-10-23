@@ -14,7 +14,7 @@ interface LightboxProps {
 }
 
 const navButton =
-  "flex size-12 items-center justify-center rounded-full border border-white/15 bg-obsidian/70 text-white transition-colors hover:border-gold hover:text-gold";
+  "flex size-12 items-center justify-center rounded-full border border-white/15 bg-navy/70 text-white transition-colors hover:border-gold-light hover:text-gold-light";
 
 export function Lightbox({ open, images, index, alt, onIndexChange, onClose }: LightboxProps) {
   const titleId = useId();
@@ -39,10 +39,10 @@ export function Lightbox({ open, images, index, alt, onIndexChange, onClose }: L
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex flex-col bg-obsidian/95 backdrop-blur-sm focus:outline-none"
+          className="fixed inset-0 z-50 flex flex-col bg-navy/95 backdrop-blur-sm focus:outline-none"
         >
           <div className="flex items-center justify-between px-4 py-3 sm:px-6">
-            <h2 id={titleId} className="text-sm text-muted">
+            <h2 id={titleId} className="text-sm text-on-navy-muted">
               {alt} · <span className="text-white">{index + 1}</span> / {count}
             </h2>
             <button type="button" onClick={onClose} aria-label="Close gallery" className={navButton}>

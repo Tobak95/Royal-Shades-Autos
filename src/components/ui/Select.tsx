@@ -50,7 +50,7 @@ export function Select({
             </option>
           )}
           {options.map((option) => (
-            <option key={option.value} value={option.value} className="bg-graphite-2">
+            <option key={option.value} value={option.value} className="bg-page">
               {option.label}
             </option>
           ))}

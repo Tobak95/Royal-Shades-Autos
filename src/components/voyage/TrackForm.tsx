@@ -47,7 +47,7 @@ export function TrackForm({ defaultValue = "", className }: TrackFormProps) {
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${inputId}-error` : undefined}
           className={cn(
-            "h-[52px] min-w-0 flex-[1_1_220px] rounded-control border bg-graphite-2 px-4 text-sm text-white uppercase placeholder:text-subtle placeholder:normal-case",
+            "h-[52px] min-w-0 flex-[1_1_220px] rounded-control border bg-page px-4 text-sm text-ink uppercase placeholder:text-faint placeholder:normal-case",
             "focus:border-gold focus:shadow-[0_0_0_3px_rgb(222_187_110/0.18)] focus:outline-none",
             error ? "border-sold" : "border-line",
           )}
@@ -57,7 +57,7 @@ export function TrackForm({ defaultValue = "", className }: TrackFormProps) {
         </Button>
       </form>
       {error && (
-        <p id={`${inputId}-error`} role="alert" className="mt-2 text-xs font-medium text-sold-text">
+        <p id={`${inputId}-error`} role="alert" className="mt-2 text-xs font-medium text-sold">
           {error}
         </p>
       )}
@@ -66,7 +66,7 @@ export function TrackForm({ defaultValue = "", className }: TrackFormProps) {
         {DEMO_TRACKING_NUMBERS.map((number, i) => (
           <span key={number}>
             {i > 0 && " · "}
-            <Link to={trackHref(number)} className="text-gold hover:text-gold-light">
+            <Link to={trackHref(number)} className="text-gold-text hover:text-gold-text">
               {number}
             </Link>
           </span>

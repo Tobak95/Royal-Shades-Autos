@@ -10,12 +10,15 @@ export interface BreadcrumbItem {
 
 interface BreadcrumbProps {
   items: BreadcrumbItem[];
+  /** "light" on navy or dark photos */
+  tone?: "dark" | "light";
   className?: string;
 }
 
-export function Breadcrumb({ items, className }: BreadcrumbProps) {
+export function Breadcrumb({ items, tone = "dark", className }: BreadcrumbProps) {
+  const light = tone === "light";
   return (
-    <nav aria-label="Breadcrumb" className={cn("text-[13px] text-muted", className)}>
+    <nav aria-label="Breadcrumb" className={cn("text-sm", light ? "text-on-navy-muted" : "text-muted", className)}>
       <ol className="flex flex-wrap items-center gap-y-1">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
@@ -23,11 +26,18 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
             <Fragment key={`${item.label}-${index}`}>
               <li>
                 {item.to && !isLast ? (
-                  <Link to={item.to} className="text-muted transition-colors hover:text-gold">
+                  <Link
+                    to={item.to}
+                    className={cn("transition-colors", light ? "hover:text-gold-light" : "hover:text-gold-text")}
+                  >
                     {item.label}
                   </Link>
                 ) : (
-                  <span aria-current={isLast ? "page" : undefined} className={cn(isLast && "text-gold")}>
+                  // Current page: bold ink, as in the v2 mockups
+                  <span
+                    aria-current={isLast ? "page" : undefined}
+                    className={cn(isLast && "font-semibold", isLast && (light ? "text-white" : "text-ink"))}
+                  >
                     {item.label}
                   </span>
                 )}

@@ -26,8 +26,8 @@ export function ContactForm() {
 
   if (sent) {
     return (
-      <div role="status" className="flex flex-col items-start gap-4 rounded-panel border border-gold/30 bg-graphite p-8">
-        <CircleCheck aria-hidden="true" className="size-10 text-gold" strokeWidth={1.6} />
+      <div role="status" className="flex flex-col items-start gap-4 rounded-panel border border-gold/30 bg-surface p-8">
+        <CircleCheck aria-hidden="true" className="size-10 text-gold-text" strokeWidth={1.6} />
         <h2 className="text-2xl font-bold">Message sent</h2>
         <p className="text-sm leading-relaxed text-muted">
           Thanks for reaching out. Someone from our Lagos team will reply within {POLICY.responseTime}.
@@ -40,7 +40,7 @@ export function ContactForm() {
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit(onSubmit)} className="rounded-panel border border-line bg-graphite p-6 sm:p-8">
+    <form noValidate onSubmit={handleSubmit(onSubmit)} className="rounded-panel border border-line bg-surface p-6 sm:p-8">
       <h2 className="text-xl font-bold">Send us a message</h2>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <Input label="Full name" autoComplete="name" {...register("fullName")} error={errors.fullName?.message} />

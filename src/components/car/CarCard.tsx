@@ -21,7 +21,7 @@ export function CarCard({ car, eagerImage, className }: CarCardProps) {
   return (
     <article
       className={cn(
-        "card-lift flex flex-col overflow-hidden rounded-card border border-line bg-graphite",
+        "card-lift flex flex-col overflow-hidden rounded-card border border-line bg-surface",
         className,
       )}
     >
@@ -30,11 +30,9 @@ export function CarCard({ car, eagerImage, className }: CarCardProps) {
         <Link to={href} tabIndex={-1} aria-hidden="true" className="block size-full">
           <CarImage src={car.images[0]} alt="" muted={sold} eager={eagerImage} className="size-full" />
         </Link>
-        {/* Dark backing keeps the badge readable on bright photos */}
-        {!sold && (
-          <StatusBadge status={car.status} className="absolute top-3.5 left-3.5 bg-obsidian/75 backdrop-blur-sm" />
-        )}
-        <WishlistButton car={car} className="absolute top-2.5 right-2.5" />
+        {/* White pill badge, readable on any photo (v2 card style) */}
+        {!sold && <StatusBadge status={car.status} overlay className="absolute top-3 left-3" />}
+        <WishlistButton car={car} className="absolute top-2 right-2" />
         {sold && (
           <div
             aria-hidden="true"
@@ -49,29 +47,29 @@ export function CarCard({ car, eagerImage, className }: CarCardProps) {
         <div>
           <div className="flex items-baseline justify-between gap-3">
             <h3 className="text-lg font-bold">
-              <Link to={href} className="transition-colors hover:text-gold">
+              <Link to={href} className="transition-colors hover:text-gold-text">
                 {name}
                 {sold && <span className="sr-only"> (sold)</span>}
               </Link>
             </h3>
             <span className="text-[13px] text-muted">{car.year}</span>
           </div>
-          <p className="mt-1 text-[13px] font-semibold text-gold">
+          <p className="mt-1 text-[13px] font-semibold text-gold-text">
             {car.bodyType} · {car.origin}
           </p>
         </div>
 
-        <ul aria-label="Key specs" className="flex flex-wrap gap-x-3 gap-y-1.5 text-xs text-soft">
+        <ul aria-label="Key specs" className="flex flex-wrap gap-x-3 gap-y-1.5 text-xs text-muted">
           <li className="inline-flex items-center gap-1.5">
-            <FuelIcon size={14} className="text-gold" />
+            <FuelIcon size={14} className="text-gold-text" />
             {car.fuelType}
           </li>
           <li className="inline-flex items-center gap-1.5">
-            <GearboxIcon size={14} className="text-gold" />
+            <GearboxIcon size={14} className="text-gold-text" />
             {car.transmission}
           </li>
           <li className="inline-flex items-center gap-1.5">
-            <GaugeIcon size={14} className="text-gold" />
+            <GaugeIcon size={14} className="text-gold-text" />
             {formatMileage(car.mileage, car.mileageUnit)}
           </li>
         </ul>
@@ -86,16 +84,16 @@ export function CarCard({ car, eagerImage, className }: CarCardProps) {
               aria-valuemax={100}
               className="h-1 flex-1 overflow-hidden rounded bg-line"
             >
-              <div className="h-full rounded bg-incoming" style={{ width: `${car.shipment.progress}%` }} />
+              <div className="h-full rounded bg-arriving" style={{ width: `${car.shipment.progress}%` }} />
             </div>
             <span>
-              ETA <strong className="font-semibold text-incoming-text">{formatDayMonth(car.shipment.eta)}</strong>
+              ETA <strong className="font-semibold text-arriving-text">{formatDayMonth(car.shipment.eta)}</strong>
             </span>
           </div>
         )}
 
         <div className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-3">
-          <p className={cn("text-[22px] font-extrabold tracking-[-0.02em]", sold ? "text-faint" : "text-white")}>
+          <p className={cn("text-[22px] font-extrabold tracking-[-0.02em]", sold ? "text-faint" : "text-ink")}>
             {formatNairaShort(car.price)}
           </p>
           <GarageCta car={car} />

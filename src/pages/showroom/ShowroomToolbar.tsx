@@ -66,12 +66,12 @@ export function ShowroomToolbar({ filters, counts, activeFilterCount, onChange, 
         <button
           type="button"
           onClick={onOpenFilters}
-          className="flex h-[50px] items-center gap-2 rounded-control border border-line bg-graphite-2 px-4 text-sm font-semibold transition-colors hover:border-gold hover:text-gold lg:hidden"
+          className="flex h-[50px] items-center gap-2 rounded-control border border-line bg-page px-4 text-sm font-semibold transition-colors hover:border-gold hover:text-gold-text lg:hidden"
         >
           <SlidersHorizontal aria-hidden="true" className="size-4" />
           Filters
           {activeFilterCount > 0 && (
-            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-gold px-1.5 text-[11px] font-extrabold text-obsidian">
+            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-gold px-1.5 text-[11px] font-extrabold text-navy">
               {activeFilterCount}
             </span>
           )}

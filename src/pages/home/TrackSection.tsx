@@ -27,7 +27,7 @@ export function TrackSection({ featured }: TrackSectionProps) {
           {featured ? (
             <VoyageTracker car={featured.car} shipment={featured.shipment} />
           ) : (
-            <div className="rounded-panel border border-line bg-graphite p-7">
+            <div className="rounded-panel border border-line bg-surface p-7">
               <div className="flex items-center gap-5 border-b border-line pb-6">
                 <Skeleton className="size-24 rounded-full" />
                 <div className="flex flex-1 flex-col gap-2">

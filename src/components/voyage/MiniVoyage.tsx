@@ -17,13 +17,13 @@ export function MiniVoyage({ car, shipment, className }: MiniVoyageProps) {
   const stage = getCurrentStage(shipment);
 
   return (
-    <div className={cn("rounded-card border border-line bg-graphite p-5 sm:p-6", className)}>
+    <div className={cn("rounded-card border border-line bg-surface p-5 sm:p-6", className)}>
       <div className="flex flex-wrap items-center gap-5">
         <ArcProgressRing progress={shipment.progress} size={80} className="flex-none" />
         <dl className="grid flex-1 grid-cols-2 gap-x-6 gap-y-3 text-sm">
           <div>
             <dt className="text-xs text-muted">Current stage</dt>
-            <dd className="mt-0.5 font-semibold text-gold">{stage?.label ?? "In transit"}</dd>
+            <dd className="mt-0.5 font-semibold text-gold-text">{stage?.label ?? "In transit"}</dd>
           </div>
           <div>
             <dt className="text-xs text-muted">ETA</dt>
@@ -47,7 +47,7 @@ export function MiniVoyage({ car, shipment, className }: MiniVoyageProps) {
       />
       <Link
         to={`/track?number=${encodeURIComponent(shipment.trackingNumber)}`}
-        className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold hover:text-gold-light"
+        className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold-text hover:text-gold-text"
       >
         See the full voyage <ArrowRight aria-hidden="true" className="size-4" />
       </Link>

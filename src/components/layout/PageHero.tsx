@@ -17,19 +17,19 @@ interface PageHeroProps {
   className?: string;
 }
 
-/** Dark car-photo banner for inner pages */
+/** Navy car-photo banner for inner pages (rounded bottom like the v2 hero) */
 export function PageHero({ title, breadcrumbs, eyebrow, description, image = heroImage, children, className }: PageHeroProps) {
   return (
     <section
-      className={cn("relative border-b border-white/[0.06] bg-cover bg-center", className)}
+      className={cn("relative overflow-hidden rounded-b-hero bg-navy bg-cover bg-center text-white", className)}
       style={{
-        backgroundImage: `linear-gradient(90deg, rgba(10,10,11,.96) 0%, rgba(10,10,11,.82) 45%, rgba(10,10,11,.5) 100%), linear-gradient(0deg, #0A0A0B 0%, rgba(10,10,11,0) 45%), url("${image}")`,
+        backgroundImage: `linear-gradient(90deg, rgba(11,27,46,.97) 0%, rgba(11,27,46,.86) 45%, rgba(11,27,46,.55) 100%), url("${image}")`,
       }}
     >
       <Container className="py-14 sm:py-20 lg:py-24">
-        <Breadcrumb items={breadcrumbs} />
+        <Breadcrumb items={breadcrumbs} tone="light" />
         {eyebrow && (
-          <Eyebrow line className="mt-6">
+          <Eyebrow line tone="light" className="mt-6">
             {eyebrow}
           </Eyebrow>
         )}
@@ -39,9 +39,11 @@ export function PageHero({ title, breadcrumbs, eyebrow, description, image = her
             eyebrow ? "mt-3" : "mt-4",
           )}
         >
-          <AccentText text={title} />
+          <AccentText text={title} tone="light" />
         </h1>
-        {description && <p className="mt-4 max-w-xl text-base leading-[1.65] text-haze sm:text-[17px]">{description}</p>}
+        {description && (
+          <p className="mt-4 max-w-xl text-base leading-[1.65] text-on-navy-soft sm:text-[17px]">{description}</p>
+        )}
         {children && <div className="mt-8">{children}</div>}
       </Container>
     </section>

@@ -57,14 +57,14 @@ export default function CarDetailsPage() {
         <FadeUp delay={0.1} className="flex flex-col gap-10">
           <div>
             <SectionHeading title="About this *car*" size="md" />
-            <p className="mt-4 text-[15px] leading-[1.75] text-soft">{car.description}</p>
+            <p className="mt-4 text-[15px] leading-[1.75] text-muted">{car.description}</p>
           </div>
           <div>
             <h2 className="text-lg font-bold">Features</h2>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
               {car.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2.5 text-sm text-soft">
-                  <Check aria-hidden="true" className="mt-0.5 size-4 flex-none text-gold" strokeWidth={2.4} />
+                <li key={feature} className="flex items-start gap-2.5 text-sm text-muted">
+                  <Check aria-hidden="true" className="mt-0.5 size-4 flex-none text-gold-text" strokeWidth={2.4} />
                   {feature}
                 </li>
               ))}

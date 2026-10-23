@@ -28,7 +28,7 @@ export default function HomePage() {
       <ArcDivider />
       <TrackSection featured={featured} />
 
-      <section id="how" className="border-y border-section-line bg-section-alt py-24">
+      <section id="how" className="border-y border-line bg-surface py-24">
         <Container>
           <FadeUp>
             <SectionHeading eyebrow="Simple and transparent" title="How importing *works*" align="center" />

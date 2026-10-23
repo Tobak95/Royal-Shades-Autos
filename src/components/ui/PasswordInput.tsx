@@ -48,7 +48,7 @@ export function PasswordInput({
           aria-label={visible ? "Hide password" : "Show password"}
           aria-pressed={visible}
           aria-controls={inputId}
-          className="absolute top-[3px] right-[3px] flex size-11 items-center justify-center rounded-control text-muted transition-colors hover:text-gold"
+          className="absolute top-[3px] right-[3px] flex size-11 items-center justify-center rounded-control text-muted transition-colors hover:text-gold-text"
         >
           <Icon aria-hidden="true" className="size-[18px]" strokeWidth={1.8} />
         </button>

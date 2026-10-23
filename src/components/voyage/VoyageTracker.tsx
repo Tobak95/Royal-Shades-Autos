@@ -16,7 +16,7 @@ interface VoyageTrackerProps {
 /** The signature tracker card: progress ring, vessel, ETA and the 7-stage timeline */
 export function VoyageTracker({ car, shipment, showRoute = false, className }: VoyageTrackerProps) {
   return (
-    <div className={cn("min-w-0 rounded-panel border border-line bg-graphite p-5 sm:p-7", className)}>
+    <div className={cn("min-w-0 rounded-panel border border-line bg-surface p-5 sm:p-7", className)}>
       <div className="flex flex-wrap items-center justify-between gap-6 border-b border-line pb-[22px]">
         <div className="flex min-w-0 items-center gap-4 sm:gap-[18px]">
           <ArcProgressRing progress={shipment.progress} className="size-20 flex-none sm:size-24" />
@@ -26,13 +26,13 @@ export function VoyageTracker({ car, shipment, showRoute = false, className }: V
               VIN {maskVin(car.vin)} · {shipment.trackingNumber}
             </p>
             <p className="mt-0.5 text-[13px] text-muted">
-              Vessel <span className="font-semibold text-white">{shipment.vesselName}</span>
+              Vessel <span className="font-semibold text-ink">{shipment.vesselName}</span>
             </p>
           </div>
         </div>
         <div className="sm:text-right">
           <p className="text-xs text-muted">Estimated arrival</p>
-          <p className="mt-1 text-[22px] font-extrabold text-gold">{formatDate(shipment.eta)}</p>
+          <p className="mt-1 text-[22px] font-extrabold text-gold-text">{formatDate(shipment.eta)}</p>
         </div>
       </div>
 

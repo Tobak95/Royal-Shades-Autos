@@ -13,7 +13,7 @@ export function Checkbox({ label, error, containerClassName, className, id, ...p
 
   return (
     <div className={containerClassName}>
-      <label htmlFor={inputId} className="flex min-h-11 items-center gap-2.5 text-[13px] text-soft">
+      <label htmlFor={inputId} className="flex min-h-11 items-center gap-2.5 text-[13px] text-muted">
         <input
           id={inputId}
           type="checkbox"
@@ -25,7 +25,7 @@ export function Checkbox({ label, error, containerClassName, className, id, ...p
         <span>{label}</span>
       </label>
       {error && (
-        <p id={`${inputId}-error`} role="alert" className="text-xs font-medium text-sold-text">
+        <p id={`${inputId}-error`} role="alert" className="text-xs font-medium text-sold">
           {error}
         </p>
       )}

@@ -1,7 +1,7 @@
 export const BRAND = {
   name: "The Royal Shades Autos Limited",
   shortName: "Royal Shades Autos",
-  tagline: "Premium imported cars for Lagos, sourced abroad and tracked to your driveway.",
+  tagline: "Buy, sell, swap and import cars in Lagos, with every step done properly.",
 } as const;
 
 /** Business details not supplied yet; keep the brackets until they are */
@@ -37,11 +37,11 @@ export interface NavItem {
 }
 
 export const MAIN_NAV: NavItem[] = [
-  { label: "Showroom", to: "/cars" },
-  { label: "Track", to: "/track" },
-  { label: "How it works", to: "/#how" },
+  { label: "Buy a car", to: "/cars" },
+  { label: "Swap", to: "/swap" },
+  { label: "Sell", to: "/sell" },
+  { label: "Track import", to: "/track" },
   { label: "About", to: "/about" },
-  { label: "Contact", to: "/contact" },
 ];
 
 export interface FooterColumn {
@@ -51,27 +51,27 @@ export interface FooterColumn {
 
 export const FOOTER_COLUMNS: FooterColumn[] = [
   {
-    heading: "Showroom",
+    heading: "Cars",
     links: [
-      { label: "Available cars", to: "/cars?status=available" },
-      { label: "Incoming cars", to: "/cars?status=incoming" },
-      { label: "Recently sold", to: "/cars?status=sold" },
+      { label: "Buy a car", to: "/cars" },
+      { label: "Swap", to: "/swap" },
+      { label: "Sell", to: "/sell" },
     ],
   },
   {
-    heading: "Help",
+    heading: "Import",
     links: [
-      { label: "Track your car", to: "/track" },
-      { label: "How importing works", to: "/#how" },
+      { label: "Track a car", to: "/track" },
+      { label: "Incoming cars", to: "/cars?status=incoming" },
       { label: "FAQs", to: "/faqs" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "About us", to: "/about" },
+      { label: "About", to: "/about" },
       { label: "Contact", to: "/contact" },
-      { label: "Privacy policy", to: "/privacy" },
+      { label: "Privacy", to: "/privacy" },
     ],
   },
 ];

@@ -1,71 +1,77 @@
 @import "tailwindcss";
 
-/* "Obsidian & Champagne" design tokens */
+/* v2 "Light navy & gold" design tokens */
 @theme {
-  /* Surfaces */
-  --color-obsidian: #0a0a0b;
-  --color-graphite: #141417;
-  --color-graphite-2: #1c1c21;
-  --color-line: #2a2a30;
-  --color-line-strong: #3a3a42;
-  --color-section-alt: #111113;
-  --color-section-line: #1e1e23;
+  /* Navy */
+  --color-navy: #0b1b2e;
+  --color-navy-2: #132a45;
+  --color-navy-3: #1b3556;
 
   /* Gold */
-  --color-gold: #debb6e;
-  --color-gold-deep: #b8913f;
-  --color-gold-light: #f0d9a4;
+  --color-gold: #d4af5a; /* buttons and accents on navy and white */
+  --color-gold-light: #e5c27a; /* gold text on navy */
+  --color-gold-text: #8a6620; /* gold text on white (passes contrast) */
+  --color-gold-tint: #fbf3e1;
+  --color-gold-border: #ebd9ae;
 
-  /* Ivory footer */
-  --color-ivory: #f4efe6;
-  --color-ivory-line: #ddd3c2;
-  --color-ink: #1a1714;
-  --color-ink-soft: #4a443c;
-  --color-ink-link: #3f3a33;
-  --color-ink-muted: #5a5249;
-  --color-footer-heading: #8a6a2c;
+  /* Surfaces and lines */
+  --color-page: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-line: #e3e6eb;
+  --color-line-soft: #eef0f3;
+  --color-line-strong: #cbd2dc; /* dashed outlines and outline buttons in the mockups */
 
   /* Text */
-  --color-muted: #a1a1aa;
-  --color-soft: #b4b4bc;
-  --color-silver: #d4d4d8;
-  --color-haze: #c4c4cc;
-  --color-subtle: #8a8a94;
-  --color-faint: #71717a;
+  --color-ink: #0b1b2e;
+  --color-muted: #5a6474;
+  --color-faint: #8e99a9;
+  --color-on-navy-muted: #aeb8c6;
+  --color-on-navy-soft: #c9d2de;
 
   /* Status */
-  --color-available: #34c77b;
-  --color-available-text: #7fe0aa;
-  --color-incoming: #5ba4e6;
-  --color-incoming-text: #8ec5f0;
-  --color-sold: #d9534f;
-  --color-sold-text: #f2a3a0;
+  --color-available: #1f9d61;
+  --color-available-text: #1f7a4d;
+  --color-available-tint: #e8f6ee;
+  --color-arriving: #2f6fdb; /* arriving and arrived */
+  --color-arriving-text: #1f4fa8;
+  --color-arriving-tint: #eaf1fd;
+  --color-inspection: #d4af5a; /* shown as "Coming soon" */
+  --color-inspection-text: #8a6620;
+  --color-inspection-tint: #fbf3e1;
+  --color-sold: #b23b35;
+  --color-sold-tint: #fdf2f1;
 
   /* Radii */
-  --radius-control: 10px;
-  --radius-card: 16px;
-  --radius-panel: 20px;
+  --radius-control: 12px; /* inputs and buttons */
+  --radius-card: 18px;
+  --radius-panel: 24px; /* 20–28px panels; use rounded-[28px] for the largest */
+  --radius-hero: 40px; /* navy hero bottom, navy footer top */
 
-  /* Type */
+  /* Type: Plus Jakarta Sans only */
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-accent: "Cormorant Garamond", ui-serif, Georgia, serif;
-  --tracking-eyebrow: 0.22em;
+  --tracking-eyebrow: 0.16em;
 
-  /* Effects */
-  --shadow-glow: 0 18px 40px -18px rgb(222 187 110 / 0.35);
+  /* Shadows */
+  --shadow-card: 0 1px 0 rgb(11 27 46 / 0.03);
+  --shadow-lift: 0 24px 48px -24px rgb(11 27 46 / 0.35);
+  --shadow-float: 0 30px 60px -30px rgb(11 27 46 / 0.4);
+  --shadow-chip: 0 20px 40px -18px rgb(0 0 0 / 0.5);
 
   --animate-pulse-gold: pulse-gold 1.8s infinite;
   --animate-arc-sweep: arc-sweep 1.4s ease-in-out infinite alternate;
+  --animate-rise: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-bob: bob 4.5s ease-in-out infinite;
+  --animate-kenburns: kenburns 14s ease-in-out infinite alternate;
 
   @keyframes pulse-gold {
     0% {
-      box-shadow: 0 0 0 0 rgb(222 187 110 / 0.6);
+      box-shadow: 0 0 0 0 rgb(212 175 90 / 0.6);
     }
     70% {
-      box-shadow: 0 0 0 12px rgb(222 187 110 / 0);
+      box-shadow: 0 0 0 12px rgb(212 175 90 / 0);
     }
     100% {
-      box-shadow: 0 0 0 0 rgb(222 187 110 / 0);
+      box-shadow: 0 0 0 0 rgb(212 175 90 / 0);
     }
   }
 
@@ -75,6 +81,36 @@
     }
     to {
       stroke-dashoffset: -175;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes kenburns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08) translateY(-8px);
     }
   }
 }
@@ -89,8 +125,8 @@
 
   body {
     margin: 0;
-    background-color: var(--color-obsidian);
-    color: #fff;
+    background-color: var(--color-page);
+    color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -102,8 +138,8 @@
   }
 
   ::selection {
-    background: rgb(222 187 110 / 0.35);
-    color: #fff;
+    background: rgb(212 175 90 / 0.35);
+    color: var(--color-ink);
   }
 
   button:not(:disabled),
@@ -129,29 +165,45 @@
   }
 }
 
-/* Car photos sit on a radial graphite "stage" */
+/* Light grey backdrop behind car photos while they load */
 @utility car-stage {
-  background: radial-gradient(ellipse at 50% 75%, #2a2a31 0%, #18181c 55%, #111113 100%);
+  background: #e9ecf1;
 }
 
-/* Glass card over dark photos (hero, auth) */
+/* Frosted white card over photos (sets ink text so it never inherits white from a navy parent) */
 @utility glass {
-  background: rgb(20 20 23 / 0.72);
+  color: var(--color-ink);
+  background: rgb(255 255 255 / 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgb(222 187 110 / 0.3);
+  border: 1px solid var(--color-line);
 }
 
-/* Cards lift 4px with a gold border and glow on hover */
+/* Car cards lift 6px with a soft navy shadow; the photo zooms slightly */
 @utility card-lift {
   transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  & img {
+    transition: transform 0.6s ease;
+  }
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lift);
+  }
+  &:hover img {
+    transform: scale(1.06);
+  }
+}
+
+/* Feature cards lift 4px and pick up a gold border */
+@utility feature-lift {
+  transition:
     transform 0.25s ease,
-    box-shadow 0.25s ease,
     border-color 0.25s ease;
   &:hover {
     transform: translateY(-4px);
-    border-color: rgb(222 187 110 / 0.55);
-    box-shadow: var(--shadow-glow);
+    border-color: var(--color-gold);
   }
 }
 
@@ -168,7 +220,7 @@
     height: 22px;
     border-radius: 9999px;
     background: var(--color-gold);
-    border: 3px solid var(--color-obsidian);
+    border: 3px solid var(--color-surface);
     box-shadow: 0 0 0 1px var(--color-gold);
     cursor: grab;
   }
@@ -178,7 +230,7 @@
     height: 16px;
     border-radius: 9999px;
     background: var(--color-gold);
-    border: 3px solid var(--color-obsidian);
+    border: 3px solid var(--color-surface);
     box-shadow: 0 0 0 1px var(--color-gold);
     cursor: grab;
   }

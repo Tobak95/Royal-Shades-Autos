@@ -19,8 +19,8 @@ interface AuthScreenProps {
 }
 
 const BACKGROUNDS = {
-  right: `linear-gradient(90deg, rgba(10,10,11,.15) 0%, rgba(10,10,11,.55) 45%, rgba(10,10,11,.95) 70%, #0A0A0B 100%), linear-gradient(0deg, #0A0A0B 0%, rgba(10,10,11,0) 35%), url("${garageImage}")`,
-  left: `linear-gradient(270deg, rgba(10,10,11,.1) 0%, rgba(10,10,11,.6) 45%, rgba(10,10,11,.96) 68%, #0A0A0B 100%), linear-gradient(0deg, #0A0A0B 0%, rgba(10,10,11,0) 35%), url("${streetImage}")`,
+  right: `linear-gradient(90deg, rgba(11,27,46,.15) 0%, rgba(11,27,46,.55) 45%, rgba(11,27,46,.95) 70%, #0B1B2E 100%), linear-gradient(0deg, #0B1B2E 0%, rgba(11,27,46,0) 35%), url("${garageImage}")`,
+  left: `linear-gradient(270deg, rgba(11,27,46,.1) 0%, rgba(11,27,46,.6) 45%, rgba(11,27,46,.96) 68%, #0B1B2E 100%), linear-gradient(0deg, #0B1B2E 0%, rgba(11,27,46,0) 35%), url("${streetImage}")`,
 };
 
 /** Glass card over a dark car photo, as in the login and sign-up mockups */

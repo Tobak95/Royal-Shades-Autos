@@ -14,7 +14,7 @@ export function CheckboxGroup<T extends string>({ legend, options, selected, onC
 
   return (
     <fieldset>
-      <legend className="mb-1.5 text-xs font-semibold tracking-[0.16em] text-gold uppercase">{legend}</legend>
+      <legend className="mb-1.5 text-xs font-semibold tracking-[0.16em] text-gold-text uppercase">{legend}</legend>
       <div className="flex flex-col">
         {options.map((option) => (
           <Checkbox

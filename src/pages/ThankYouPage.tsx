@@ -25,9 +25,9 @@ export default function ThankYouPage() {
   return (
     <>
       <section
-        className="border-b border-white/[0.06] bg-cover bg-center"
+        className="overflow-hidden rounded-b-hero bg-navy bg-cover bg-center text-white"
         style={{
-          backgroundImage: `linear-gradient(90deg, rgba(10,10,11,.97) 0%, rgba(10,10,11,.85) 50%, rgba(10,10,11,.55) 100%), linear-gradient(0deg, #0A0A0B 0%, rgba(10,10,11,0) 45%), url("${streetImage}")`,
+          backgroundImage: `linear-gradient(90deg, rgba(11,27,46,.97) 0%, rgba(11,27,46,.86) 50%, rgba(11,27,46,.55) 100%), url("${streetImage}")`,
         }}
       >
         <Container className="py-20 sm:py-28">
@@ -37,27 +37,32 @@ export default function ThankYouPage() {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-2xl"
           >
-            <CircleCheck aria-hidden="true" className="size-12 text-gold" strokeWidth={1.6} />
-            <Eyebrow line className="mt-6">
+            <CircleCheck aria-hidden="true" className="size-12 text-gold-light" strokeWidth={1.6} />
+            <Eyebrow line tone="light" className="mt-6">
               Reservation received
             </Eyebrow>
             <h1 className="mt-3 text-[38px] leading-[1.05] font-extrabold tracking-[-0.03em] sm:text-[52px]">
-              <AccentText text="Thank you for choosing *Royal Shades*" />
+              <AccentText text="Thank you for choosing *Royal Shades*" tone="light" />
             </h1>
-            <p className="mt-5 text-base leading-[1.65] text-haze sm:text-[17px]">
+            <p className="mt-5 text-base leading-[1.65] text-on-navy-soft sm:text-[17px]">
               Your cars are held for you. We'll be in touch within {POLICY.responseTime} to confirm everything.
             </p>
             {reservationId && (
-              <p className="mt-6 inline-flex flex-wrap items-center gap-2 rounded-control border border-gold/30 bg-graphite/70 px-4 py-3 text-sm">
-                <span className="text-muted">Reservation number</span>
-                <strong className="font-bold tracking-wide text-gold">{reservationId}</strong>
+              <p className="mt-6 inline-flex flex-wrap items-center gap-2 rounded-control border border-gold/40 bg-navy-2/80 px-4 py-3 text-sm">
+                <span className="text-on-navy-muted">Reservation number</span>
+                <strong className="font-bold tracking-wide text-gold-light">{reservationId}</strong>
               </p>
             )}
             <div className="mt-8 flex flex-wrap gap-3">
               <ButtonLink to="/cars" size="lg">
                 Back to the showroom <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2.2} />
               </ButtonLink>
-              <ButtonLink to="/track" variant="outline" size="lg" className="border-white/30">
+              <ButtonLink
+                to="/track"
+                variant="outline"
+                size="lg"
+                className="border-white/35 text-white hover:border-gold-light hover:bg-transparent hover:text-gold-light"
+              >
                 Track a car
               </ButtonLink>
             </div>

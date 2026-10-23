@@ -22,7 +22,7 @@ export function LiveVoyageCard({ featured }: LiveVoyageCardProps) {
       {featured ? (
         <>
           <h2 className="mt-3.5 text-xl font-bold">
-            <Link to={`/track?number=${featured.shipment.trackingNumber}`} className="hover:text-gold">
+            <Link to={`/track?number=${featured.shipment.trackingNumber}`} className="hover:text-gold-text">
               {carName(featured.car)}
             </Link>
           </h2>
@@ -37,13 +37,13 @@ export function LiveVoyageCard({ featured }: LiveVoyageCardProps) {
             className="mt-6"
           />
           <dl className="mt-[18px] grid grid-cols-2 gap-2.5">
-            <div className="rounded-control bg-graphite-2 p-3">
+            <div className="rounded-control bg-page p-3">
               <dt className="text-[11px] text-muted">Status</dt>
               <dd className="mt-1 text-sm font-semibold">{getCurrentStage(featured.shipment)?.label}</dd>
             </div>
-            <div className="rounded-control bg-graphite-2 p-3">
+            <div className="rounded-control bg-page p-3">
               <dt className="text-[11px] text-muted">ETA</dt>
-              <dd className="mt-1 text-sm font-semibold text-gold">{formatDate(featured.shipment.eta)}</dd>
+              <dd className="mt-1 text-sm font-semibold text-gold-text">{formatDate(featured.shipment.eta)}</dd>
             </div>
           </dl>
         </>

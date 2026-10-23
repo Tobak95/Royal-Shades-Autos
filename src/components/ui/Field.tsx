@@ -19,7 +19,7 @@ export function Field({ id, label, error, hint, labelAction, hideLabel, classNam
   return (
     <div className={cn("flex flex-col gap-2", className)}>
       <div className={cn("flex items-center justify-between gap-3", hideLabel && "sr-only")}>
-        <label htmlFor={id} className="text-[13px] font-semibold text-silver">
+        <label htmlFor={id} className="text-[13px] font-semibold text-muted">
           {label}
         </label>
         {labelAction}
@@ -31,7 +31,7 @@ export function Field({ id, label, error, hint, labelAction, hideLabel, classNam
         </p>
       )}
       {error && (
-        <p id={`${id}-error`} role="alert" className="text-xs font-medium text-sold-text">
+        <p id={`${id}-error`} role="alert" className="text-xs font-medium text-sold">
           {error}
         </p>
       )}

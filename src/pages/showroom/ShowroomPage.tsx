@@ -64,11 +64,11 @@ export default function ShowroomPage() {
 
       <Container className="grid gap-8 py-12 lg:grid-cols-[240px_minmax(0,1fr)]">
         <aside aria-label="Filters" className="hidden lg:block">
-          <div className="sticky top-28 rounded-card border border-line bg-graphite p-5">
+          <div className="sticky top-28 rounded-card border border-line bg-surface p-5">
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-lg font-bold">Filters</h2>
               {activeFilterCount > 0 && (
-                <button type="button" onClick={clearSidebar} className="min-h-11 text-sm font-semibold text-gold hover:text-gold-light">
+                <button type="button" onClick={clearSidebar} className="min-h-11 text-sm font-semibold text-gold-text hover:text-gold-text">
                   Clear all
                 </button>
               )}

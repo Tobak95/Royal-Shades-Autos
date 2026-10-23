@@ -45,7 +45,7 @@ export function Tabs<T extends string>({ items, value, onChange, label, idPrefix
       role="tablist"
       aria-label={label}
       onKeyDown={handleKeyDown}
-      className={cn("flex flex-wrap gap-1 rounded-xl border border-line bg-graphite p-1", className)}
+      className={cn("flex flex-wrap gap-2", className)}
     >
       {items.map((item, index) => {
         const selected = item.value === value;
@@ -63,15 +63,16 @@ export function Tabs<T extends string>({ items, value, onChange, label, idPrefix
             tabIndex={selected ? 0 : -1}
             onClick={() => onChange(item.value)}
             className={cn(
-              "relative min-h-11 rounded-[9px] px-2.5 text-[13px] font-semibold transition-colors duration-200 sm:px-4 sm:text-sm",
-              selected ? "text-obsidian" : "text-muted hover:text-white",
+              // Pill tabs: navy when selected, white with a line border otherwise
+              "relative min-h-11 rounded-full border px-3.5 text-[13px] font-semibold transition-colors duration-200 sm:px-[18px] sm:text-sm",
+              selected ? "border-navy text-white" : "border-line bg-surface text-ink hover:border-navy",
             )}
           >
             {selected && (
               <motion.span
                 layoutId={`${prefix}-indicator`}
                 aria-hidden="true"
-                className="absolute inset-0 rounded-[9px] bg-gold"
+                className="absolute -inset-px rounded-full bg-navy"
                 transition={{ type: "spring", stiffness: 420, damping: 36 }}
               />
             )}

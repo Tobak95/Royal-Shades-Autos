@@ -5,18 +5,22 @@ interface EyebrowProps {
   children: ReactNode;
   /** Short gold rule before the text */
   line?: boolean;
+  /** "light" on navy or dark photos */
+  tone?: "dark" | "light";
   className?: string;
 }
 
-export function Eyebrow({ children, line = false, className }: EyebrowProps) {
+export function Eyebrow({ children, line = false, tone = "dark", className }: EyebrowProps) {
+  const color = tone === "light" ? "text-gold-light" : "text-gold-text";
   return (
     <p
       className={cn(
-        "inline-flex items-center gap-2.5 text-xs font-semibold tracking-eyebrow text-gold uppercase",
+        "inline-flex items-center gap-2.5 text-[13px] font-bold tracking-eyebrow uppercase",
+        color,
         className,
       )}
     >
-      {line && <span aria-hidden="true" className="h-px w-7 bg-gold" />}
+      {line && <span aria-hidden="true" className={cn("h-px w-7", tone === "light" ? "bg-gold-light" : "bg-gold")} />}
       {children}
     </p>
   );

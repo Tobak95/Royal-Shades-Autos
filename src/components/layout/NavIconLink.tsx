@@ -17,7 +17,8 @@ export function NavIconLink({ to, label, children, count = 0, className }: NavIc
       to={to}
       aria-label={label}
       className={cn(
-        "relative flex size-11 flex-none items-center justify-center rounded-full border border-line text-white transition-colors hover:border-gold hover:text-gold",
+        // Sits on the navy navbar
+        "relative flex size-11 flex-none items-center justify-center rounded-full border border-white/18 text-white transition-colors hover:border-gold-light hover:text-gold-light",
         className,
       )}
     >
@@ -25,7 +26,7 @@ export function NavIconLink({ to, label, children, count = 0, className }: NavIc
       {count > 0 && (
         <span
           aria-hidden="true"
-          className="absolute -top-1 -right-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-gold px-1 text-[11px] font-extrabold text-obsidian"
+          className="absolute -top-1 -right-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-gold px-1 text-[11px] font-extrabold text-navy"
         >
           {count > 9 ? "9+" : count}
         </span>

@@ -44,6 +44,9 @@ export const router = createBrowserRouter([
       { path: "contact", element: <ContactPage /> },
       { path: "faqs", element: <FaqsPage /> },
       { path: "privacy", element: <PrivacyPage /> },
+      // TEMPORARY: Swap and Sell pages come with the v2 home page (Step 4)
+      { path: "swap", element: <PlaceholderPage title="Swap your *car*" crumb="Swap" /> },
+      { path: "sell", element: <PlaceholderPage title="Sell your *car*" crumb="Sell" /> },
 
       // Auth
       { path: "login", element: <LoginPage />, handle: slim },

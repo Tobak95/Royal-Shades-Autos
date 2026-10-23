@@ -31,7 +31,7 @@ export default function ContactPage() {
           <ul className="mt-7 flex flex-col gap-5">
             {details.map(({ icon: Icon, label, value }) => (
               <li key={label} className="flex gap-3.5">
-                <span className="flex size-10 flex-none items-center justify-center rounded-full bg-gold/10 text-gold">
+                <span className="flex size-10 flex-none items-center justify-center rounded-full bg-gold/10 text-gold-text">
                   <Icon aria-hidden="true" className="size-[18px]" strokeWidth={1.8} />
                 </span>
                 <div>
@@ -45,7 +45,7 @@ export default function ContactPage() {
             href={whatsappLink("Hello Royal Shades Autos, I have a question.")}
             target="_blank"
             rel="noreferrer"
-            className="mt-8 flex h-12 items-center justify-center gap-2.5 rounded-control bg-gold text-sm font-bold text-obsidian transition-colors hover:bg-gold-light"
+            className="mt-8 flex h-12 items-center justify-center gap-2.5 rounded-control bg-gold text-sm font-bold text-navy transition-colors hover:bg-gold-light"
           >
             <WhatsAppIcon size={18} /> Chat on WhatsApp
             <span className="sr-only">(opens in a new tab)</span>

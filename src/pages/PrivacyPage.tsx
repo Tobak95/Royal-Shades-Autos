@@ -71,7 +71,7 @@ const SECTIONS: { title: string; body: ReactNode }[] = [
         {CONTACT.phone} · {CONTACT.email}
         <br />
         Or use our{" "}
-        <Link to="/contact" className="text-gold hover:text-gold-light">
+        <Link to="/contact" className="text-gold-text hover:text-gold-text">
           contact form
         </Link>
         .
@@ -93,7 +93,7 @@ export default function PrivacyPage() {
           {SECTIONS.map((section) => (
             <section key={section.title}>
               <h2 className="text-xl font-bold">{section.title}</h2>
-              <div className="mt-3 text-[15px] leading-[1.75] text-soft">{section.body}</div>
+              <div className="mt-3 text-[15px] leading-[1.75] text-muted">{section.body}</div>
             </section>
           ))}
         </div>

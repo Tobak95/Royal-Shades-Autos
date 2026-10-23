@@ -22,8 +22,8 @@ export function StageTimeline({ stages, className }: StageTimelineProps) {
                 className={cn(
                   "size-4 flex-none rounded-full",
                   state === "done" && "bg-gold",
-                  state === "current" && "animate-pulse-gold border-4 border-gold bg-obsidian",
-                  state === "next" && "border-2 border-line-strong bg-graphite",
+                  state === "current" && "animate-pulse-gold border-4 border-gold bg-navy",
+                  state === "next" && "border-2 border-line-strong bg-surface",
                 )}
               />
               {!last && (
@@ -38,8 +38,8 @@ export function StageTimeline({ stages, className }: StageTimelineProps) {
                 <p
                   className={cn(
                     "text-[15px]",
-                    state === "next" ? "font-medium text-subtle" : "font-bold",
-                    state === "current" ? "text-gold" : state === "done" && "text-white",
+                    state === "next" ? "font-medium text-faint" : "font-bold",
+                    state === "current" ? "text-gold-text" : state === "done" && "text-ink",
                   )}
                 >
                   {stage.label}
@@ -47,7 +47,7 @@ export function StageTimeline({ stages, className }: StageTimelineProps) {
                     {state === "done" ? " (completed)" : state === "current" ? " (current stage)" : " (upcoming)"}
                   </span>
                 </p>
-                <p className="mt-0.5 text-xs text-subtle">{stage.location}</p>
+                <p className="mt-0.5 text-xs text-faint">{stage.location}</p>
               </div>
               <p className="text-xs whitespace-nowrap text-muted">{stageDateLabel(stage)}</p>
             </div>

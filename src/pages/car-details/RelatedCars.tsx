@@ -8,7 +8,7 @@ import { getRelatedCars } from "@/services/carService";
 import type { Car } from "@/types";
 
 const arrowClass =
-  "flex size-11 items-center justify-center rounded-full border border-line text-white transition-colors hover:border-gold hover:text-gold";
+  "flex size-11 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-gold hover:text-gold-text";
 
 /** "You might also like" horizontal carousel with scroll snapping */
 export function RelatedCars({ car }: { car: Car }) {

@@ -28,7 +28,7 @@ export function ArcProgressRing({ progress, size = 96, className }: ArcProgressR
         cy="60"
         r="50"
         fill="none"
-        stroke="#2A2A30"
+        stroke="#E3E6EB"
         strokeWidth="8"
         strokeDasharray={`${ARC} ${CIRCUMFERENCE}`}
         strokeLinecap="round"
@@ -39,7 +39,7 @@ export function ArcProgressRing({ progress, size = 96, className }: ArcProgressR
         cy="60"
         r="50"
         fill="none"
-        stroke="#DEBB6E"
+        stroke="#D4AF5A"
         strokeWidth="8"
         strokeLinecap="round"
         transform="rotate(135 60 60)"
@@ -47,10 +47,10 @@ export function ArcProgressRing({ progress, size = 96, className }: ArcProgressR
         animate={{ strokeDasharray: `${filled} ${CIRCUMFERENCE}` }}
         transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
       />
-      <text x="60" y="64" textAnchor="middle" fill="#FFFFFF" fontSize="24" fontWeight="800" fontFamily="Plus Jakarta Sans, sans-serif">
+      <text x="60" y="64" textAnchor="middle" fill="#0B1B2E" fontSize="24" fontWeight="800" fontFamily="Plus Jakarta Sans, sans-serif">
         {value}%
       </text>
-      <text x="60" y="84" textAnchor="middle" fill="#A1A1AA" fontSize="10" fontFamily="Plus Jakarta Sans, sans-serif">
+      <text x="60" y="84" textAnchor="middle" fill="#5A6474" fontSize="10" fontFamily="Plus Jakarta Sans, sans-serif">
         complete
       </text>
     </svg>

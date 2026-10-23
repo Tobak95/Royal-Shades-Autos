@@ -24,7 +24,7 @@ export function Drawer({ open, onClose, title, children, footer }: DrawerProps) 
           <motion.div
             aria-hidden="true"
             onClick={onClose}
-            className="absolute inset-0 bg-obsidian/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-navy/80 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -40,7 +40,7 @@ export function Drawer({ open, onClose, title, children, footer }: DrawerProps) 
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "tween", duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-y-0 left-0 flex w-[88%] max-w-sm flex-col border-r border-line bg-graphite focus:outline-none"
+            className="absolute inset-y-0 left-0 flex w-[88%] max-w-sm flex-col border-r border-line bg-surface focus:outline-none"
           >
             <div className="flex items-center justify-between border-b border-line px-5 py-3">
               <h2 id={titleId} className="text-lg font-bold">
@@ -50,7 +50,7 @@ export function Drawer({ open, onClose, title, children, footer }: DrawerProps) 
                 type="button"
                 onClick={onClose}
                 aria-label="Close filters"
-                className="flex size-11 items-center justify-center rounded-full text-muted transition-colors hover:bg-white/5 hover:text-gold"
+                className="flex size-11 items-center justify-center rounded-full text-muted transition-colors hover:bg-navy/5 hover:text-gold-text"
               >
                 <X aria-hidden="true" className="size-5" />
               </button>

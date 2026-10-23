@@ -52,7 +52,7 @@ export function FilterPanel({ filters, options, onChange }: FilterPanelProps) {
       />
 
       <fieldset>
-        <legend className="mb-3 text-xs font-semibold tracking-[0.16em] text-gold uppercase">Year</legend>
+        <legend className="mb-3 text-xs font-semibold tracking-[0.16em] text-gold-text uppercase">Year</legend>
         <div className="grid grid-cols-2 gap-3">
           <Select
             label="From"

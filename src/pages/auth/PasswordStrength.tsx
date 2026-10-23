@@ -36,7 +36,7 @@ export function PasswordStrength({ password, id }: { password: string; id: strin
       </div>
       <p id={id} aria-live="polite" className="text-xs text-muted">
         Password strength:{" "}
-        <strong className={cn("font-semibold", score <= 1 ? "text-sold-text" : "text-gold")}>{level.label}</strong>.{" "}
+        <strong className={cn("font-semibold", score <= 1 ? "text-sold" : "text-gold-text")}>{level.label}</strong>.{" "}
         {level.tip}
       </p>
     </div>

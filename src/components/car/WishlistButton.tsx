@@ -24,9 +24,9 @@ export function WishlistButton({ car, appearance = "overlay", className }: Wishl
       className={cn(
         "flex size-11 flex-none items-center justify-center rounded-full transition-colors",
         appearance === "overlay"
-          ? "bg-obsidian/55 text-white backdrop-blur-sm hover:text-gold"
-          : "border border-line-strong text-white hover:border-gold hover:text-gold",
-        saved && "text-gold",
+          ? "bg-white/92 text-ink shadow-sm hover:text-gold-text"
+          : "rounded-control border-[1.5px] border-line-strong text-ink hover:border-navy hover:bg-surface",
+        saved && "text-gold-text",
         className,
       )}
     >

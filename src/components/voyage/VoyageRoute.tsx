@@ -33,9 +33,9 @@ export function VoyageRoute({ progress, from, to, size = "sm", className }: Voya
           transition={{ duration: 1.2, ease }}
         />
         <span className="absolute top-1/2 -left-1.5 size-3 -translate-y-1/2 rounded-full bg-gold" />
-        <span className="absolute top-1/2 -right-1.5 size-3 -translate-y-1/2 rounded-full border-2 border-[#5A5A64] bg-graphite" />
+        <span className="absolute top-1/2 -right-1.5 size-3 -translate-y-1/2 rounded-full border-2 border-line-strong bg-surface" />
         <motion.div
-          className="absolute top-1/2 flex animate-pulse-gold items-center justify-center rounded-full bg-gold text-obsidian"
+          className="absolute top-1/2 flex animate-pulse-gold items-center justify-center rounded-full bg-gold text-navy"
           style={{ width: ship, height: ship, marginLeft: -ship / 2, marginTop: -ship / 2 }}
           initial={{ left: "0%" }}
           animate={{ left: `${value}%` }}

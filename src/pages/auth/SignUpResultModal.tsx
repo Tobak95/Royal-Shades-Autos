@@ -23,7 +23,7 @@ export function SignUpResultModal({ result, onClose, onGoToLogin }: SignUpResult
         title="We couldn't create your account"
         description={result.message}
         icon={
-          <span className={`${iconClass} bg-sold/15 text-sold-text`}>
+          <span className={`${iconClass} bg-sold/15 text-sold`}>
             <CircleAlert aria-hidden="true" className="size-7" />
           </span>
         }
@@ -44,7 +44,7 @@ export function SignUpResultModal({ result, onClose, onGoToLogin }: SignUpResult
           : undefined
       }
       icon={
-        <span className={`${iconClass} bg-gold/15 text-gold`}>
+        <span className={`${iconClass} bg-gold/15 text-gold-text`}>
           <MailCheck aria-hidden="true" className="size-7" />
         </span>
       }

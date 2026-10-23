@@ -1,11 +1,11 @@
 import { BRAND } from "@/lib/site";
 import { Container } from "./Container";
 
-/** One-line footer used on the auth pages, as in the login and sign-up mockups */
+/** One-line navy footer (auth pages, and the car details / garage mockups) */
 export function SlimFooter() {
   return (
-    <footer className="border-t border-section-line">
-      <Container className="flex flex-wrap justify-between gap-3 py-6 text-[13px] text-subtle">
+    <footer className="mt-16 rounded-t-[32px] bg-navy">
+      <Container className="flex flex-wrap justify-between gap-3 py-7 text-[13px] text-faint">
         <span>
           © {new Date().getFullYear()} {BRAND.name}
         </span>

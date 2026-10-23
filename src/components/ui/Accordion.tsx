@@ -29,7 +29,7 @@ export function Accordion({ items, multiple = false, defaultOpen = [], className
   }
 
   return (
-    <div className={cn("divide-y divide-line overflow-hidden rounded-card border border-line bg-graphite", className)}>
+    <div className={cn("divide-y divide-line overflow-hidden rounded-card border border-line bg-surface", className)}>
       {items.map((item) => {
         const isOpen = open.includes(item.id);
         const buttonId = `${baseId}-${item.id}-button`;
@@ -43,13 +43,13 @@ export function Accordion({ items, multiple = false, defaultOpen = [], className
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => toggle(item.id)}
-                className="flex min-h-16 w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-semibold transition-colors hover:text-gold sm:px-6"
+                className="flex min-h-16 w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-semibold transition-colors hover:text-gold-text sm:px-6"
               >
                 {item.title}
                 <Plus
                   aria-hidden="true"
                   className={cn(
-                    "size-5 flex-none text-gold transition-transform duration-300",
+                    "size-5 flex-none text-gold-text transition-transform duration-300",
                     isOpen && "rotate-45",
                   )}
                 />

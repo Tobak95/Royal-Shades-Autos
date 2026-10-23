@@ -11,14 +11,14 @@ export function StatsStrip() {
 
   const items = [
     { label: "Available now", dot: "bg-available", value: stats?.available },
-    { label: "On the water", dot: "bg-incoming", value: stats?.incoming },
+    { label: "On the water", dot: "bg-arriving", value: stats?.incoming },
     { label: "Recently sold", dot: "bg-sold", value: stats?.sold },
   ];
 
   return (
     <section aria-label="Inventory at a glance" className="relative z-10 -mt-12">
       <Container>
-        <div className="grid overflow-hidden rounded-card border border-line bg-graphite sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid overflow-hidden rounded-card border border-line bg-surface sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item) => (
             <div key={item.label} className={cellClass}>
               <p className="flex items-center gap-2 text-[13px] text-muted">

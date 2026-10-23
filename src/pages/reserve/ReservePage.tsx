@@ -87,7 +87,7 @@ export default function ReservePage() {
       ) : (
         <form noValidate onSubmit={handleSubmit(onSubmit)} className="mt-8 grid items-start gap-7 lg:grid-cols-[minmax(0,1fr)_400px]">
           <div className="flex flex-col gap-7">
-            <section aria-labelledby="contact-heading" className="rounded-card border border-line bg-graphite p-6 sm:p-7">
+            <section aria-labelledby="contact-heading" className="rounded-card border border-line bg-surface p-6 sm:p-7">
               <h2 id="contact-heading" className="text-lg font-bold">Contact details</h2>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 <Input label="Full name" autoComplete="name" {...register("fullName")} error={errors.fullName?.message} />
@@ -98,9 +98,9 @@ export default function ReservePage() {
               </div>
             </section>
 
-            <section aria-labelledby="inspection-heading" className="rounded-card border border-line bg-graphite p-6 sm:p-7">
+            <section aria-labelledby="inspection-heading" className="rounded-card border border-line bg-surface p-6 sm:p-7">
               <h2 id="inspection-heading" className="flex items-center gap-2 text-lg font-bold">
-                <CalendarCheck aria-hidden="true" className="size-5 text-gold" /> Inspection details
+                <CalendarCheck aria-hidden="true" className="size-5 text-gold-text" /> Inspection details
               </h2>
               <div className="mt-5 grid gap-4">
                 <Input
@@ -117,11 +117,11 @@ export default function ReservePage() {
             </section>
           </div>
 
-          <div className="flex flex-col gap-6 rounded-[18px] border border-gold/35 bg-graphite p-6 sm:p-7 lg:sticky lg:top-28">
+          <div className="flex flex-col gap-6 rounded-[18px] border border-gold/35 bg-surface p-6 sm:p-7 lg:sticky lg:top-28">
             <PaymentMethodField registration={register("paymentMethod")} selected={paymentMethod} />
             <ReserveSummary cars={cars} totals={totals} paymentMethod={paymentMethod} />
             {submitError && (
-              <p role="alert" className="text-sm text-sold-text">
+              <p role="alert" className="text-sm text-sold">
                 {submitError}
               </p>
             )}

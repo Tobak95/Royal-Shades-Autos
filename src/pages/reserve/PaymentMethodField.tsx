@@ -49,7 +49,7 @@ export function PaymentMethodField({ registration, selected }: PaymentMethodFiel
             </span>
             <span className="flex-1">
               <span className="flex items-center gap-2 font-semibold">
-                <Icon aria-hidden="true" className="size-4 text-gold" /> {title}
+                <Icon aria-hidden="true" className="size-4 text-gold-text" /> {title}
               </span>
               <span className="mt-1 block text-[13px] leading-relaxed text-muted">{body}</span>
             </span>
@@ -58,9 +58,9 @@ export function PaymentMethodField({ registration, selected }: PaymentMethodFiel
       </div>
 
       {selected === "bank_transfer" && (
-        <div className="mt-4 rounded-xl border border-dashed border-gold/40 bg-graphite-2 p-4 text-sm">
-          <p className="font-semibold text-gold">Transfer to</p>
-          <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-soft">
+        <div className="mt-4 rounded-xl border border-dashed border-gold/40 bg-page p-4 text-sm">
+          <p className="font-semibold text-gold-text">Transfer to</p>
+          <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-muted">
             <dt className="text-muted">Bank</dt>
             <dd>[Bank name]</dd>
             <dt className="text-muted">Account name</dt>

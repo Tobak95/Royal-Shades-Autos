@@ -13,7 +13,7 @@ interface Toast {
 }
 
 const ICONS = { success: CircleCheck, info: Info, error: CircleAlert };
-const ICON_COLORS = { success: "text-gold", info: "text-incoming-text", error: "text-sold-text" };
+const ICON_COLORS = { success: "text-gold-text", info: "text-arriving-text", error: "text-sold" };
 
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
@@ -67,7 +67,7 @@ function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: (id: number)
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.97, transition: { duration: 0.15 } }}
       transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-      className="pointer-events-auto flex w-full max-w-sm items-center gap-3 rounded-xl border border-line bg-graphite py-3 pr-2 pl-4 text-sm shadow-[0_18px_40px_-12px_rgb(0_0_0/0.7)]"
+      className="pointer-events-auto flex w-full max-w-sm items-center gap-3 rounded-xl border border-line bg-surface py-3 pr-2 pl-4 text-sm shadow-float"
     >
       <Icon aria-hidden="true" className={cn("size-[18px] flex-none", ICON_COLORS[toast.tone])} />
       <p className="flex-1 font-medium">{toast.message}</p>
@@ -75,7 +75,7 @@ function ToastItem({ toast, onDismiss }: { toast: Toast; onDismiss: (id: number)
         type="button"
         onClick={() => onDismiss(toast.id)}
         aria-label="Dismiss notification"
-        className="flex size-9 flex-none items-center justify-center rounded-full text-muted transition-colors hover:bg-white/5 hover:text-white"
+        className="flex size-9 flex-none items-center justify-center rounded-full text-muted transition-colors hover:bg-navy/5 hover:text-ink"
       >
         <X aria-hidden="true" className="size-4" />
       </button>

@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Heart, Menu, UserRound, X } from "lucide-react";
+import { Heart, Menu, X } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { GarageIcon } from "@/components/icons";
 import { useAuth } from "@/hooks/useAuth";
@@ -12,9 +12,8 @@ import { AccountMenu } from "./AccountMenu";
 import { Container } from "./Container";
 import { MobileMenu } from "./MobileMenu";
 import { NavIconLink } from "./NavIconLink";
-import { SearchPill } from "./SearchPill";
 
-const navLinkClass = "text-sm font-medium transition-colors hover:text-gold";
+const navLinkClass = "text-[15px] font-semibold transition-colors hover:text-gold-light";
 
 export function Navbar() {
   const menuId = useId();
@@ -27,38 +26,30 @@ export function Navbar() {
 
   return (
     <header
-      className="sticky top-0 z-40 border-b border-white/[0.06] bg-obsidian"
+      className="sticky top-0 z-40 border-b border-white/8 bg-navy text-white"
       onKeyDown={(e) => e.key === "Escape" && closeMenu()}
     >
       <Container className="flex items-center justify-between gap-4 py-3.5">
         <Link to="/" aria-label={`${BRAND.shortName} home`} onClick={closeMenu} className="flex flex-none items-center">
-          <img src={logo} alt={BRAND.name} className="block h-11 w-auto sm:h-[54px]" />
+          <img src={logo} alt={BRAND.name} className="block h-11 w-auto sm:h-[52px]" />
         </Link>
 
         <nav aria-label="Main" className="hidden lg:block">
-          <ul className="flex gap-7">
+          <ul className="flex gap-[30px]">
             {MAIN_NAV.map((item) => (
               <li key={item.to}>
-                {/* Hash links point at home sections, so they never show as "active" */}
-                {item.to.includes("#") ? (
-                  <Link to={item.to} className={cn(navLinkClass, "text-silver")}>
-                    {item.label}
-                  </Link>
-                ) : (
-                  <NavLink
-                    to={item.to}
-                    className={({ isActive }) => cn(navLinkClass, isActive ? "text-gold" : "text-silver")}
-                  >
-                    {item.label}
-                  </NavLink>
-                )}
+                <NavLink
+                  to={item.to}
+                  className={({ isActive }) => cn(navLinkClass, isActive ? "text-white" : "text-[#D8DEE8]")}
+                >
+                  {item.label}
+                </NavLink>
               </li>
             ))}
           </ul>
         </nav>
 
         <div className="flex items-center gap-2.5">
-          <SearchPill className="hidden w-[200px] lg:block xl:w-[220px]" />
           <NavIconLink
             to="/account?tab=wishlist"
             label={`Wishlist, ${wishlist.count} ${wishlist.count === 1 ? "car" : "cars"}`}
@@ -76,9 +67,12 @@ export function Navbar() {
           {isAuthenticated ? (
             <AccountMenu />
           ) : (
-            <NavIconLink to="/login" label="Log in" className="hidden sm:flex">
-              <UserRound aria-hidden="true" className="size-[18px]" strokeWidth={1.8} />
-            </NavIconLink>
+            <Link
+              to="/login"
+              className="hidden h-11 items-center rounded-full bg-gold px-5 text-sm font-bold text-navy transition-[background-color,transform] duration-200 hover:-translate-y-px hover:bg-gold-light sm:inline-flex"
+            >
+              Sign in
+            </Link>
           )}
           <button
             type="button"
@@ -86,7 +80,7 @@ export function Navbar() {
             aria-expanded={menuOpen}
             aria-controls={menuId}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="flex size-11 flex-none items-center justify-center rounded-full border border-line text-white transition-colors hover:border-gold hover:text-gold lg:hidden"
+            className="flex size-11 flex-none items-center justify-center rounded-full border border-white/18 text-white transition-colors hover:border-gold-light hover:text-gold-light lg:hidden"
           >
             {menuOpen ? <X aria-hidden="true" className="size-5" /> : <Menu aria-hidden="true" className="size-5" />}
           </button>

@@ -6,7 +6,7 @@ import { CarCard } from "./CarCard";
 
 export function CarCardSkeleton() {
   return (
-    <div className="overflow-hidden rounded-card border border-line bg-graphite">
+    <div className="overflow-hidden rounded-card border border-line bg-surface">
       <Skeleton className="h-[196px] rounded-none" />
       <div className="flex flex-col gap-3 p-5">
         <Skeleton className="h-5 w-2/3" />

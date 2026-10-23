@@ -48,7 +48,7 @@ export default function VerifyEmailPage() {
           </>
         ) : (
           <>
-            <CircleCheck aria-hidden="true" className="mx-auto size-14 text-gold" strokeWidth={1.5} />
+            <CircleCheck aria-hidden="true" className="mx-auto size-14 text-gold-text" strokeWidth={1.5} />
             <h1 className="mt-5 text-[28px] font-extrabold tracking-[-0.02em]">
               <AccentText text="Email *verified*" />
             </h1>

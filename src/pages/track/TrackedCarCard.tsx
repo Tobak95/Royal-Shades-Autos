@@ -9,13 +9,13 @@ import type { Car, Shipment } from "@/types";
 /** Car summary shown next to the tracker */
 export function TrackedCarCard({ car, shipment }: { car: Car; shipment: Shipment }) {
   return (
-    <aside aria-label="Car summary" className="overflow-hidden rounded-panel border border-gold/35 bg-graphite">
+    <aside aria-label="Car summary" className="overflow-hidden rounded-panel border border-gold/35 bg-surface">
       <CarImage src={car.images[0]} alt={carName(car)} className="aspect-[16/10] w-full" />
       <div className="flex flex-col gap-4 p-6">
         <StatusBadge status={car.status} />
         <div>
           <h2 className="text-xl font-bold">
-            <Link to={`/cars/${car.slug}`} className="hover:text-gold">
+            <Link to={`/cars/${car.slug}`} className="hover:text-gold-text">
               {carName(car)}
             </Link>
           </h2>
@@ -38,7 +38,7 @@ export function TrackedCarCard({ car, shipment }: { car: Car; shipment: Shipment
           </div>
         </dl>
         <GarageCta car={car} variant="gold" size="md" fullWidth />
-        <Link to={`/cars/${car.slug}`} className="text-center text-sm font-semibold text-gold hover:text-gold-light">
+        <Link to={`/cars/${car.slug}`} className="text-center text-sm font-semibold text-gold-text hover:text-gold-text">
           View full details
         </Link>
       </div>

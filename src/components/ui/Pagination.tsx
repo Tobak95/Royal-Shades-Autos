@@ -36,7 +36,7 @@ export function Pagination({ page, totalPages, onChange, className }: Pagination
         onClick={() => onChange(page - 1)}
         disabled={page <= 1}
         aria-label="Previous page"
-        className={cn(itemClass, "border-line text-white hover:border-gold hover:text-gold disabled:opacity-40 disabled:hover:border-line disabled:hover:text-white")}
+        className={cn(itemClass, "border-line text-ink hover:border-gold hover:text-gold-text disabled:opacity-40 disabled:hover:border-line disabled:hover:text-ink")}
       >
         <ChevronLeft aria-hidden="true" className="size-4" />
       </button>
@@ -52,8 +52,8 @@ export function Pagination({ page, totalPages, onChange, className }: Pagination
                 className={cn(
                   itemClass,
                   item === page
-                    ? "border-gold bg-gold text-obsidian"
-                    : "border-line text-muted hover:border-gold hover:text-gold",
+                    ? "border-gold bg-gold text-navy"
+                    : "border-line text-muted hover:border-gold hover:text-gold-text",
                 )}
               >
                 {item}
@@ -71,7 +71,7 @@ export function Pagination({ page, totalPages, onChange, className }: Pagination
         onClick={() => onChange(page + 1)}
         disabled={page >= totalPages}
         aria-label="Next page"
-        className={cn(itemClass, "border-line text-white hover:border-gold hover:text-gold disabled:opacity-40 disabled:hover:border-line disabled:hover:text-white")}
+        className={cn(itemClass, "border-line text-ink hover:border-gold hover:text-gold-text disabled:opacity-40 disabled:hover:border-line disabled:hover:text-ink")}
       >
         <ChevronRight aria-hidden="true" className="size-4" />
       </button>

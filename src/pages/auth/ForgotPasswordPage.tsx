@@ -31,7 +31,7 @@ export default function ForgotPasswordPage() {
   }
 
   const backToLogin = (
-    <Link to="/login" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold hover:text-gold-light">
+    <Link to="/login" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold-text hover:text-gold-text">
       <ArrowLeft aria-hidden="true" className="size-4" /> Back to log in
     </Link>
   );
@@ -45,11 +45,11 @@ export default function ForgotPasswordPage() {
     >
       {sentTo ? (
         <div role="status" className="mt-7 flex flex-col items-start gap-3">
-          <span className="flex size-12 items-center justify-center rounded-full bg-gold/15 text-gold">
+          <span className="flex size-12 items-center justify-center rounded-full bg-gold/15 text-gold-text">
             <MailCheck aria-hidden="true" className="size-6" />
           </span>
-          <p className="text-sm leading-relaxed text-soft">
-            If an account exists for <strong className="text-white">{sentTo}</strong>, a reset link is on its way. Check
+          <p className="text-sm leading-relaxed text-muted">
+            If an account exists for <strong className="text-ink">{sentTo}</strong>, a reset link is on its way. Check
             your inbox and spam folder.
           </p>
           {backToLogin}
