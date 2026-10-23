@@ -52,6 +52,13 @@ export function formatDayMonth(iso: string): string {
   return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short" }).format(toDate(iso));
 }
 
+/** "Ayo Bello" → "AB", "Tobi" → "T"; falls back to the email's first letter */
+export function getInitials(fullName: string, email = ""): string {
+  const words = fullName.trim().split(/\s+/).filter(Boolean);
+  const letters = words.length > 1 ? words[0][0] + words[words.length - 1][0] : (words[0]?.[0] ?? email[0] ?? "?");
+  return letters.toUpperCase();
+}
+
 export function wait(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }

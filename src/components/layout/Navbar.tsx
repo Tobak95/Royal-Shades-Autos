@@ -8,6 +8,7 @@ import { useGarage } from "@/hooks/useGarage";
 import { useWishlist } from "@/hooks/useWishlist";
 import { BRAND, MAIN_NAV } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import { AccountMenu } from "./AccountMenu";
 import { Container } from "./Container";
 import { MobileMenu } from "./MobileMenu";
 import { NavIconLink } from "./NavIconLink";
@@ -22,8 +23,6 @@ export function Navbar() {
   const garage = useGarage();
   const wishlist = useWishlist();
 
-  const accountHref = isAuthenticated ? "/account" : "/login";
-  const accountLabel = isAuthenticated ? "My account" : "Log in";
   const closeMenu = () => setMenuOpen(false);
 
   return (
@@ -74,9 +73,13 @@ export function Navbar() {
           >
             <GarageIcon size={19} />
           </NavIconLink>
-          <NavIconLink to={accountHref} label={accountLabel} className="hidden sm:flex">
-            <UserRound aria-hidden="true" className="size-[18px]" strokeWidth={1.8} />
-          </NavIconLink>
+          {isAuthenticated ? (
+            <AccountMenu />
+          ) : (
+            <NavIconLink to="/login" label="Log in" className="hidden sm:flex">
+              <UserRound aria-hidden="true" className="size-[18px]" strokeWidth={1.8} />
+            </NavIconLink>
+          )}
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
@@ -90,14 +93,7 @@ export function Navbar() {
         </div>
       </Container>
 
-      <MobileMenu
-        id={menuId}
-        open={menuOpen}
-        onClose={closeMenu}
-        accountHref={accountHref}
-        accountLabel={accountLabel}
-        wishlistCount={wishlist.count}
-      />
+      <MobileMenu id={menuId} open={menuOpen} onClose={closeMenu} wishlistCount={wishlist.count} />
     </header>
   );
 }

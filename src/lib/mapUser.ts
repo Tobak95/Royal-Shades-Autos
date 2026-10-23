@@ -16,16 +16,19 @@ function firstString(raw: Raw, keys: string[]): string | undefined {
 /**
  * The single place that turns a backend user into our User type.
  * Handles Mongo-style `_id`, alternate field names, and users saved by the old app.
- * Returns null if the essentials (id and email) are missing.
+ * Returns null only if there's no email.
  */
 export function mapUser(value: unknown): User | null {
   if (!isObject(value)) return null;
   const raw = isObject(value.user) ? value.user : value;
 
-  const id = firstString(raw, ["id", "_id", "userId"]);
   const email = firstString(raw, ["email"]);
-  if (!id || !email) return null;
+  if (!email) return null;
 
+  // TEMPORARY: the login response currently has only fullName, email and phoneNumber.
+  // The backend will send `_id` and `role` later; until then the email (unique per
+  // account) stands in as the id and everyone is a customer.
+  const id = firstString(raw, ["id", "_id", "userId"]) ?? email.toLowerCase();
   const role: UserRole = raw.role === "admin" || raw.isAdmin === true ? "admin" : "customer";
   const verified = raw.isVerified ?? raw.verified ?? raw.emailVerified;
 
