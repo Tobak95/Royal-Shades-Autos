@@ -1,11 +1,23 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useMatches } from "react-router-dom";
 import { motion } from "framer-motion";
+import { SessionGuard } from "@/components/routing/SessionGuard";
 import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
 import { ScrollManager } from "./ScrollManager";
+import { SlimFooter } from "./SlimFooter";
+
+/** Set `handle: { footer: "slim" }` on a route to use the one-line footer */
+export interface RouteHandle {
+  footer?: "full" | "slim";
+}
+
+function isRouteHandle(handle: unknown): handle is RouteHandle {
+  return typeof handle === "object" && handle !== null && "footer" in handle;
+}
 
 export function RootLayout() {
   const { pathname } = useLocation();
+  const slimFooter = useMatches().some((match) => isRouteHandle(match.handle) && match.handle.footer === "slim");
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -16,6 +28,7 @@ export function RootLayout() {
         Skip to content
       </a>
       <ScrollManager />
+      <SessionGuard />
       <Navbar />
       <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
         {/* Subtle fade on each page change */}
@@ -28,7 +41,7 @@ export function RootLayout() {
           <Outlet />
         </motion.div>
       </main>
-      <Footer />
+      {slimFooter ? <SlimFooter /> : <Footer />}
     </div>
   );
 }

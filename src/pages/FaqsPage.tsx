@@ -4,6 +4,7 @@ import { FadeUp } from "@/components/motion/FadeUp";
 import { Accordion } from "@/components/ui/Accordion";
 import { ButtonLink } from "@/components/ui/Button";
 import { FAQ_GROUPS } from "@/data/faqs";
+import { POLICY } from "@/lib/site";
 
 export default function FaqsPage() {
   return (
@@ -47,7 +48,7 @@ export default function FaqsPage() {
           <div className="flex flex-wrap items-center justify-between gap-5 rounded-panel border border-gold/30 bg-graphite p-7">
             <div>
               <h2 className="text-xl font-bold">Still have a question?</h2>
-              <p className="mt-1 text-sm text-muted">Our Lagos team usually replies within one working day.</p>
+              <p className="mt-1 text-sm text-muted">Our Lagos team usually replies within {POLICY.responseTime}.</p>
             </div>
             <ButtonLink to="/contact">Contact us</ButtonLink>
           </div>

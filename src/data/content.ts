@@ -1,3 +1,5 @@
+import { DEPOSIT_PERCENT, POLICY } from "@/lib/site";
+
 export interface Step {
   title: string;
   body: string;
@@ -25,11 +27,11 @@ export const IMPORT_STEPS: Step[] = [
 export const THANK_YOU_STEPS: Step[] = [
   {
     title: "We confirm your reservation",
-    body: "Our team calls or emails you within one working day to confirm the details and your inspection date.",
+    body: `Our team calls or emails you within ${POLICY.responseTime} to confirm the details and your inspection date.`,
   },
   {
     title: "Your deposit clears",
-    body: "Once your 10% deposit clears, every incoming car gets a tracking number you can follow on the Track page.",
+    body: `Once your ${DEPOSIT_PERCENT} deposit clears, every incoming car gets a tracking number you can follow on the Track page.`,
   },
   {
     title: "Inspect and collect",
@@ -53,6 +55,6 @@ export const VALUES: Step[] = [
   },
   {
     title: "Clear, all-in pricing",
-    body: "Showroom prices include shipping, duty and clearing. The price you see is the price you pay.",
+    body: `${POLICY.priceIncludesText} The price you see is the price you pay.`,
   },
 ];

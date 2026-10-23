@@ -1,3 +1,5 @@
+import { DEPOSIT_PERCENT, POLICY } from "@/lib/site";
+
 export interface FaqGroup {
   id: string;
   title: string;
@@ -36,8 +38,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         id: "duty-included",
         question: "Is customs duty included in the price?",
-        answer:
-          "Yes. Every showroom price includes shipping, import duty and clearing at Tin Can Island or Apapa. There are no extra charges when the car arrives.",
+        answer: `Yes. ${POLICY.priceIncludesText} Cars clear at Tin Can Island or Apapa, and there are no extra charges when the car arrives.`,
       },
       {
         id: "papers",
@@ -54,8 +55,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         id: "deposit",
         question: "How much do I pay to reserve a car?",
-        answer:
-          "A 10% deposit holds the car for you. You pay the balance when you inspect and collect it at our Lagos yard.",
+        answer: `A ${DEPOSIT_PERCENT} deposit holds the car for you. You pay the balance when you inspect and collect it at our Lagos yard.`,
       },
       {
         id: "methods",
@@ -66,7 +66,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         id: "refund",
         question: "Is the deposit refundable?",
-        answer: "Yes. Your deposit is fully refundable if the car fails inspection when it arrives.",
+        answer: `Yes. ${POLICY.refundText}`,
       },
     ],
   },
@@ -94,7 +94,7 @@ export const FAQ_GROUPS: FaqGroup[] = [
       {
         id: "lagos-delivery",
         question: "Do you deliver?",
-        answer: "Delivery within Lagos is free. We can also arrange delivery to other states at cost.",
+        answer: `${POLICY.freeLagosDelivery ? "Delivery within Lagos is free." : "We deliver within Lagos for a small fee."} We can also arrange delivery to other states at cost.`,
       },
       {
         id: "collection",

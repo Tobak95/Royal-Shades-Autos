@@ -31,7 +31,7 @@ export function ReserveSummary({ cars, totals, paymentMethod }: ReserveSummaryPr
         <TotalsBreakdown
           totals={totals}
           carCount={cars.length}
-          depositLabel={paymentMethod === "pay_on_inspection" ? "Due at inspection · 10% deposit" : undefined}
+          depositDue={paymentMethod === "pay_on_inspection" ? "at inspection" : "today"}
         />
       </div>
     </div>

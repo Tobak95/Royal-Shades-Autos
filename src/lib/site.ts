@@ -14,6 +14,23 @@ export const CONTACT = {
   hours: "[Opening hours]",
 } as const;
 
+/**
+ * Business policies shown across the site. The owner should confirm these;
+ * change them here and every page, total and FAQ follows.
+ */
+export const POLICY = {
+  /** Share of the car price paid to reserve it */
+  depositRate: 0.1,
+  refundText: "Fully refundable if the car fails inspection on arrival.",
+  priceIncludesText: "Price includes shipping, duty and clearing.",
+  freeLagosDelivery: true,
+  /** How quickly the team replies, used in sentences: "within one working day" */
+  responseTime: "one working day",
+} as const;
+
+/** "10%", derived from POLICY.depositRate */
+export const DEPOSIT_PERCENT = `${Math.round(POLICY.depositRate * 100)}%`;
+
 export interface NavItem {
   label: string;
   to: string;

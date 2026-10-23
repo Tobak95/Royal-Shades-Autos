@@ -19,6 +19,42 @@ export function localISODate(offsetDays = 0): string {
 
 const tomorrow = () => localISODate(1);
 
+// ── Auth (converted from the old yup rules) ────────────────────────────────
+
+const email = z.string().trim().min(1, "Email is required").pipe(z.email("Enter a valid email address"));
+
+export const loginSchema = z.object({
+  email,
+  // Length rules apply at sign-up; here we only need something to send
+  password: z.string().min(1, "Password is required"),
+  remember: z.boolean(),
+});
+
+export type LoginFormValues = z.infer<typeof loginSchema>;
+
+export const signUpSchema = z
+  .object({
+    fullName: requiredText("Full name").min(3, "Enter your full name"),
+    phoneNumber: phone,
+    email,
+    password: z.string().min(8, "Password must be at least 8 characters"),
+    confirmPassword: z.string().min(1, "Confirm your password"),
+    acceptTerms: z.boolean().refine((v) => v, "Please accept the terms to continue"),
+  })
+  .refine((v) => v.password === v.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Passwords must match",
+  });
+
+export type SignUpFormValues = z.input<typeof signUpSchema>;
+export type SignUpFormOutput = z.output<typeof signUpSchema>;
+
+export const forgotPasswordSchema = z.object({ email });
+
+export type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
+
+// ── Reservations and contact ────────────────────────────────────────────────
+
 export const reservationSchema = z.object({
   fullName: requiredText("Full name").min(3, "Enter your full name"),
   email: z.email("Enter a valid email address"),

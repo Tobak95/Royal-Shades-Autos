@@ -1,4 +1,4 @@
-// localStorage can throw (private mode, quota, blocked storage), so every access is guarded.
+// Browser storage can throw (private mode, quota, blocked storage), so every access is guarded.
 
 export const STORAGE_KEYS = {
   token: "accessToken",
@@ -26,31 +26,78 @@ export function writeStorage(key: string, value: unknown): void {
   }
 }
 
-export function removeStorage(key: string): void {
+export function isStringArray(value: unknown): value is string[] {
+  return Array.isArray(value) && value.every((item) => typeof item === "string");
+}
+
+// ── Auth session ────────────────────────────────────────────────────────────
+// "Keep me signed in" → localStorage (survives restarts); otherwise sessionStorage
+// (cleared when the browser closes). Keys match the old app so existing sessions survive.
+
+function stores(): Storage[] {
   try {
-    localStorage.removeItem(key);
+    return [localStorage, sessionStorage];
   } catch {
-    // Ignore: nothing to clean up if storage is unavailable.
+    return [];
   }
 }
 
-/** The token is stored as a raw string (not JSON) to stay compatible with the old app */
+/** The storage that currently holds the session, if any */
+function sessionStore(): Storage | null {
+  for (const store of stores()) {
+    try {
+      if (store.getItem(STORAGE_KEYS.token)) return store;
+    } catch {
+      // Try the next store
+    }
+  }
+  return null;
+}
+
 export function readToken(): string | null {
   try {
-    return localStorage.getItem(STORAGE_KEYS.token);
+    return sessionStore()?.getItem(STORAGE_KEYS.token) ?? null;
   } catch {
     return null;
   }
 }
 
-export function writeToken(token: string): void {
+/** Raw stored user; validate it with mapUser before trusting it */
+export function readSessionUser(): unknown {
   try {
-    localStorage.setItem(STORAGE_KEYS.token, token);
+    const raw = sessionStore()?.getItem(STORAGE_KEYS.user);
+    return raw ? (JSON.parse(raw) as unknown) : null;
+  } catch {
+    return null;
+  }
+}
+
+export function saveSession(token: string, user: unknown, persistent: boolean): void {
+  clearSession();
+  try {
+    const store = persistent ? localStorage : sessionStorage;
+    store.setItem(STORAGE_KEYS.token, token);
+    store.setItem(STORAGE_KEYS.user, JSON.stringify(user));
+  } catch {
+    // Signed in for this page view only
+  }
+}
+
+export function updateSessionUser(user: unknown): void {
+  try {
+    sessionStore()?.setItem(STORAGE_KEYS.user, JSON.stringify(user));
   } catch {
     // Ignore
   }
 }
 
-export function isStringArray(value: unknown): value is string[] {
-  return Array.isArray(value) && value.every((item) => typeof item === "string");
+export function clearSession(): void {
+  for (const store of stores()) {
+    try {
+      store.removeItem(STORAGE_KEYS.token);
+      store.removeItem(STORAGE_KEYS.user);
+    } catch {
+      // Ignore
+    }
+  }
 }

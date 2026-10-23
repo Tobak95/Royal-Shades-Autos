@@ -1,5 +1,6 @@
 import type { UseFormRegisterReturn } from "react-hook-form";
 import { Banknote, ClipboardCheck } from "lucide-react";
+import { DEPOSIT_PERCENT } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import type { PaymentMethod } from "@/types";
 
@@ -7,7 +8,7 @@ const METHODS: { value: PaymentMethod; title: string; body: string; icon: typeof
   {
     value: "bank_transfer",
     title: "Bank transfer",
-    body: "Pay the 10% deposit now to hold your cars and get tracking numbers straight away.",
+    body: `Pay the ${DEPOSIT_PERCENT} deposit now to hold your cars and get tracking numbers straight away.`,
     icon: Banknote,
   },
   {

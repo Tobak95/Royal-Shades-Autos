@@ -1,15 +1,18 @@
+import { DEPOSIT_PERCENT, POLICY } from "@/lib/site";
 import { formatNaira } from "@/lib/utils";
 import type { GarageTotals } from "@/lib/pricing";
 
 interface TotalsBreakdownProps {
   totals: GarageTotals;
   carCount: number;
-  /** "Due today" for bank transfer, "Due at inspection" when paying later */
-  depositLabel?: string;
+  /** When the deposit is due: "today" for bank transfer, "at inspection" when paying later */
+  depositDue?: "today" | "at inspection";
 }
 
-/** Cars total, free delivery, customs included, balance and the 10% deposit */
-export function TotalsBreakdown({ totals, carCount, depositLabel = "Due today · 10% deposit" }: TotalsBreakdownProps) {
+/** Cars total, delivery, customs, balance and the deposit */
+export function TotalsBreakdown({ totals, carCount, depositDue = "today" }: TotalsBreakdownProps) {
+  const depositLabel = `Due ${depositDue} · ${DEPOSIT_PERCENT} deposit`;
+
   return (
     <>
       <dl className="flex flex-col gap-3.5 text-sm">
@@ -19,7 +22,11 @@ export function TotalsBreakdown({ totals, carCount, depositLabel = "Due today ·
         </div>
         <div className="flex justify-between gap-3">
           <dt className="text-muted">Delivery within Lagos</dt>
-          <dd className="font-semibold text-available-text">Free</dd>
+          {POLICY.freeLagosDelivery ? (
+            <dd className="font-semibold text-available-text">Free</dd>
+          ) : (
+            <dd className="font-semibold">Quoted on request</dd>
+          )}
         </div>
         <div className="flex justify-between gap-3">
           <dt className="text-muted">Customs &amp; clearing</dt>
@@ -36,7 +43,7 @@ export function TotalsBreakdown({ totals, carCount, depositLabel = "Due today ·
           <span className="text-[13px] font-semibold text-silver">{depositLabel}</span>
           <span className="text-[26px] font-extrabold tracking-[-0.02em] text-gold">{formatNaira(totals.deposit)}</span>
         </div>
-        <p className="mt-1.5 text-xs leading-normal text-muted">Fully refundable if the car fails inspection on arrival.</p>
+        <p className="mt-1.5 text-xs leading-normal text-muted">{POLICY.refundText}</p>
       </div>
     </>
   );

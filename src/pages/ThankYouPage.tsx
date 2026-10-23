@@ -9,6 +9,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { THANK_YOU_STEPS } from "@/data/content";
+import { POLICY } from "@/lib/site";
 
 function readReservationId(state: unknown): string | null {
   if (typeof state === "object" && state !== null && "reservationId" in state) {
@@ -44,7 +45,7 @@ export default function ThankYouPage() {
               <AccentText text="Thank you for choosing *Royal Shades*" />
             </h1>
             <p className="mt-5 text-base leading-[1.65] text-haze sm:text-[17px]">
-              Your cars are held for you. We'll be in touch within one working day to confirm everything.
+              Your cars are held for you. We'll be in touch within {POLICY.responseTime} to confirm everything.
             </p>
             {reservationId && (
               <p className="mt-6 inline-flex flex-wrap items-center gap-2 rounded-control border border-gold/30 bg-graphite/70 px-4 py-3 text-sm">

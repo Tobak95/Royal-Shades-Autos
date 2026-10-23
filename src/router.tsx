@@ -1,7 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import { RootLayout } from "@/components/layout/RootLayout";
+import { RootLayout, type RouteHandle } from "@/components/layout/RootLayout";
+import { AdminRoute } from "@/components/routing/AdminRoute";
 import { ProtectedRoute } from "@/components/routing/ProtectedRoute";
 import AboutPage from "@/pages/AboutPage";
+import ForgotPasswordPage from "@/pages/auth/ForgotPasswordPage";
+import LoginPage from "@/pages/auth/LoginPage";
+import SignUpPage from "@/pages/auth/SignUpPage";
+import VerifyEmailPage from "@/pages/auth/VerifyEmailPage";
 import CarDetailsPage from "@/pages/car-details/CarDetailsPage";
 import ContactPage from "@/pages/contact/ContactPage";
 import PlaceholderPage from "@/pages/dev/PlaceholderPage";
@@ -15,13 +20,7 @@ import ShowroomPage from "@/pages/showroom/ShowroomPage";
 import ThankYouPage from "@/pages/ThankYouPage";
 import TrackPage from "@/pages/track/TrackPage";
 
-// TEMPORARY: auth (Phase 3) and account (Phase 4) pages
-const placeholders = [
-  { path: "login", title: "Log in to your *Garage*", crumb: "Log in" },
-  { path: "register", title: "Create your *account*", crumb: "Sign up" },
-  { path: "forgot-password", title: "Reset your *password*", crumb: "Forgot password" },
-  { path: "account", title: "My *account*", crumb: "Account" },
-];
+const slim: RouteHandle = { footer: "slim" };
 
 export const router = createBrowserRouter([
   {
@@ -45,10 +44,31 @@ export const router = createBrowserRouter([
       { path: "contact", element: <ContactPage /> },
       { path: "faqs", element: <FaqsPage /> },
       { path: "privacy", element: <PrivacyPage /> },
-      ...placeholders.map(({ path, title, crumb }) => ({
-        path,
-        element: <PlaceholderPage title={title} crumb={crumb} />,
-      })),
+
+      // Auth
+      { path: "login", element: <LoginPage />, handle: slim },
+      { path: "register", element: <SignUpPage />, handle: slim },
+      { path: "forgot-password", element: <ForgotPasswordPage />, handle: slim },
+      { path: "verify-email/:token", element: <VerifyEmailPage />, handle: slim },
+
+      // TEMPORARY: account (Phase 4) and admin (Phase 5)
+      {
+        path: "account",
+        element: (
+          <ProtectedRoute>
+            <PlaceholderPage title="My *account*" crumb="Account" />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "admin",
+        element: (
+          <AdminRoute>
+            <PlaceholderPage title="Admin *dashboard*" crumb="Admin" />
+          </AdminRoute>
+        ),
+      },
+
       { path: "*", element: <NotFoundPage /> },
     ],
   },

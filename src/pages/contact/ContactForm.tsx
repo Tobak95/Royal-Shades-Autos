@@ -5,6 +5,7 @@ import { CircleCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
+import { POLICY } from "@/lib/site";
 import { contactSchema, type ContactFormValues } from "@/lib/validators";
 import { wait } from "@/lib/utils";
 
@@ -29,7 +30,7 @@ export function ContactForm() {
         <CircleCheck aria-hidden="true" className="size-10 text-gold" strokeWidth={1.6} />
         <h2 className="text-2xl font-bold">Message sent</h2>
         <p className="text-sm leading-relaxed text-muted">
-          Thanks for reaching out. Someone from our Lagos team will reply within one working day.
+          Thanks for reaching out. Someone from our Lagos team will reply within {POLICY.responseTime}.
         </p>
         <Button variant="outline" onClick={() => setSent(false)}>
           Send another message

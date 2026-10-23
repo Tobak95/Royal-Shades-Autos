@@ -5,7 +5,7 @@ import { TotalsBreakdown } from "@/components/garage/TotalsBreakdown";
 import { Container } from "@/components/layout/Container";
 import { AccentText } from "@/components/ui/AccentText";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { ButtonLink } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { useGarage } from "@/hooks/useGarage";
@@ -23,6 +23,12 @@ export default function GaragePage() {
   const totals = getGarageTotals(cars);
   const empty = !loading && cars.length === 0;
   const hasSold = reservable.length !== cars.length;
+  const canContinue = !loading && reservable.length > 0 && !hasSold;
+  const continueLabel = (
+    <>
+      Continue to reservation <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2.2} />
+    </>
+  );
 
   const countText = empty
     ? "No cars saved yet."
@@ -72,16 +78,16 @@ export default function GaragePage() {
               Sold cars aren't included. Remove them before you continue.
             </p>
           )}
-          <ButtonLink
-            to="/reserve"
-            size="lg"
-            fullWidth
-            aria-disabled={reservable.length === 0 || hasSold || undefined}
-            tabIndex={reservable.length === 0 || hasSold ? -1 : undefined}
-            className="mt-5"
-          >
-            Continue to reservation <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2.2} />
-          </ButtonLink>
+          {canContinue ? (
+            <ButtonLink to="/reserve" size="lg" fullWidth className="mt-5">
+              {continueLabel}
+            </ButtonLink>
+          ) : (
+            // A real disabled button: a link can't be disabled for mouse users
+            <Button size="lg" fullWidth disabled className="mt-5">
+              {continueLabel}
+            </Button>
+          )}
           <p className="mt-[18px] flex items-start gap-2.5 text-xs leading-normal text-muted">
             <ShieldCheck aria-hidden="true" className="mt-px size-4 flex-none text-gold" />
             Pay by bank transfer. You'll get a tracking number for every incoming car as soon as your deposit clears.

@@ -5,6 +5,7 @@ import { FuelIcon, GaugeIcon, GearboxIcon, WhatsAppIcon } from "@/components/ico
 import { Badge } from "@/components/ui/Badge";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { buttonVariants } from "@/components/ui/variants";
+import { DEPOSIT_PERCENT, POLICY } from "@/lib/site";
 import { cn, formatDate, formatMileage, formatNaira } from "@/lib/utils";
 import { carEnquiryLink } from "@/lib/whatsapp";
 import type { Car } from "@/types";
@@ -51,8 +52,8 @@ export function CarSummaryPanel({ car }: { car: Car }) {
 
       {car.status === "incoming" && car.shipment && (
         <p className="rounded-control border border-incoming/30 bg-incoming/10 px-4 py-3 text-sm text-incoming-text">
-          On the water now. Expected in Lagos on <strong>{formatDate(car.shipment.eta)}</strong>. Reserve it today with a
-          10% deposit.
+          On the water now. Expected in Lagos on <strong>{formatDate(car.shipment.eta)}</strong>. Reserve it today with a{" "}
+          {DEPOSIT_PERCENT} deposit.
         </p>
       )}
 
@@ -72,7 +73,7 @@ export function CarSummaryPanel({ car }: { car: Car }) {
 
       <p className="flex items-start gap-2.5 text-xs leading-relaxed text-muted">
         <ShieldCheck aria-hidden="true" className="mt-px size-4 flex-none text-gold" />
-        Price includes shipping, duty and clearing. 10% deposit holds the car, fully refundable if it fails inspection.
+        {POLICY.priceIncludesText} A {DEPOSIT_PERCENT} deposit holds the car. {POLICY.refundText}
       </p>
     </div>
   );
