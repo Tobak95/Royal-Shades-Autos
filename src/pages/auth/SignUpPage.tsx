@@ -10,6 +10,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { getApiErrorMessage } from "@/lib/api";
 import { signUpSchema, type SignUpFormOutput, type SignUpFormValues } from "@/lib/validators";
 import { register as registerRequest } from "@/services/authService";
+import { CAR_IMAGES } from "@/data/carImages";
 import { AuthScreen } from "./AuthScreen";
 import { PasswordStrength } from "./PasswordStrength";
 import { SignUpResultModal, type SignUpResult } from "./SignUpResultModal";
@@ -50,13 +51,14 @@ export default function SignUpPage() {
   return (
     <AuthScreen
       side="left"
+      photo={CAR_IMAGES.gleRear}
       wide
       eyebrow="Join Royal Shades"
       title="Create your *account*"
       subtitle={
         <>
           Already have an account?{" "}
-          <Link to="/login" state={location.state} className="font-semibold text-gold-text hover:text-gold-text">
+          <Link to="/login" state={location.state} className="font-semibold text-gold-text hover:text-gold-hover">
             Log in
           </Link>
         </>
@@ -104,8 +106,12 @@ export default function SignUpPage() {
           error={errors.acceptTerms?.message}
           label={
             <>
-              I agree to the Terms of Service and{" "}
-              <Link to="/privacy" target="_blank" className="text-gold-text hover:text-gold-text">
+              I agree to the{" "}
+              <Link to="/terms" target="_blank" className="text-gold-text hover:text-gold-hover">
+                Terms of Service
+              </Link>{" "}
+              and{" "}
+              <Link to="/privacy" target="_blank" className="text-gold-text hover:text-gold-hover">
                 Privacy Policy
               </Link>
             </>

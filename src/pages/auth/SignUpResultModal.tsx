@@ -44,7 +44,7 @@ export function SignUpResultModal({ result, onClose, onGoToLogin }: SignUpResult
           : undefined
       }
       icon={
-        <span className={`${iconClass} bg-gold/15 text-gold-text`}>
+        <span className={`${iconClass} bg-gold-tint text-gold-text`}>
           <MailCheck aria-hidden="true" className="size-7" />
         </span>
       }

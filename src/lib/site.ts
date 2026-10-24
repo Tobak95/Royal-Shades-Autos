@@ -62,7 +62,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     heading: "Import",
     links: [
       { label: "Track a car", to: "/track" },
-      { label: "Incoming cars", to: "/cars?status=incoming" },
+      { label: "Incoming cars", to: "/cars?status=arriving" },
       { label: "FAQs", to: "/faqs" },
     ],
   },
@@ -72,6 +72,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { label: "About", to: "/about" },
       { label: "Contact", to: "/contact" },
       { label: "Privacy", to: "/privacy" },
+      { label: "Terms", to: "/terms" },
     ],
   },
 ];

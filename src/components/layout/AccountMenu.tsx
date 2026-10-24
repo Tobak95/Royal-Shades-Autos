@@ -136,7 +136,7 @@ export function AccountMenu() {
               <Link role="menuitem" tabIndex={-1} to="/garage" onClick={() => close(true)} className={linkItemClass}>
                 <GarageIcon size={16} /> My garage
                 {garage.count > 0 && (
-                  <span className="ml-auto rounded-full bg-gold/15 px-2 py-0.5 text-xs font-bold text-gold-text">
+                  <span className="ml-auto rounded-full bg-gold-tint px-2 py-0.5 text-xs font-bold text-gold-text">
                     {garage.count}
                     <span className="sr-only"> {garage.count === 1 ? "car" : "cars"}</span>
                   </span>

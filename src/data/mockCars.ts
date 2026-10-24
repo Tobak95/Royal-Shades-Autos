@@ -1,7 +1,11 @@
 import type { Car } from "@/types";
-import { availableCars } from "./cars/available";
-import { incomingCars } from "./cars/incoming";
+import { arrivingCars } from "./cars/arriving";
 import { soldCars } from "./cars/sold";
+import { yardCars } from "./cars/yard-cars";
+import { yardSuvs } from "./cars/yard-suvs";
 
-/** 16 cars: 7 available, 5 incoming (each at a different point of its voyage), 4 sold */
-export const mockCars: Car[] = [...availableCars, ...incomingCars, ...soldCars];
+/**
+ * 21 cars: 10 available, 2 inspection ("Coming soon"), 4 arriving (different voyage stages),
+ * 1 arrived and 4 sold. Seven of them use the real dealership photos in public/cars/.
+ */
+export const mockCars: Car[] = [...yardSuvs, ...yardCars, ...arrivingCars, ...soldCars];

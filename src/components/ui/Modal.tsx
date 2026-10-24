@@ -35,7 +35,7 @@ export function Modal({ open, onClose, title, description, icon, children, foote
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <div aria-hidden="true" onClick={onClose} className="absolute inset-0 bg-navy/80 backdrop-blur-sm" />
+          <div aria-hidden="true" onClick={onClose} className="absolute inset-0 bg-navy/60 backdrop-blur-sm" />
           <motion.div
             ref={ref}
             role="dialog"
@@ -49,7 +49,7 @@ export function Modal({ open, onClose, title, description, icon, children, foote
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ duration: 0.22, ease: "easeOut" }}
             className={cn(
-              "relative max-h-[90vh] w-full overflow-y-auto rounded-panel border border-gold/30 bg-surface p-6 shadow-2xl focus:outline-none sm:p-8",
+              "relative max-h-[90vh] w-full overflow-y-auto rounded-[28px] border border-line bg-surface p-6 shadow-float focus:outline-none sm:p-8",
               SIZES[size],
               className,
             )}

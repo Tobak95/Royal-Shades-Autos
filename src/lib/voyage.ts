@@ -27,9 +27,21 @@ export function carName(car: Car): string {
 
 /** One-line status used in the garage and summaries */
 export function carNote(car: Car): string {
-  if (car.status === "sold") return "This car has been sold. Remove it to continue.";
-  if (car.status === "available") return "In our Lagos yard. Inspect any day this week.";
-  if (!car.shipment) return "On its way to Lagos.";
-  const stage = getCurrentStage(car.shipment);
-  return `${stage?.label ?? "In transit"} · ${car.shipment.vesselName}. ETA ${formatDate(car.shipment.eta)}.`;
+  switch (car.status) {
+    case "sold":
+      return "This car has been sold. Remove it to continue.";
+    case "inspection":
+      return "Being inspected in our yard. It can't be reserved until it's ready.";
+    case "available":
+      return "In our Lagos yard. Inspect any day this week.";
+    case "arrived":
+      return car.shipment
+        ? `Arrived at ${car.shipment.destinationPort}. Clearing customs, ready soon.`
+        : "Arrived in Lagos. Ready soon.";
+    case "arriving": {
+      if (!car.shipment) return "On its way to Lagos.";
+      const stage = getCurrentStage(car.shipment);
+      return `${stage?.label ?? "In transit"} · ${car.shipment.vesselName}. ETA ${formatDate(car.shipment.eta)}.`;
+    }
+  }
 }

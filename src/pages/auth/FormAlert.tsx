@@ -15,7 +15,7 @@ export function FormAlert({ tone, children, className }: FormAlertProps) {
       role={tone === "error" ? "alert" : "status"}
       className={cn(
         "flex items-start gap-2.5 rounded-control border px-4 py-3 text-sm",
-        tone === "error" ? "border-sold/40 bg-sold/10 text-sold" : "border-gold/30 bg-gold/[0.07] text-gold-text",
+        tone === "error" ? "border-sold/30 bg-sold-tint text-sold" : "border-gold-border bg-gold-tint text-[#6B4E12]",
         className,
       )}
     >

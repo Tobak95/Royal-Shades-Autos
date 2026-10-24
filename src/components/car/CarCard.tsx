@@ -43,10 +43,10 @@ export function CarCard({ car, eagerImage, className }: CarCardProps) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 px-5 pt-[18px] pb-5">
+      <div className="flex flex-1 flex-col gap-2.5 px-[18px] pt-4 pb-[18px]">
         <div>
-          <div className="flex items-baseline justify-between gap-3">
-            <h3 className="text-lg font-bold">
+          <div className="flex items-baseline justify-between gap-2.5">
+            <h3 className="text-[17px] font-extrabold">
               <Link to={href} className="transition-colors hover:text-gold-text">
                 {name}
                 {sold && <span className="sr-only"> (sold)</span>}
@@ -54,12 +54,12 @@ export function CarCard({ car, eagerImage, className }: CarCardProps) {
             </h3>
             <span className="text-[13px] text-muted">{car.year}</span>
           </div>
-          <p className="mt-1 text-[13px] font-semibold text-gold-text">
+          <p className="mt-[3px] text-[13px] font-bold text-gold-text">
             {car.bodyType} · {car.origin}
           </p>
         </div>
 
-        <ul aria-label="Key specs" className="flex flex-wrap gap-x-3 gap-y-1.5 text-xs text-muted">
+        <ul aria-label="Key specs" className="flex flex-wrap gap-x-3.5 gap-y-1.5 text-xs text-muted">
           <li className="inline-flex items-center gap-1.5">
             <FuelIcon size={14} className="text-gold-text" />
             {car.fuelType}
@@ -74,7 +74,7 @@ export function CarCard({ car, eagerImage, className }: CarCardProps) {
           </li>
         </ul>
 
-        {car.status === "incoming" && car.shipment && (
+        {car.status === "arriving" && car.shipment && (
           <div className="flex items-center gap-2.5 text-xs text-muted">
             <div
               role="progressbar"
@@ -82,21 +82,21 @@ export function CarCard({ car, eagerImage, className }: CarCardProps) {
               aria-valuenow={car.shipment.progress}
               aria-valuemin={0}
               aria-valuemax={100}
-              className="h-1 flex-1 overflow-hidden rounded bg-line"
+              className="h-[5px] flex-1 overflow-hidden rounded-full bg-line"
             >
-              <div className="h-full rounded bg-arriving" style={{ width: `${car.shipment.progress}%` }} />
+              <div className="h-full rounded-full bg-arriving" style={{ width: `${car.shipment.progress}%` }} />
             </div>
             <span>
-              ETA <strong className="font-semibold text-arriving-text">{formatDayMonth(car.shipment.eta)}</strong>
+              ETA <strong className="font-bold text-arriving-text">{formatDayMonth(car.shipment.eta)}</strong>
             </span>
           </div>
         )}
 
-        <div className="mt-auto flex items-center justify-between gap-3 border-t border-line pt-3">
-          <p className={cn("text-[22px] font-extrabold tracking-[-0.02em]", sold ? "text-faint" : "text-ink")}>
+        <div className="mt-auto flex items-center justify-between gap-3 border-t border-line-soft pt-3">
+          <p className={cn("text-[19px] font-extrabold tracking-[-0.02em]", sold ? "text-faint" : "text-ink")}>
             {formatNairaShort(car.price)}
           </p>
-          <GarageCta car={car} />
+          <GarageCta car={car} className="rounded-[10px] font-bold" />
         </div>
       </div>
     </article>

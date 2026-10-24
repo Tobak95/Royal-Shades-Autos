@@ -5,19 +5,29 @@ import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
 import { ScrollManager } from "./ScrollManager";
 import { SlimFooter } from "./SlimFooter";
+import { TopInfoBar } from "./TopInfoBar";
 
-/** Set `handle: { footer: "slim" }` on a route to use the one-line footer */
+/**
+ * Per-route layout options via `handle`:
+ * - footer: "slim" for the one-line footer
+ * - topBar: true for the address / WhatsApp bar above the navbar (home page)
+ */
 export interface RouteHandle {
   footer?: "full" | "slim";
+  topBar?: boolean;
 }
 
 function isRouteHandle(handle: unknown): handle is RouteHandle {
-  return typeof handle === "object" && handle !== null && "footer" in handle;
+  return typeof handle === "object" && handle !== null;
 }
 
 export function RootLayout() {
   const { pathname } = useLocation();
-  const slimFooter = useMatches().some((match) => isRouteHandle(match.handle) && match.handle.footer === "slim");
+  const handles = useMatches()
+    .map((match) => match.handle)
+    .filter(isRouteHandle);
+  const slimFooter = handles.some((h) => h.footer === "slim");
+  const topBar = handles.some((h) => h.topBar);
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -29,6 +39,7 @@ export function RootLayout() {
       </a>
       <ScrollManager />
       <SessionGuard />
+      {topBar && <TopInfoBar />}
       <Navbar />
       <main id="main" tabIndex={-1} className="flex-1 focus:outline-none">
         {/* Subtle fade on each page change */}

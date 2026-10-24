@@ -9,11 +9,14 @@ const trackHref = (value: string) => `/track?number=${encodeURIComponent(value)}
 
 interface TrackFormProps {
   defaultValue?: string;
+  /** "light" when it sits on a navy background (Track page hero) */
+  tone?: "dark" | "light";
   className?: string;
 }
 
 /** VIN / tracking number search. Results live on /track?number=… so they can be shared. */
-export function TrackForm({ defaultValue = "", className }: TrackFormProps) {
+export function TrackForm({ defaultValue = "", tone = "dark", className }: TrackFormProps) {
+  const light = tone === "light";
   const inputId = useId();
   const navigate = useNavigate();
   const [value, setValue] = useState(defaultValue);
@@ -47,8 +50,9 @@ export function TrackForm({ defaultValue = "", className }: TrackFormProps) {
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${inputId}-error` : undefined}
           className={cn(
-            "h-[52px] min-w-0 flex-[1_1_220px] rounded-control border bg-page px-4 text-sm text-ink uppercase placeholder:text-faint placeholder:normal-case",
-            "focus:border-gold focus:shadow-[0_0_0_3px_rgb(222_187_110/0.18)] focus:outline-none",
+            // White field, as in the v2 home tracker
+            "h-[52px] min-w-0 flex-[1_1_220px] rounded-control border bg-surface px-4 text-sm text-ink uppercase placeholder:text-faint placeholder:normal-case",
+            "focus:border-gold focus:shadow-[0_0_0_3px_rgb(212_175_90/0.2)] focus:outline-none",
             error ? "border-sold" : "border-line",
           )}
         />
@@ -57,16 +61,19 @@ export function TrackForm({ defaultValue = "", className }: TrackFormProps) {
         </Button>
       </form>
       {error && (
-        <p id={`${inputId}-error`} role="alert" className="mt-2 text-xs font-medium text-sold">
+        <p id={`${inputId}-error`} role="alert" className={cn("mt-2 text-xs font-medium", light ? "text-sold-tint" : "text-sold")}>
           {error}
         </p>
       )}
-      <p className="mt-3 text-[13px] text-muted">
+      <p className={cn("mt-3 text-[13px]", light ? "text-on-navy-muted" : "text-muted")}>
         Try a demo:{" "}
         {DEMO_TRACKING_NUMBERS.map((number, i) => (
           <span key={number}>
             {i > 0 && " · "}
-            <Link to={trackHref(number)} className="text-gold-text hover:text-gold-text">
+            <Link
+              to={trackHref(number)}
+              className={light ? "font-semibold text-gold-light hover:text-white" : "text-gold-text hover:text-gold-hover"}
+            >
               {number}
             </Link>
           </span>

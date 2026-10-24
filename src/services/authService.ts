@@ -63,6 +63,15 @@ export async function resendVerificationEmail(email: string): Promise<void> {
   if (response.status !== 200) throw new AuthError("We couldn't resend the email. Please try again.");
 }
 
+/**
+ * ASSUMED endpoint: the reset email links to /reset-password/:token on this site, and the
+ * backend accepts the new password at POST /auth/reset-password/:token. Confirm with the backend.
+ */
+export async function resetPassword(token: string, password: string, confirmPassword: string): Promise<void> {
+  const response = await api.post(`/auth/reset-password/${encodeURIComponent(token)}`, { password, confirmPassword });
+  if (response.status !== 200) throw new AuthError("We couldn't reset your password. Please try again.");
+}
+
 export async function forgotPassword(email: string): Promise<void> {
   const response = await api.post("/auth/forgot-password", { email });
   if (response.status !== 200) throw new AuthError("We couldn't send the reset link. Please try again.");

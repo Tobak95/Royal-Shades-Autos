@@ -5,16 +5,10 @@ import { Tabs } from "@/components/ui/Tabs";
 import { useDraft } from "@/hooks/useDraft";
 import { SORT_OPTIONS } from "@/lib/carOptions";
 import { fieldVariants } from "@/components/ui/variants";
+import { STATUS_TABS } from "@/lib/status";
 import { cn } from "@/lib/utils";
-import type { StatusCounts, StatusFilter } from "@/types";
+import type { StatusCounts } from "@/types";
 import type { FilterPatch, ShowroomFilters } from "./filterParams";
-
-const TABS: { value: StatusFilter; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "available", label: "Available" },
-  { value: "incoming", label: "Incoming" },
-  { value: "sold", label: "Sold" },
-];
 
 interface ShowroomToolbarProps {
   filters: ShowroomFilters;
@@ -31,7 +25,7 @@ export function ShowroomToolbar({ filters, counts, activeFilterCount, onChange, 
   return (
     <div className="flex flex-col gap-4">
       <Tabs
-        items={TABS.map((t) => ({ ...t, count: counts?.[t.value] }))}
+        items={STATUS_TABS.map((t) => ({ ...t, count: counts?.[t.value] }))}
         value={filters.status}
         onChange={(status) => onChange({ status })}
         label="Filter by status"

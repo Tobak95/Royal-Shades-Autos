@@ -1,13 +1,6 @@
 import { STATUS_META } from "@/lib/status";
 import type { CarStatus } from "@/types";
-import { Badge, type BadgeVariant } from "./Badge";
-
-// TEMPORARY until Step 2 replaces the status model ("incoming" becomes arriving/arrived)
-const STATUS_VARIANT: Record<CarStatus, BadgeVariant> = {
-  available: "available",
-  incoming: "arriving",
-  sold: "sold",
-};
+import { Badge } from "./Badge";
 
 interface StatusBadgeProps {
   status: CarStatus;
@@ -17,9 +10,10 @@ interface StatusBadgeProps {
 }
 
 export function StatusBadge({ status, overlay, className }: StatusBadgeProps) {
+  const meta = STATUS_META[status];
   return (
-    <Badge variant={STATUS_VARIANT[status]} dot overlay={overlay} className={className}>
-      {STATUS_META[status].label}
+    <Badge variant={meta.badge} dot overlay={overlay} className={className}>
+      {meta.label}
     </Badge>
   );
 }

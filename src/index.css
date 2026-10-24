@@ -11,6 +11,7 @@
   --color-gold: #d4af5a; /* buttons and accents on navy and white */
   --color-gold-light: #e5c27a; /* gold text on navy */
   --color-gold-text: #8a6620; /* gold text on white (passes contrast) */
+  --color-gold-hover: #5f4510; /* gold links on white, hovered */
   --color-gold-tint: #fbf3e1;
   --color-gold-border: #ebd9ae;
 
@@ -170,22 +171,15 @@
   background: #e9ecf1;
 }
 
-/* Frosted white card over photos (sets ink text so it never inherits white from a navy parent) */
-@utility glass {
-  color: var(--color-ink);
-  background: rgb(255 255 255 / 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-line);
-}
-
 /* Car cards lift 6px with a soft navy shadow; the photo zooms slightly */
 @utility card-lift {
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
   & img {
-    transition: transform 0.6s ease;
+    transition:
+      transform 0.6s ease,
+      opacity 0.5s ease;
   }
   &:hover {
     transform: translateY(-6px);

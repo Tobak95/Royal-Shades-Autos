@@ -50,7 +50,7 @@ export default function LoginPage() {
       subtitle={
         <>
           Don't have an account?{" "}
-          <Link to="/register" state={location.state} className="font-semibold text-gold-text hover:text-gold-text">
+          <Link to="/register" state={location.state} className="font-semibold text-gold-text hover:text-gold-hover">
             Create one
           </Link>
         </>
@@ -77,7 +77,7 @@ export default function LoginPage() {
           {...register("password")}
           error={errors.password?.message}
           labelAction={
-            <Link to="/forgot-password" className="text-[13px] text-gold-text hover:text-gold-text">
+            <Link to="/forgot-password" className="text-[13px] text-gold-text hover:text-gold-hover">
               Forgot password?
             </Link>
           }

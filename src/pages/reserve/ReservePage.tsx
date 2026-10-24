@@ -16,6 +16,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useGarage } from "@/hooks/useGarage";
 import { useQuery } from "@/hooks/useQuery";
 import { getGarageTotals } from "@/lib/pricing";
+import { isReservable } from "@/lib/status";
 import {
   localISODate,
   reservationSchema,
@@ -32,7 +33,7 @@ export default function ReservePage() {
   const navigate = useNavigate();
   const [submitError, setSubmitError] = useState<string | null>(null);
   const { data, loading } = useQuery("reserve-cars", () => getCarsByIds(garage.carIds));
-  const cars = (data ?? []).filter((c) => garage.has(c.id) && c.status !== "sold");
+  const cars = (data ?? []).filter((c) => garage.has(c.id) && isReservable(c));
   const totals = getGarageTotals(cars);
 
   const { register, handleSubmit, control, formState } = useForm<ReservationFormValues, unknown, ReservationFormOutput>({
@@ -81,7 +82,7 @@ export default function ReservePage() {
           className="mt-8"
           icon={<GarageIcon size={24} />}
           title="Nothing to reserve yet"
-          description="Add available or incoming cars to your garage first."
+          description="Add available or arriving cars to your garage first."
           action={<ButtonLink to="/cars">Explore the showroom</ButtonLink>}
         />
       ) : (
@@ -107,7 +108,7 @@ export default function ReservePage() {
                   label="Preferred inspection date"
                   type="date"
                   min={localISODate(1)}
-                  hint="For incoming cars, pick a date after the ETA. We'll confirm by phone."
+                  hint="For arriving cars, pick a date after the ETA. We'll confirm by phone."
                   {...register("inspectionDate")}
                   error={errors.inspectionDate?.message}
                   className="[color-scheme:dark] sm:max-w-xs"
@@ -117,7 +118,7 @@ export default function ReservePage() {
             </section>
           </div>
 
-          <div className="flex flex-col gap-6 rounded-[18px] border border-gold/35 bg-surface p-6 sm:p-7 lg:sticky lg:top-28">
+          <div className="flex flex-col gap-6 rounded-[22px] border border-line bg-surface p-6 shadow-[0_24px_50px_-36px_rgb(11_27_46/0.45)] sm:p-7 lg:sticky lg:top-28">
             <PaymentMethodField registration={register("paymentMethod")} selected={paymentMethod} />
             <ReserveSummary cars={cars} totals={totals} paymentMethod={paymentMethod} />
             {submitError && (

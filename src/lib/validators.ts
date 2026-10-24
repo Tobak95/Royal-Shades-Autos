@@ -53,6 +53,18 @@ export const forgotPasswordSchema = z.object({ email });
 
 export type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>;
 
+export const resetPasswordSchema = z
+  .object({
+    password: z.string().min(8, "Password must be at least 8 characters"),
+    confirmPassword: z.string().min(1, "Confirm your password"),
+  })
+  .refine((v) => v.password === v.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Passwords must match",
+  });
+
+export type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>;
+
 // ── Reservations and contact ────────────────────────────────────────────────
 
 export const reservationSchema = z.object({

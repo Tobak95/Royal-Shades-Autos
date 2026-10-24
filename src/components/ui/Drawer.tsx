@@ -24,7 +24,7 @@ export function Drawer({ open, onClose, title, children, footer }: DrawerProps) 
           <motion.div
             aria-hidden="true"
             onClick={onClose}
-            className="absolute inset-0 bg-navy/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-navy/60 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

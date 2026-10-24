@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CarFront } from "lucide-react";
+import { imagePosition } from "@/data/carImages";
 import { cn } from "@/lib/utils";
 
 interface CarImageProps {
@@ -11,7 +12,7 @@ interface CarImageProps {
   className?: string;
 }
 
-/** Car photo on the radial graphite stage, with a fallback if the image fails */
+/** Car photo on a light grey backdrop, cropped to keep the car in frame, with a fallback if it fails */
 export function CarImage({ src, alt, muted = false, eager = false, className }: CarImageProps) {
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -26,9 +27,12 @@ export function CarImage({ src, alt, muted = false, eager = false, className }: 
           decoding="async"
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
+          style={{ objectPosition: imagePosition(src) }}
           className={cn(
-            "size-full object-cover transition-opacity duration-500",
-            loaded ? (muted ? "opacity-45 grayscale-[35%]" : "opacity-100") : "opacity-0",
+            "block size-full object-cover transition-opacity duration-500",
+            loaded ? "opacity-100" : "opacity-0",
+            // Sold cars: greyed photo, as in the v2 "Recently sold" cards
+            muted && "brightness-[.92] grayscale-[.55]",
           )}
         />
       ) : (

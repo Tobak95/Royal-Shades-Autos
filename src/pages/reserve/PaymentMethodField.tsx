@@ -34,7 +34,7 @@ export function PaymentMethodField({ registration, selected }: PaymentMethodFiel
             key={value}
             className={cn(
               "flex cursor-pointer gap-3.5 rounded-xl border p-4 transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-gold",
-              selected === value ? "border-gold bg-gold/[0.06]" : "border-line hover:border-line-strong",
+              selected === value ? "border-gold bg-gold-tint" : "border-line hover:border-line-strong",
             )}
           >
             <input type="radio" value={value} {...registration} className="sr-only" />
@@ -58,7 +58,7 @@ export function PaymentMethodField({ registration, selected }: PaymentMethodFiel
       </div>
 
       {selected === "bank_transfer" && (
-        <div className="mt-4 rounded-xl border border-dashed border-gold/40 bg-page p-4 text-sm">
+        <div className="mt-4 rounded-xl border border-dashed border-gold-border bg-page p-4 text-sm">
           <p className="font-semibold text-gold-text">Transfer to</p>
           <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-muted">
             <dt className="text-muted">Bank</dt>

@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/Input";
 import { getApiErrorMessage } from "@/lib/api";
 import { forgotPasswordSchema, type ForgotPasswordFormValues } from "@/lib/validators";
 import { forgotPassword } from "@/services/authService";
+import { CAR_IMAGES } from "@/data/carImages";
 import { AuthScreen } from "./AuthScreen";
 import { FormAlert } from "./FormAlert";
 
@@ -31,7 +32,7 @@ export default function ForgotPasswordPage() {
   }
 
   const backToLogin = (
-    <Link to="/login" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold-text hover:text-gold-text">
+    <Link to="/login" className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold-text hover:text-gold-hover">
       <ArrowLeft aria-hidden="true" className="size-4" /> Back to log in
     </Link>
   );
@@ -39,13 +40,14 @@ export default function ForgotPasswordPage() {
   return (
     <AuthScreen
       side="right"
+      photo={CAR_IMAGES.sonataGrey}
       eyebrow="Forgot password"
       title="Reset your *password*"
       subtitle="Enter the email you signed up with and we'll send you a link to choose a new password."
     >
       {sentTo ? (
         <div role="status" className="mt-7 flex flex-col items-start gap-3">
-          <span className="flex size-12 items-center justify-center rounded-full bg-gold/15 text-gold-text">
+          <span className="flex size-12 items-center justify-center rounded-full bg-gold-tint text-gold-text">
             <MailCheck aria-hidden="true" className="size-6" />
           </span>
           <p className="text-sm leading-relaxed text-muted">

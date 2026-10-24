@@ -2,31 +2,31 @@ import type { Car } from "@/types";
 import { CAR_IMAGES as img } from "../carImages";
 import { buildShipment } from "../shipmentStages";
 
-export const incomingCars: Car[] = [
+export const arrivingCars: Car[] = [
   {
-    id: "car-rx350-2022",
-    slug: "2022-lexus-rx-350",
+    id: "car-rx350-2012",
+    slug: "2012-lexus-rx-350",
     make: "Lexus",
     model: "RX 350",
-    year: 2022,
-    trim: "F Sport",
-    price: 68_500_000,
-    mileage: 28_400,
+    year: 2012,
+    trim: "AWD",
+    price: 26_500_000,
+    mileage: 96_300,
     mileageUnit: "mi",
     transmission: "Automatic",
     fuelType: "Petrol",
-    engine: "3.5L V6, 295 hp",
-    color: "Obsidian Black",
+    engine: "3.5L V6, 270 hp",
+    color: "Tungsten Pearl",
     bodyType: "SUV",
     seats: 5,
-    vin: "2T2HZMDA4NC134817",
+    vin: "2T2BK1BA9CC123817",
     condition: "Foreign used",
     origin: "USA",
-    status: "incoming",
-    images: [img.luxurySuvWhite, img.crossoverBlue, img.crossoverWhite],
+    status: "arriving",
+    images: [img.lexusRx],
     description:
-      "RX 350 F Sport bought at auction in Maryland with a clean title. Adaptive suspension, the F Sport cabin and a full inspection report before loading.",
-    features: ["Adaptive variable suspension", "Heads-up display", "Mark Levinson audio", "Heated & ventilated seats", "Lexus Safety System+", "Power tailgate"],
+      "Silver RX 350 bought at auction in Maryland with a clean title. Smooth V6, leather cabin and a full inspection report before loading.",
+    features: ["All-wheel drive", "Leather seats", "Sunroof", "Reverse camera", "Power tailgate", "Heated front seats"],
     createdAt: "2026-10-03T09:00:00Z",
     shipment: buildShipment({
       trackingNumber: "RS-24817",
@@ -60,7 +60,7 @@ export const incomingCars: Car[] = [
     vin: "JTMHV05J804312650",
     condition: "Foreign used",
     origin: "UAE",
-    status: "incoming",
+    status: "arriving",
     images: [img.fullSizeWhite, img.offRoaderBlack, img.gWagonSilver],
     description:
       "GCC-spec Land Cruiser VXR, the top trim, with the 5.7L V8. Dealer-maintained in Dubai and built for heat, dust and long distances.",
@@ -98,7 +98,7 @@ export const incomingCars: Car[] = [
     vin: "5TDGBRCH1MS527493",
     condition: "Foreign used",
     origin: "Canada",
-    status: "incoming",
+    status: "arriving",
     images: [img.rav4Silver, img.crossoverWhite, img.fullSizeWhite],
     description:
       "Highlander Hybrid XLE with all-wheel drive and eight seats. Excellent fuel economy for Lagos traffic, and a clean Carfax from Ontario.",
@@ -136,7 +136,7 @@ export const incomingCars: Car[] = [
     vin: "5UXCR6C08M9F41276",
     condition: "Foreign used",
     origin: "Germany",
-    status: "incoming",
+    status: "arriving",
     images: [img.luxurySuvWhite, img.gleCoupeWhite, img.crossoverBlue],
     description:
       "X5 xDrive40i with the M Sport package, bought from a main dealer in Munich. Comes with its German service book and two keys.",
@@ -174,7 +174,8 @@ export const incomingCars: Car[] = [
     vin: "2FMPK4J92LBA60518",
     condition: "Foreign used",
     origin: "USA",
-    status: "incoming",
+    // Landed at Tin Can and clearing customs
+    status: "arrived",
     images: [img.crossoverBlue, img.compactSilver, img.fullSizeWhite],
     description:
       "Roomy Ford Edge SEL with the turbocharged EcoBoost engine. Landed in Lagos and going through customs now, almost ready for inspection.",

@@ -26,7 +26,7 @@ export function ContactForm() {
 
   if (sent) {
     return (
-      <div role="status" className="flex flex-col items-start gap-4 rounded-panel border border-gold/30 bg-surface p-8">
+      <div role="status" className="flex flex-col items-start gap-4 rounded-panel border border-line bg-surface p-8">
         <CircleCheck aria-hidden="true" className="size-10 text-gold-text" strokeWidth={1.6} />
         <h2 className="text-2xl font-bold">Message sent</h2>
         <p className="text-sm leading-relaxed text-muted">

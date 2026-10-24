@@ -2,6 +2,7 @@ import { CarImage } from "@/components/car/CarImage";
 import { TotalsBreakdown } from "@/components/garage/TotalsBreakdown";
 import { formatNaira } from "@/lib/utils";
 import type { GarageTotals } from "@/lib/pricing";
+import { STATUS_META } from "@/lib/status";
 import { carName } from "@/lib/voyage";
 import type { Car, PaymentMethod } from "@/types";
 
@@ -21,7 +22,7 @@ export function ReserveSummary({ cars, totals, paymentMethod }: ReserveSummaryPr
             <CarImage src={car.images[0]} alt="" className="h-14 w-20 flex-none rounded-control" />
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-semibold">{carName(car)}</p>
-              <p className="text-xs text-muted capitalize">{car.status}</p>
+              <p className="text-xs text-muted">{STATUS_META[car.status].label}</p>
             </div>
             <p className="text-sm font-semibold">{formatNaira(car.price)}</p>
           </li>

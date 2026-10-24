@@ -45,10 +45,10 @@ export default function FaqsPage() {
             </FadeUp>
           ))}
 
-          <div className="flex flex-wrap items-center justify-between gap-5 rounded-panel border border-gold/30 bg-surface p-7">
+          <div className="flex flex-wrap items-center justify-between gap-5 rounded-panel bg-navy p-7 text-white">
             <div>
               <h2 className="text-xl font-bold">Still have a question?</h2>
-              <p className="mt-1 text-sm text-muted">Our Lagos team usually replies within {POLICY.responseTime}.</p>
+              <p className="mt-1 text-sm text-on-navy-muted">Our Lagos team usually replies within {POLICY.responseTime}.</p>
             </div>
             <ButtonLink to="/contact">Contact us</ButtonLink>
           </div>

@@ -68,7 +68,7 @@ export default function ShowroomPage() {
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-lg font-bold">Filters</h2>
               {activeFilterCount > 0 && (
-                <button type="button" onClick={clearSidebar} className="min-h-11 text-sm font-semibold text-gold-text hover:text-gold-text">
+                <button type="button" onClick={clearSidebar} className="min-h-11 text-sm font-semibold text-gold-text hover:text-gold-hover">
                   Clear all
                 </button>
               )}

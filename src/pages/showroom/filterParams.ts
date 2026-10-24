@@ -1,4 +1,4 @@
-// Showroom filters live in the URL (?status=incoming&body=SUV,Sedan&page=2) so
+// Showroom filters live in the URL (?status=arriving&body=SUV,Sedan&page=2) so
 // every view can be shared and survives a refresh.
 import { BODY_TYPES, CONDITIONS, ORIGINS, SORT_OPTIONS, STATUS_FILTERS } from "@/lib/carOptions";
 import type { BodyType, CarSort, Condition, Origin, StatusFilter } from "@/types";
@@ -36,9 +36,13 @@ function numberOf(value: string | null): number | undefined {
   return Number.isFinite(n) ? n : undefined;
 }
 
+/** Old links used ?status=incoming; send them to the Arriving tab */
+const LEGACY_STATUS: Record<string, string> = { incoming: "arriving", arrived: "arriving", "coming-soon": "inspection" };
+
 export function parseFilters(params: URLSearchParams): ShowroomFilters {
+  const rawStatus = params.get("status");
   return {
-    status: oneOf(params.get("status"), STATUS_FILTERS, "all"),
+    status: oneOf(rawStatus && (LEGACY_STATUS[rawStatus] ?? rawStatus), STATUS_FILTERS, "all"),
     q: params.get("q") ?? "",
     body: listOf(params.get("body"), BODY_TYPES),
     condition: listOf(params.get("condition"), CONDITIONS),

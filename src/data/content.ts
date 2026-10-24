@@ -31,7 +31,7 @@ export const THANK_YOU_STEPS: Step[] = [
   },
   {
     title: "Your deposit clears",
-    body: `Once your ${DEPOSIT_PERCENT} deposit clears, every incoming car gets a tracking number you can follow on the Track page.`,
+    body: `Once your ${DEPOSIT_PERCENT} deposit clears, every arriving car gets a tracking number you can follow on the Track page.`,
   },
   {
     title: "Inspect and collect",

@@ -47,7 +47,7 @@ export function MiniVoyage({ car, shipment, className }: MiniVoyageProps) {
       />
       <Link
         to={`/track?number=${encodeURIComponent(shipment.trackingNumber)}`}
-        className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold-text hover:text-gold-text"
+        className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-gold-text hover:text-gold-hover"
       >
         See the full voyage <ArrowRight aria-hidden="true" className="size-4" />
       </Link>

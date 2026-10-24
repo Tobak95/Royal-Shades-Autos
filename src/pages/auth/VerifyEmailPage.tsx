@@ -25,10 +25,10 @@ export default function VerifyEmailPage() {
 
   return (
     <Container className="flex min-h-[70vh] items-center justify-center py-16">
-      <div className="glass w-full max-w-[480px] rounded-panel px-6 py-10 text-center sm:px-9">
+      <div className="w-full max-w-[480px] rounded-[28px] border border-line bg-surface px-6 py-10 text-center shadow-float sm:px-9">
         {loading ? (
           <>
-            <ArcLoader withLogo label="Verifying your email" />
+            <ArcLoader label="Verifying your email" />
             <h1 className="mt-6 text-2xl font-extrabold">Verifying your email…</h1>
             <p className="mt-2 text-sm text-muted">This only takes a moment.</p>
           </>

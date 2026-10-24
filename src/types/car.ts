@@ -1,8 +1,13 @@
 import type { Shipment } from "./shipment";
 
-export type CarStatus = "available" | "incoming" | "sold";
+/**
+ * Set from the admin dashboard. A car usually moves through them in this order:
+ * arriving (on the water) → arrived (at port / yard) → inspection (shown as "Coming soon")
+ * → available → sold
+ */
+export type CarStatus = "arriving" | "arrived" | "inspection" | "available" | "sold";
 export type Condition = "Foreign used" | "Brand new" | "Nigerian used";
-export type BodyType = "SUV" | "Sedan" | "Coupe" | "Hatchback" | "Pickup" | "Bus";
+export type BodyType = "SUV" | "Sedan" | "Minivan" | "Coupe" | "Hatchback" | "Pickup" | "Bus";
 export type Origin = "USA" | "Canada" | "UAE" | "Germany" | "Nigeria";
 export type Transmission = "Automatic" | "Manual";
 export type FuelType = "Petrol" | "Diesel" | "Hybrid" | "Electric";
@@ -33,15 +38,24 @@ export interface Car {
   features: string[];
   /** ISO timestamp */
   createdAt: string;
+  /** ISO date (yyyy-mm-dd), set when the status changes to "sold" */
+  soldAt?: string;
   shipment?: Shipment;
 }
 
-export type StatusFilter = CarStatus | "all";
+/**
+ * Showroom tabs. "arriving" covers both arriving and arrived cars;
+ * "inspection" is labelled "Coming soon" for customers.
+ */
+export type StatusFilter = "all" | "available" | "arriving" | "inspection" | "sold";
 
 export type CarSort = "newest" | "price_asc" | "price_desc" | "year_desc" | "mileage_asc";
 
 export interface CarFilters {
+  /** Showroom tab (counts are reported for every tab) */
   status?: StatusFilter;
+  /** Hard limit to these statuses, applied before counting (e.g. hero shows only "available") */
+  statuses?: CarStatus[];
   search?: string;
   bodyTypes?: BodyType[];
   conditions?: Condition[];
@@ -70,7 +84,9 @@ export interface CarListResult {
 
 export interface InventoryStats {
   available: number;
-  incoming: number;
+  /** Arriving + arrived */
+  arriving: number;
+  inspection: number;
   sold: number;
   total: number;
   ports: string[];

@@ -1,10 +1,26 @@
-// Every car photo URL lives here so they're easy to swap for real stock photos later.
-// Photos are from Unsplash and stand in for each body style, not the exact model.
+// Every car photo URL lives here so they're easy to swap later.
+// - Real dealership photos live in public/cars/ (portrait phone shots of the actual cars).
+// - Unsplash photos stand in for the other mock cars by body style, not the exact model.
 
 const unsplash = (id: string) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1200&q=80`;
 
+const real = (name: string) => `/cars/${name}.jpg`;
+
 export const CAR_IMAGES = {
+  // ── Real dealership photos ──
+  avalonFront: real("avalon-front"),
+  avalonRear: real("avalon-rear"),
+  lexusRx: real("lexus-rx"),
+  sonataGrey: real("sonata-grey"),
+  sonataBlue: real("sonata-blue"),
+  venzaBlack: real("venza-black"),
+  gleFront: real("gle-front"),
+  gleRear: real("gle-rear"),
+  gleDash: real("gle-dash"),
+  siennaFront: real("sienna-front"),
+
+  // ── Unsplash stand-ins ──
   // Sedans
   camryGray: unsplash("1621007947382-bb3c3994e3fb"),
   sedanNavy: unsplash("1581540222194-0def2dda95b8"),
@@ -38,3 +54,32 @@ export const CAR_IMAGES = {
   // Buses
   coachWhite: unsplash("1544620347-c4fd4a3d5957"),
 } as const;
+
+/**
+ * The real photos are portrait (or square) phone shots with the car in the lower
+ * half, so they're cropped around "center 60%" to keep the car in frame.
+ * Tweaks per photo, matching the v2 mockups.
+ */
+const POSITIONS: Record<string, string> = {
+  [CAR_IMAGES.avalonFront]: "center 62%",
+  [CAR_IMAGES.avalonRear]: "center 62%",
+  [CAR_IMAGES.lexusRx]: "40% 62%",
+  [CAR_IMAGES.sonataGrey]: "55% 62%",
+  [CAR_IMAGES.sonataBlue]: "center 55%",
+  [CAR_IMAGES.venzaBlack]: "center 62%",
+  [CAR_IMAGES.gleFront]: "center 55%",
+  [CAR_IMAGES.gleRear]: "center 60%",
+  [CAR_IMAGES.gleDash]: "center 50%",
+  [CAR_IMAGES.siennaFront]: "center 50%",
+};
+
+/** True for the dealership's own photos (public/cars/), which look best in the tall hero arch */
+export function isRealPhoto(src: string | undefined): boolean {
+  return Boolean(src?.startsWith("/cars/"));
+}
+
+/** CSS object-position for a car photo */
+export function imagePosition(src: string | undefined): string {
+  if (!src) return "center";
+  return POSITIONS[src] ?? (src.startsWith("/cars/") ? "center 60%" : "center");
+}

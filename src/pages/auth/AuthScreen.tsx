@@ -1,55 +1,86 @@
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import garageImage from "@/assets/carrrrrrrs.avif";
-import streetImage from "@/assets/car.avif";
+import { ArrowRightLeft, Clock, ShieldCheck } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { AccentText } from "@/components/ui/AccentText";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { CAR_IMAGES, imagePosition } from "@/data/carImages";
 import { cn } from "@/lib/utils";
 
 interface AuthScreenProps {
-  /** Card on the right over the garage photo (login), or on the left over the street photo (sign up) */
+  /** Which side the form card sits on; the navy photo panel takes the other side */
   side: "right" | "left";
   eyebrow: string;
   /** Wrap the accent word in asterisks */
   title: string;
   subtitle?: ReactNode;
   children: ReactNode;
+  /** One of the dealership's own photos for the navy panel */
+  photo?: string;
   wide?: boolean;
 }
 
-const BACKGROUNDS = {
-  right: `linear-gradient(90deg, rgba(11,27,46,.15) 0%, rgba(11,27,46,.55) 45%, rgba(11,27,46,.95) 70%, #0B1B2E 100%), linear-gradient(0deg, #0B1B2E 0%, rgba(11,27,46,0) 35%), url("${garageImage}")`,
-  left: `linear-gradient(270deg, rgba(11,27,46,.1) 0%, rgba(11,27,46,.6) 45%, rgba(11,27,46,.96) 68%, #0B1B2E 100%), linear-gradient(0deg, #0B1B2E 0%, rgba(11,27,46,0) 35%), url("${streetImage}")`,
-};
+const TRUST = [
+  { icon: ShieldCheck, text: "Inspected before sale" },
+  { icon: ArrowRightLeft, text: "Fair swap value" },
+  { icon: Clock, text: "Papers sorted for you" },
+];
 
-/** Glass card over a dark car photo, as in the login and sign-up mockups */
-export function 
-
-AuthScreen({ side, eyebrow, title, subtitle, children, wide = false }: AuthScreenProps) {
+/** Navy panel with a car photo on one side, white form card on the other (v2 auth pages) */
+export function AuthScreen({ side, eyebrow, title, subtitle, children, photo = CAR_IMAGES.avalonFront, wide = false }: AuthScreenProps) {
   return (
-    <section
-      className={cn(
-        "flex items-center bg-cover",
-        side === "right" ? "bg-[position:left_center] lg:min-h-[760px]" : "bg-[position:right_center] lg:min-h-[860px]",
-      )}
-      style={{ backgroundImage: BACKGROUNDS[side] }}
-    >
-      <Container className={cn("flex py-10 sm:py-14", side === "right" ? "justify-end" : "justify-start")}>
+    <Container className="py-8 sm:py-12">
+      <div className="grid items-stretch gap-6 lg:grid-cols-2">
+        <div
+          className={cn(
+            "relative min-h-[190px] overflow-hidden rounded-[28px] bg-navy text-white sm:min-h-[240px] lg:min-h-[640px]",
+            side === "left" && "lg:order-2",
+          )}
+        >
+          <img
+            src={photo}
+            alt=""
+            style={{ objectPosition: imagePosition(photo) }}
+            className="absolute inset-0 size-full object-cover"
+          />
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-navy/20 via-navy/45 to-navy/95" />
+          <div className="absolute inset-x-0 bottom-0 p-6 sm:p-9">
+            <Eyebrow tone="light">The Royal Shades Autos Limited</Eyebrow>
+            <p className="mt-2 text-2xl leading-tight font-extrabold tracking-[-0.03em] sm:text-[32px]">
+              Your next car, <span className="text-gold-light">the royal way.</span>
+            </p>
+            <ul className="mt-5 hidden flex-wrap gap-x-6 gap-y-2.5 text-sm text-on-navy-soft sm:flex">
+              {TRUST.map(({ icon: Icon, text }) => (
+                <li key={text} className="inline-flex items-center gap-2">
+                  <Icon aria-hidden="true" className="size-[18px] text-gold-light" strokeWidth={2} />
+                  {text}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className={cn("glass w-full rounded-panel px-6 py-9 sm:px-9 sm:py-10", wide ? "max-w-[560px]" : "max-w-[460px]")}
+          className={cn("flex", side === "left" && "lg:order-1")}
         >
-          <Eyebrow>{eyebrow}</Eyebrow>
-          <h1 className="mt-2.5 text-[32px] leading-[1.1] font-extrabold tracking-[-0.025em] sm:text-[38px]">
-            <AccentText text={title} />
-          </h1>
-          {subtitle && <p className="mt-2 text-sm text-muted">{subtitle}</p>}
-          {children}
+          <div
+            className={cn(
+              "mx-auto flex w-full flex-col justify-center rounded-[28px] border border-line bg-surface px-6 py-9 shadow-float sm:px-10 sm:py-11",
+              wide ? "max-w-[620px]" : "max-w-[540px]",
+            )}
+          >
+            <Eyebrow>{eyebrow}</Eyebrow>
+            <h1 className="mt-2.5 text-[32px] leading-[1.1] font-extrabold tracking-[-0.03em] sm:text-[38px]">
+              <AccentText text={title} />
+            </h1>
+            {subtitle && <p className="mt-2 text-sm text-muted">{subtitle}</p>}
+            {children}
+          </div>
         </motion.div>
-      </Container>
-    </section>
+      </div>
+    </Container>
   );
 }

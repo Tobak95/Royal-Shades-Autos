@@ -28,7 +28,7 @@ export default function AboutPage() {
       <section className="py-20">
         <Container className="grid gap-6 md:grid-cols-2">
           {statements.map(({ title, body, icon: Icon }, index) => (
-            <FadeUp key={title} delay={index * 0.1} className="h-full rounded-panel border border-gold/30 bg-surface p-8 sm:p-10">
+            <FadeUp key={title} delay={index * 0.1} className="h-full rounded-panel border border-line bg-surface p-8 shadow-card sm:p-10">
               <Icon aria-hidden="true" className="size-7 text-gold-text" strokeWidth={1.6} />
               <h2 className="mt-5 text-xs font-semibold tracking-eyebrow text-gold-text uppercase">{title}</h2>
               <p className="mt-3 text-2xl leading-snug font-bold tracking-[-0.01em] text-balance sm:text-[26px]">{body}</p>

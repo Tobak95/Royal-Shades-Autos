@@ -1,6 +1,7 @@
 // The only place pages get car data from. Each function mirrors a future API
 // endpoint; swap the bodies for `api.get(...)` calls when the backend is ready.
 import { mockCars } from "@/data/mockCars";
+import { matchesStatusFilter } from "@/lib/status";
 import { wait } from "@/lib/utils";
 import type {
   Car,
@@ -13,6 +14,7 @@ import type {
   Reservation,
   Shipment,
   StatusCounts,
+  StatusFilter,
 } from "@/types";
 
 const LATENCY_MS = 400;
@@ -38,6 +40,7 @@ function matchesSearch(car: Car, query: string): boolean {
 /** Applies every filter except status, so tab counts reflect the other filters */
 function applyFilters(list: Car[], f: CarFilters): Car[] {
   return list.filter((car) => {
+    if (f.statuses?.length && !f.statuses.includes(car.status)) return false;
     if (f.search && !matchesSearch(car, f.search)) return false;
     if (f.bodyTypes?.length && !f.bodyTypes.includes(car.bodyType)) return false;
     if (f.conditions?.length && !f.conditions.includes(car.condition)) return false;
@@ -66,14 +69,16 @@ export async function getCars(filters: CarFilters = {}): Promise<CarListResult> 
   const { status = "all", sort = "newest", page = 1, pageSize = DEFAULT_PAGE_SIZE } = filters;
 
   const filtered = applyFilters(cars, filters);
+  const countFor = (filter: StatusFilter) => filtered.filter((c) => matchesStatusFilter(c.status, filter)).length;
   const counts: StatusCounts = {
     all: filtered.length,
-    available: filtered.filter((c) => c.status === "available").length,
-    incoming: filtered.filter((c) => c.status === "incoming").length,
-    sold: filtered.filter((c) => c.status === "sold").length,
+    available: countFor("available"),
+    arriving: countFor("arriving"),
+    inspection: countFor("inspection"),
+    sold: countFor("sold"),
   };
 
-  const byStatus = status === "all" ? filtered : filtered.filter((c) => c.status === status);
+  const byStatus = filtered.filter((c) => matchesStatusFilter(c.status, status));
   const sorted = [...byStatus].sort(SORTERS[sort]);
   const totalPages = Math.max(1, Math.ceil(sorted.length / pageSize));
   const safePage = Math.min(Math.max(1, page), totalPages);
@@ -125,14 +130,14 @@ export async function getCarsByIds(ids: string[]): Promise<Car[]> {
   return clone(ids.map((id) => cars.find((c) => c.id === id)).filter((c): c is Car => c !== undefined));
 }
 
-/** Same body type first, then same make, then anything still for sale */
+/** Cars still in play (never sold ones): same body type first, then same make, then ready-to-buy */
 export async function getRelatedCars(car: Car, limit = 6): Promise<Car[]> {
   await wait(LATENCY_MS);
   const score = (c: Car) =>
-    (c.bodyType === car.bodyType ? 4 : 0) + (c.make === car.make ? 2 : 0) + (c.status !== "sold" ? 1 : 0);
+    (c.bodyType === car.bodyType ? 4 : 0) + (c.make === car.make ? 2 : 0) + (c.status === "available" ? 1 : 0);
   return clone(
     cars
-      .filter((c) => c.id !== car.id)
+      .filter((c) => c.id !== car.id && c.status !== "sold")
       .sort((a, b) => score(b) - score(a))
       .slice(0, limit),
   );
@@ -156,9 +161,10 @@ export async function trackShipment(vinOrTrackingNumber: string): Promise<Tracki
 export async function getStats(): Promise<InventoryStats> {
   await wait(LATENCY_MS);
   return {
-    available: cars.filter((c) => c.status === "available").length,
-    incoming: cars.filter((c) => c.status === "incoming").length,
-    sold: cars.filter((c) => c.status === "sold").length,
+    available: cars.filter((c) => matchesStatusFilter(c.status, "available")).length,
+    arriving: cars.filter((c) => matchesStatusFilter(c.status, "arriving")).length,
+    inspection: cars.filter((c) => matchesStatusFilter(c.status, "inspection")).length,
+    sold: cars.filter((c) => matchesStatusFilter(c.status, "sold")).length,
     total: cars.length,
     ports: ["Tin Can", "Apapa"],
   };

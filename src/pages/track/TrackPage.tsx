@@ -29,7 +29,7 @@ export default function TrackPage() {
         breadcrumbs={[{ label: "Home", to: "/" }, { label: "Track" }]}
       >
         {/* key resets the input when the URL changes (e.g. clicking a demo number) */}
-        <TrackForm key={number} defaultValue={number} className="max-w-xl" />
+        <TrackForm key={number} defaultValue={number} tone="light" className="max-w-xl" />
       </PageHero>
 
       <Container className="py-14">
@@ -61,8 +61,8 @@ export default function TrackPage() {
               action={
                 <div className="flex flex-wrap justify-center gap-3">
                   <ButtonLink to="/contact">Contact us</ButtonLink>
-                  <ButtonLink to="/cars?status=incoming" variant="outline">
-                    See incoming cars
+                  <ButtonLink to="/cars?status=arriving" variant="outline">
+                    See arriving cars
                   </ButtonLink>
                 </div>
               }
