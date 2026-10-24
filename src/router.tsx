@@ -75,27 +75,27 @@ export const router = createBrowserRouter([
         ),
       },
 
-      // Admin (mock data until the admin API exists; see README)
-      {
-        path: "admin",
-        handle: slim,
-        element: (
-          <AdminRoute>
-            <AdminLayout />
-          </AdminRoute>
-        ),
-        children: [
-          { index: true, element: <OverviewPage /> },
-          { path: "cars", element: <CarsPage /> },
-          { path: "cars/new", element: <CarEditorPage /> },
-          { path: "cars/:id/edit", element: <CarEditorPage /> },
-          { path: "shipments", element: <ShipmentsPage /> },
-          { path: "reservations", element: <ReservationsPage /> },
-          { path: "customers", element: <CustomersPage /> },
-        ],
-      },
-
       { path: "*", element: <NotFoundPage /> },
+    ],
+  },
+
+  // Admin dashboard: its own full-screen layout, no site navbar or footer
+  // (mock data until the admin API exists; see README)
+  {
+    path: "admin",
+    element: (
+      <AdminRoute>
+        <AdminLayout />
+      </AdminRoute>
+    ),
+    children: [
+      { index: true, element: <OverviewPage /> },
+      { path: "cars", element: <CarsPage /> },
+      { path: "cars/new", element: <CarEditorPage /> },
+      { path: "cars/:id/edit", element: <CarEditorPage /> },
+      { path: "shipments", element: <ShipmentsPage /> },
+      { path: "reservations", element: <ReservationsPage /> },
+      { path: "customers", element: <CustomersPage /> },
     ],
   },
 ]);

@@ -44,10 +44,10 @@ export default function ReservationsPage() {
 
   return (
     <div className="flex flex-col gap-5">
-      <AdminHeader title="Customer *reservations*" description={data ? `${data.length} reservations, newest first` : "Loading…"} />
-      <div className="overflow-x-auto rounded-panel border border-line bg-surface">
+      <AdminHeader title="Reservations" crumb="reservations" description={data ? `${data.length} reservations, newest first` : "Loading…"} />
+      <div className="overflow-x-auto rounded-card bg-surface">
         <table className="w-full min-w-[900px] text-left text-sm">
-          <thead className="border-b border-line bg-page text-xs font-bold tracking-wide text-muted uppercase">
+          <thead className="border-b border-line bg-admin-page text-xs font-bold tracking-wide text-muted uppercase">
             <tr>
               <th scope="col" className={th}>Reservation</th>
               <th scope="col" className={th}>Customer</th>

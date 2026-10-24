@@ -31,14 +31,14 @@ All routes need an admin bearer token (`Authorization: Bearer <token>`, `role: "
 
 | Method | Path | Body | Returns | Frontend function |
 | --- | --- | --- | --- | --- |
-| GET | `/admin/overview` | — | `{ counts: { arriving, arrived, inspection, available, sold, total }, arrivingSoon: [{ carId, slug, name, eta, daysLeft, stage }], recent: ActivityEntry[] }`. `arrivingSoon` is arriving cars with an ETA in the next 14 days. `recent` is the last 8 activity entries. | `getOverview` |
+| GET | `/admin/overview` | — | `{ counts: { arriving, arrived, inspection, available, sold, total }, added, sold, reservations, salesByMonth: [{ month: "yyyy-mm", count }], arrivingSoon: [{ carId, slug, name, eta, daysLeft, stage }], recent: ActivityEntry[] }`. `added`, `sold` and `reservations` are `{ thisMonth, lastMonth }` (cars by `createdAt`, sales by `soldAt`, reservations by `createdAt`) for the stat cards' trend chips. `salesByMonth` is the last 6 months, oldest first, including the current month. `arrivingSoon` is arriving cars with an ETA in the next 14 days. `recent` is the last 8 activity entries. | `getOverview` |
 | GET | `/admin/activity?limit=` | — | `ActivityEntry[]` (`{ id, at, message, carId? }`), newest first | (part of overview for now) |
 
 ### Cars
 
 | Method | Path | Body | Returns | Frontend function |
 | --- | --- | --- | --- | --- |
-| GET | `/admin/cars?search=&status=` | — | `Car[]`, latest `updatedAt` first. `search` matches make, model, trim, VIN, year and tracking number. `status` is one of the five statuses or `all`. | `adminListCars` |
+| GET | `/admin/cars?search=&status=&page=&pageSize=` | — | `{ cars: Car[], total, page, totalPages }`, latest `updatedAt` first. `search` matches make, model, trim, VIN, year and tracking number. `status` is one of the five statuses or `all`. `page` is 1-based and clamped to the last page; `pageSize` defaults to 8. | `adminListCars` |
 | GET | `/admin/cars/:id` | — | `Car` or 404 | `adminGetCar` |
 | POST | `/admin/cars` | `CarInput` (see below) | Created `Car`. The server sets `id`, `slug`, `createdAt` and `updatedAt`. | `createCar` |
 | PUT | `/admin/cars/:id` | `CarInput` | Updated `Car`. Keep the slug unless make, model or year changed; then regenerate it (unique). | `updateCar` |

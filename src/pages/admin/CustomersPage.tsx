@@ -15,10 +15,10 @@ export default function CustomersPage() {
 
   return (
     <div className="flex flex-col gap-5">
-      <AdminHeader title="Our *customers*" description="Everyone who has reserved a car, most recent first." />
-      <div className="overflow-x-auto rounded-panel border border-line bg-surface">
+      <AdminHeader title="Customers" crumb="customers" description="Everyone who has reserved a car, most recent first." />
+      <div className="overflow-x-auto rounded-card bg-surface">
         <table className="w-full min-w-[720px] text-left text-sm">
-          <thead className="border-b border-line bg-page text-xs font-bold tracking-wide text-muted uppercase">
+          <thead className="border-b border-line bg-admin-page text-xs font-bold tracking-wide text-muted uppercase">
             <tr>
               <th scope="col" className={th}>Customer</th>
               <th scope="col" className={th}>Phone</th>

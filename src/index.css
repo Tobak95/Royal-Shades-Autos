@@ -17,6 +17,7 @@
 
   /* Surfaces and lines */
   --color-page: #f5f6f8;
+  --color-admin-page: #f6f6f6; /* admin dashboard background */
   --color-surface: #ffffff;
   --color-line: #e3e6eb;
   --color-line-soft: #eef0f3;

@@ -118,7 +118,23 @@ export async function getOverview(): Promise<AdminOverview> {
       stage: car.shipment ? (getCurrentStage(car.shipment)?.label ?? "In transit") : "In transit",
     }));
 
+  const month = (offset: number) => {
+    const d = new Date(`${today}T00:00:00`);
+    d.setDate(1);
+    d.setMonth(d.getMonth() + offset);
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+  };
+  const inMonth = (dates: (string | undefined)[], offset: number) => dates.filter((d) => d?.startsWith(month(offset))).length;
+  const monthOverMonth = (dates: (string | undefined)[]) => ({ thisMonth: inMonth(dates, 0), lastMonth: inMonth(dates, -1) });
+  // createdAt is an ISO timestamp; compare its local date so late-evening entries land in the right month
+  const localDay = (iso: string) => localISODate(0, new Date(iso));
+  const soldDates = store.cars.map((c) => c.soldAt);
+
   return {
+    added: monthOverMonth(store.cars.map((c) => localDay(c.createdAt))),
+    sold: monthOverMonth(soldDates),
+    reservations: monthOverMonth(store.reservations.map((r) => localDay(r.createdAt))),
+    salesByMonth: [-5, -4, -3, -2, -1, 0].map((offset) => ({ month: month(offset), count: inMonth(soldDates, offset) })),
     counts: {
       arriving: countOf("arriving"),
       arrived: countOf("arrived"),

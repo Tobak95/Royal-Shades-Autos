@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Royal Shades Autos — Footer (mobile)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F6F8}
+@keyframes open{0%{opacity:0;transform:translateY(-4px)}100%{opacity:1;transform:none}}
+.acc{animation:open .25s ease both}
+@media (prefers-reduced-motion: reduce){.acc{animation:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 1240px; box-sizing: border-box; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: #F5F6F8; padding-top: 70px; overflow: hidden;">
+<footer style="background: #0B1B2E; color: #FFFFFF; border-radius: 28px 28px 0 0; padding: 0 16px 24px; position: relative;">
+  <!-- CTA card -->
+  <div style="position: relative; top: -40px; background: linear-gradient(120deg, #D4AF5A 0%, #E5C27A 100%); color: #0B1B2E; border-radius: 20px; padding: 20px; box-shadow: 0 24px 40px -24px rgba(11,27,46,.6);">
+    <div style="font-size: 22px; font-weight: 800; letter-spacing: -0.02em;">Ready for your next car?</div>
+    <div style="font-size: 14px; margin-top: 4px; color: #3B2E10;">Talk to a real person today.</div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 14px;">
+      <a href="#" style="height: 48px; border-radius: 12px; background: #0B1B2E; color: #FFFFFF; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center;">Browse cars</a>
+      <a href="#" style="height: 48px; border-radius: 12px; border: 1.5px solid #0B1B2E; color: #0B1B2E; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center;">Swap my car</a>
+    </div>
+  </div>
+
+  <div style="margin-top: -18px;">
+    <img src="../src/assets/logo.png" alt="The Royal Shades Autos Limited" style="height: 54px; width: auto; display: block;">
+    <div style="margin-top: 14px; font-size: 32px; line-height: 1.05; font-weight: 800; letter-spacing: -0.03em;">Drive royalty.<br><span style="color: #E5C27A;">Imported with care.</span></div>
+  </div>
+
+  <!-- quick contact: big tap targets -->
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 22px;">
+    <a href="#" style="height: 64px; border-radius: 14px; background: rgba(255,255,255,.07); color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 700;"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E5C27A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"></path></svg>Call</a>
+    <a href="#" style="height: 64px; border-radius: 14px; background: rgba(31,157,97,.18); color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 700;"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5FD39A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1121 11.5z"></path></svg>WhatsApp</a>
+    <a href="#" style="height: 64px; border-radius: 14px; background: rgba(255,255,255,.07); color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 12px; font-weight: 700;"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E5C27A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Directions</a>
+  </div>
+
+  <!-- accordions -->
+  <div style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,.1);">
+    <sc-for list="{{sections}}" as="sec" hint-placeholder-count="3">
+      <div style="border-bottom: 1px solid rgba(255,255,255,.1);">
+        <button type="button" aria-expanded="{{sec.expanded}}" onClick="{{sec.toggle}}" style="width: 100%; min-height: 56px; display: flex; align-items: center; justify-content: space-between; border: 0; background: transparent; color: #FFFFFF; font: inherit; font-size: 16px; font-weight: 700; cursor: pointer; padding: 0;">
+          {{sec.title}}
+          <span style="{{sec.iconStyle}}"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="{{sec.icon}}"></path></svg></span>
+        </button>
+        <sc-if value="{{sec.open}}" hint-placeholder-val="{{false}}">
+          <div class="acc" style="display: flex; flex-direction: column; padding: 0 0 14px;">
+            <sc-for list="{{sec.links}}" as="l" hint-placeholder-count="4">
+              <a href="#" style="min-height: 44px; display: flex; align-items: center; color: #C9D2DE; font-size: 15px;">{{l}}</a>
+            </sc-for>
+          </div>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="display: flex; justify-content: center; gap: 12px; margin-top: 22px;">
+    <a href="#" aria-label="Instagram" style="width: 46px; height: 46px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); color: #FFFFFF; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle></svg></a>
+    <a href="#" aria-label="TikTok" style="width: 46px; height: 46px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); color: #FFFFFF; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M14 3v11.5a3.5 3.5 0 11-3-3.46M14 3c.5 2.5 2.3 4.2 5 4.5"></path></svg></a>
+    <a href="#" aria-label="Facebook" style="width: 46px; height: 46px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); color: #FFFFFF; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M15 3h-2.5A3.5 3.5 0 009 6.5V21M6 11h8"></path></svg></a>
+    <a href="#" aria-label="YouTube" style="width: 46px; height: 46px; border-radius: 999px; border: 1px solid rgba(255,255,255,.2); color: #FFFFFF; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect></svg></a>
+  </div>
+
+  <div style="text-align: center; margin-top: 22px; font-size: 13px; color: #8E99A9; line-height: 1.8;">
+    © 2026 The Royal Shades Autos Limited<br><a href="#" style="color: #8E99A9;">Privacy</a> · <a href="#" style="color: #8E99A9;">Terms</a>
+  </div>
+  <div aria-hidden="true" style="text-align: center; font-size: 64px; line-height: .8; font-weight: 800; letter-spacing: -0.05em; color: rgba(229,194,122,.08); margin-top: 18px; white-space: nowrap;">ROYAL</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1240}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { open: 'Cars' }; }
+  renderVals() {
+    var self = this, open = this.state.open;
+    var S = [
+      ['Cars', ['Buy a car', 'Swap your car', 'Sell your car', 'Track an import', 'Recently sold']],
+      ['Company', ['About us', 'How it works', 'FAQs', 'Contact']],
+      ['Visit us', ['[Showroom address], Lagos', '[Phone number]', '[Email address]', 'Mon–Sat · [Opening hours]']]
+    ];
+    var sections = S.map(function (s) { var on = open === s[0];
+      return { title: s[0], links: s[1], open: on, expanded: on ? 'true' : 'false', icon: on ? 'M5 12h14' : 'M12 5v14M5 12h14',
+        toggle: function () { self.setState({ open: on ? '' : s[0] }); },
+        iconStyle: 'width: 30px; height: 30px; border-radius: 999px; display: flex; align-items: center; justify-content: center; ' + (on ? 'background: #D4AF5A; color: #0B1B2E;' : 'background: rgba(255,255,255,.08); color: #FFFFFF;') }; });
+    return { sections: sections };
+  }
+}
+</script>
+</body>
+</html>

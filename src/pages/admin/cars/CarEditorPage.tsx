@@ -19,7 +19,7 @@ export default function CarEditorPage() {
   const { id } = useParams();
   const { data: car, loading } = useQuery(id ? `admin-car-${id}` : "admin-car-new", () => (id ? adminGetCar(id) : Promise.resolve(null)));
 
-  if (id && loading) return <Skeleton className="h-[640px] rounded-panel" />;
+  if (id && loading) return <Skeleton className="h-[640px] rounded-card" />;
   if (id && !car) {
     return (
       <EmptyState
@@ -56,7 +56,8 @@ function Editor({ car }: { car: Car | null }) {
         <ArrowLeft aria-hidden="true" className="size-4" /> All cars
       </ButtonLink>
       <AdminHeader
-        title={car ? `Edit *${carName(car)}*` : "Add a *car*"}
+        title={car ? `Edit ${carName(car)}` : "Add a car"}
+        crumb={car ? "edit car" : "add car"}
         description={car ? `Added ${formatDate(car.createdAt)}` : "Fill in the details, add photos, then save."}
       />
       <CarForm defaultValues={defaults} currentSlug={car?.slug} submitLabel={car ? "Save changes" : "Add car"} onSubmit={save} />

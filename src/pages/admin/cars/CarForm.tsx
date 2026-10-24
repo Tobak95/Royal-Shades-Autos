@@ -23,7 +23,7 @@ interface CarFormProps {
 
 function Section({ title, description, children }: { title: string; description?: string; children: ReactNode }) {
   return (
-    <section className="flex flex-col gap-4 rounded-panel border border-line bg-surface p-5 sm:p-6">
+    <section className="flex flex-col gap-4 rounded-card bg-surface p-5 sm:p-6">
       <div>
         <h2 className="text-lg font-extrabold">{title}</h2>
         {description && <p className="mt-0.5 text-sm text-muted">{description}</p>}
@@ -104,7 +104,7 @@ export function CarForm({ defaultValues, currentSlug, submitLabel, onSubmit }: C
         />
       </Section>
 
-      <div className="sticky bottom-0 z-10 -mx-1 flex flex-wrap items-center justify-end gap-3 border-t border-line bg-page/95 px-1 py-4 backdrop-blur">
+      <div className="sticky bottom-0 z-10 -mx-1 flex flex-wrap items-center justify-end gap-3 border-t border-line bg-admin-page/95 px-1 py-4 backdrop-blur">
         {Object.keys(errors).length > 0 && (
           <p role="alert" className="mr-auto text-sm font-medium text-sold">
             Check the highlighted fields.

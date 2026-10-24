@@ -21,8 +21,19 @@ export interface CustomerSummary {
   lastReservationAt: string;
 }
 
+/** A this-month figure with last month's for the trend chip */
+export interface MonthOverMonth {
+  thisMonth: number;
+  lastMonth: number;
+}
+
 export interface AdminOverview {
   counts: Record<CarStatus, number> & { total: number };
+  added: MonthOverMonth;
+  sold: MonthOverMonth;
+  reservations: MonthOverMonth;
+  /** Cars sold in each of the last 6 months, oldest first; month is "yyyy-mm" */
+  salesByMonth: { month: string; count: number }[];
   /** Arriving cars whose ETA is within the next 14 days, soonest first */
   arrivingSoon: { carId: string; slug: string; name: string; eta: string; daysLeft: number; stage: string }[];
   recent: ActivityEntry[];

@@ -18,13 +18,14 @@ export default function ShipmentsPage() {
   return (
     <div className="flex flex-col gap-5">
       <AdminHeader
-        title="Incoming *shipments*"
+        title="Shipments"
+        crumb="shipments"
         description="Cars on the water or just landed, soonest ETA first. To start a new voyage, set a car to Arriving on the Cars page."
       />
       {!cars ? (
         <div className="flex flex-col gap-4">
-          <Skeleton className="h-64 rounded-panel" />
-          <Skeleton className="h-64 rounded-panel" />
+          <Skeleton className="h-64 rounded-card" />
+          <Skeleton className="h-64 rounded-card" />
         </div>
       ) : cars.length === 0 ? (
         <EmptyState icon={<Ship aria-hidden="true" className="size-6" />} title="No incoming cars" description="Cars set to Arriving show up here." />

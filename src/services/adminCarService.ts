@@ -73,15 +73,27 @@ function sortKey(car: Car): string {
   return car.updatedAt ?? car.createdAt;
 }
 
-export async function adminListCars(filters: { search?: string; status?: CarStatus | "all" } = {}): Promise<Car[]> {
+export interface AdminCarPage {
+  cars: Car[];
+  total: number;
+  /** 1-based, clamped to the last page */
+  page: number;
+  totalPages: number;
+}
+
+export async function adminListCars(
+  filters: { search?: string; status?: CarStatus | "all"; page?: number; pageSize?: number } = {},
+): Promise<AdminCarPage> {
   await wait(LATENCY_MS);
   const q = filters.search?.trim().toLowerCase() ?? "";
-  return clone(
-    store.cars
-      .filter((c) => !filters.status || filters.status === "all" || c.status === filters.status)
-      .filter((c) => !q || [c.make, c.model, c.trim, c.vin, String(c.year), c.shipment?.trackingNumber ?? ""].join(" ").toLowerCase().includes(q))
-      .sort((a, b) => sortKey(b).localeCompare(sortKey(a))),
-  );
+  const pageSize = filters.pageSize ?? 8;
+  const matches = store.cars
+    .filter((c) => !filters.status || filters.status === "all" || c.status === filters.status)
+    .filter((c) => !q || [c.make, c.model, c.trim, c.vin, String(c.year), c.shipment?.trackingNumber ?? ""].join(" ").toLowerCase().includes(q))
+    .sort((a, b) => sortKey(b).localeCompare(sortKey(a)));
+  const totalPages = Math.max(1, Math.ceil(matches.length / pageSize));
+  const page = Math.min(Math.max(1, Math.floor(filters.page ?? 1)), totalPages);
+  return { cars: clone(matches.slice((page - 1) * pageSize, page * pageSize)), total: matches.length, page, totalPages };
 }
 
 export async function adminGetCar(id: string): Promise<Car | null> {

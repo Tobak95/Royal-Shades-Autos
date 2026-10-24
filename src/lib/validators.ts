@@ -10,8 +10,8 @@ const phone = z
 const requiredText = (label: string) => z.string().trim().min(1, `${label} is required`);
 
 /** Local yyyy-mm-dd (toISOString would use UTC and can be a day off) */
-export function localISODate(offsetDays = 0): string {
-  const d = new Date();
+export function localISODate(offsetDays = 0, from: Date = new Date()): string {
+  const d = new Date(from);
   d.setDate(d.getDate() + offsetDays);
   const pad = (n: number) => String(n).padStart(2, "0");
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;

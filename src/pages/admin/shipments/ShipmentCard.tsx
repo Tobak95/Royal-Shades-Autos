@@ -59,7 +59,7 @@ export function ShipmentCard({ car }: { car: Car & { shipment: NonNullable<Car["
   }
 
   return (
-    <li className="flex flex-col gap-4 rounded-panel border border-line bg-surface p-5 sm:p-6">
+    <li className="flex flex-col gap-4 rounded-card bg-surface p-5 sm:p-6">
       <div className="flex flex-wrap items-center gap-4">
         <CarImage src={car.images[0]} alt="" className="h-16 w-24 flex-none rounded-control" />
         <div className="min-w-0 flex-1">

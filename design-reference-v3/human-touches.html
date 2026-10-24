@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Royal Shades Autos — Human touches</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EEF0F3}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{animation:spin 1.1s linear infinite;transform-origin:50% 50%}
+@keyframes drive{0%{transform:translateX(-10px)}50%{transform:translateX(10px)}100%{transform:translateX(-10px)}}
+.drive{animation:drive 3s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+.sway{animation:sway 3s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes pulse{0%,100%{opacity:.35}50%{opacity:1}}
+.dots span{animation:pulse 1.2s ease-in-out infinite}.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@media (prefers-reduced-motion: reduce){.spin,.drive,.sway,.dots span{animation:none}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1700px; box-sizing: border-box; padding: 48px 56px; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #0B1B2E; background: #EEF0F3;">
+  <div style="font-size: 13px; font-weight: 700; letter-spacing: .16em; color: #8A6620;">HUMAN TOUCHES · INSPIRED BY TORII GATE</div>
+  <h1 style="margin: 8px 0 0; font-size: 40px; font-weight: 800; letter-spacing: -0.03em;">Moments that feel <span style="color: #8A6620;">personal</span></h1>
+  <p style="margin: 8px 0 0; font-size: 16px; color: #5A6474; max-width: 760px;">Empty states, errors and confirmations with a small drawing and friendly words, written like a person at the showroom would say it.</p>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 32px;">
+
+    <!-- 1. Empty search -->
+    <figure style="margin: 0;">
+      <div style="height: 430px; background: #FFFFFF; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 28px; box-sizing: border-box;">
+        <svg aria-hidden="true" width="220" height="130" viewBox="0 0 220 130" fill="none">
+          <path d="M10 112h200" stroke="#CBD2DC" stroke-width="2" stroke-dasharray="4 6"></path>
+          <g class="drive"><path d="M30 100 L34 84 Q38 74 50 72 L74 68 Q86 54 104 52 L132 52 Q146 52 156 64 L166 74 Q182 76 186 86 L186 100 Z" fill="#F5F6F8" stroke="#0B1B2E" stroke-width="2.5" stroke-linejoin="round"></path>
+          <path d="M84 70 Q94 58 108 57 L120 57 L120 70 Z M126 57 L134 57 Q144 58 150 68 L126 70 Z" fill="#E3E6EB"></path>
+          <circle cx="62" cy="102" r="12" fill="#FFFFFF" stroke="#0B1B2E" stroke-width="2.5"></circle><circle cx="158" cy="102" r="12" fill="#FFFFFF" stroke="#0B1B2E" stroke-width="2.5"></circle></g>
+          <circle cx="168" cy="38" r="22" fill="#FFFFFF" stroke="#D4AF5A" stroke-width="4"></circle><path d="M184 54l16 16" stroke="#D4AF5A" stroke-width="7" stroke-linecap="round"></path>
+          <path d="M160 32q8-6 14 2" stroke="#D4AF5A" stroke-width="2.5" stroke-linecap="round"></path>
+        </svg>
+        <div style="font-size: 20px; font-weight: 800; margin-top: 18px;">No car matches that, yet</div>
+        <p style="margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: #5A6474; max-width: 300px;">Nothing fits "Lexus GX under ₦20M" right now. Tell us what you want and we'll find it for you.</p>
+        <div style="display: flex; gap: 8px; margin-top: 18px;">
+          <span style="height: 44px; padding: 0 16px; border-radius: 12px; border: 1.5px solid #CBD2DC; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center;">Clear filters</span>
+          <span style="height: 44px; padding: 0 16px; border-radius: 12px; background: #0B1B2E; color: #FFFFFF; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center;">Request this car</span>
+        </div>
+      </div>
+      <figcaption style="margin-top: 10px; font-size: 13px; font-weight: 700; color: #5A6474;">Showroom · empty search</figcaption>
+    </figure>
+
+    <!-- 2. 404 -->
+    <figure style="margin: 0;">
+      <div style="height: 430px; background: #0B1B2E; color: #FFFFFF; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 28px; box-sizing: border-box; overflow: hidden;">
+        <svg aria-hidden="true" width="200" height="150" viewBox="0 0 200 150" fill="none">
+          <path d="M0 140 Q100 110 200 140" stroke="rgba(255,255,255,.25)" stroke-width="2"></path>
+          <path d="M70 140 L95 118 M130 140 L105 118" stroke="rgba(255,255,255,.18)" stroke-width="2"></path>
+          <g class="sway"><rect x="96" y="44" width="8" height="96" rx="2" fill="#AEB8C6"></rect>
+          <path d="M40 22 H150 L166 40 L150 58 H40 Z" fill="#D4AF5A"></path>
+          <text x="98" y="48" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="26" font-weight="800" fill="#0B1B2E">404</text></g>
+        </svg>
+        <div style="font-size: 26px; font-weight: 800; margin-top: 12px;">Oops, wrong turn.</div>
+        <p style="margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: #C9D2DE; max-width: 300px;">This road doesn't lead anywhere. Let's get you back to the showroom.</p>
+        <span style="margin-top: 18px; height: 46px; padding: 0 20px; border-radius: 12px; background: #D4AF5A; color: #0B1B2E; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center;">Back to the showroom</span>
+      </div>
+      <figcaption style="margin-top: 10px; font-size: 13px; font-weight: 700; color: #5A6474;">404 page</figcaption>
+    </figure>
+
+    <!-- 3. Success modal -->
+    <figure style="margin: 0;">
+      <div style="height: 430px; border-radius: 20px; background: rgba(11,27,46,.55); display: flex; align-items: center; justify-content: center; padding: 22px; box-sizing: border-box;">
+        <div style="position: relative; width: 100%; background: #FFFFFF; border-radius: 20px; padding: 28px 24px; text-align: center; box-shadow: 0 30px 60px -20px rgba(0,0,0,.5);">
+          <span aria-hidden="true" style="position: absolute; top: 12px; right: 14px; font-size: 22px; color: #8E99A9;">×</span>
+          <svg aria-hidden="true" width="92" height="92" viewBox="0 0 92 92" fill="none"><circle cx="46" cy="46" r="42" fill="#FBF3E1"></circle><circle cx="46" cy="46" r="32" fill="#D4AF5A"></circle><path d="M32 47l10 10 18-20" stroke="#0B1B2E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="20" r="3" fill="#D4AF5A"></circle><circle cx="82" cy="16" r="2.5" fill="#1F9D61"></circle><circle cx="84" cy="70" r="3" fill="#2F6FDB"></circle></svg>
+          <div style="font-size: 24px; font-weight: 800; margin-top: 12px;">Congratulations, Tobi!</div>
+          <p style="margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: #5A6474;">Your Toyota Avalon is reserved. We'll call you within one working day to plan the inspection.</p>
+          <div style="margin-top: 14px; display: inline-flex; gap: 8px; align-items: center; background: #F5F6F8; border-radius: 10px; padding: 8px 12px; font-size: 13px;"><span style="color: #5A6474;">Reservation</span><strong style="color: #8A6620;">RSV-K2Q9TX</strong></div>
+          <div style="display: flex; gap: 8px; justify-content: center; margin-top: 18px;">
+            <span style="height: 44px; padding: 0 16px; border-radius: 12px; background: #0B1B2E; color: #FFFFFF; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center;">View my reservation</span>
+          </div>
+        </div>
+      </div>
+      <figcaption style="margin-top: 10px; font-size: 13px; font-weight: 700; color: #5A6474;">Success modal (reserve, sign up, offer accepted)</figcaption>
+    </figure>
+
+    <!-- 4. Confirm delete -->
+    <figure style="margin: 0;">
+      <div style="height: 360px; border-radius: 20px; background: rgba(11,27,46,.55); display: flex; align-items: center; justify-content: center; padding: 22px; box-sizing: border-box;">
+        <div style="width: 100%; background: #FFFFFF; border-radius: 20px; padding: 24px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.5);">
+          <div style="display: flex; gap: 14px; align-items: flex-start;">
+            <span style="width: 48px; height: 48px; flex: none; border-radius: 14px; background: #FDF2F1; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B23B35" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"></path></svg></span>
+            <div><div style="font-size: 19px; font-weight: 800;">Remove Toyota Venza?</div><p style="margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: #5A6474;">It disappears from the website and from anyone's garage. Photos stay in Cloudinary for 30 days.</p></div>
+          </div>
+          <label style="display: flex; gap: 10px; align-items: center; margin-top: 16px; font-size: 13px; color: #3D4757;"><input type="checkbox" style="width: 18px; height: 18px;"> Mark as Sold instead (keeps it in "Recently sold")</label>
+          <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px;">
+            <span style="height: 44px; padding: 0 16px; border-radius: 12px; border: 1.5px solid #E3E6EB; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center;">Keep it</span>
+            <span style="height: 44px; padding: 0 16px; border-radius: 12px; background: #B23B35; color: #FFFFFF; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center;">Yes, remove</span>
+          </div>
+        </div>
+      </div>
+      <figcaption style="margin-top: 10px; font-size: 13px; font-weight: 700; color: #5A6474;">Confirm before anything destructive</figcaption>
+    </figure>
+
+    <!-- 5. Check your email -->
+    <figure style="margin: 0;">
+      <div style="height: 360px; background: #FFFFFF; border-radius: 20px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center;">
+        <span style="font-size: 14px; font-weight: 700; color: #5A6474;">← Back</span>
+        <svg aria-hidden="true" width="74" height="56" viewBox="0 0 74 56" fill="none" style="margin-top: 14px;"><rect x="3" y="8" width="60" height="44" rx="8" fill="#FBF3E1" stroke="#0B1B2E" stroke-width="2.5"></rect><path d="M5 12l28 20 28-20" stroke="#0B1B2E" stroke-width="2.5" stroke-linejoin="round"></path><circle cx="62" cy="10" r="9" fill="#D4AF5A"></circle><text x="62" y="14" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="800" fill="#0B1B2E">1</text></svg>
+        <div style="font-size: 24px; font-weight: 800; margin-top: 14px;">Check your email</div>
+        <p style="margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: #5A6474;">We sent a reset link to <strong style="color: #0B1B2E;">ak**********@gmail.com</strong>. It expires in 24 hours. Check Spam if it's not there in a minute.</p>
+        <div style="display: flex; gap: 8px; margin-top: 16px; align-items: center;">
+          <span style="height: 44px; padding: 0 16px; border-radius: 12px; background: #0B1B2E; color: #FFFFFF; font-weight: 700; font-size: 14px; display: inline-flex; align-items: center;">Open Gmail</span>
+          <span style="font-size: 13px; color: #8E99A9;">Resend in 0:45</span>
+        </div>
+      </div>
+      <figcaption style="margin-top: 10px; font-size: 13px; font-weight: 700; color: #5A6474;">Check your email (masked address, from Torii)</figcaption>
+    </figure>
+
+    <!-- 6. Loader -->
+    <figure style="margin: 0;">
+      <div style="height: 360px; background: #FFFFFF; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;">
+        <div style="position: relative; width: 120px; height: 120px;">
+          <svg class="spin" aria-hidden="true" width="120" height="120" viewBox="0 0 120 120" fill="none" style="position: absolute; inset: 0;"><circle cx="60" cy="60" r="52" stroke="#EEF0F3" stroke-width="6"></circle><path d="M60 8a52 52 0 0152 52" stroke="#D4AF5A" stroke-width="6" stroke-linecap="round"></path></svg>
+          <div style="position: absolute; inset: 22px; border-radius: 999px; background: #0B1B2E; display: flex; align-items: center; justify-content: center;"><img src="../src/assets/logo.png" alt="" style="width: 62px; height: auto;"></div>
+        </div>
+        <div style="text-align: center;"><div style="font-size: 16px; font-weight: 800;">Royal Shades Autos</div><div class="dots" style="font-size: 13px; font-style: italic; color: #5A6474; margin-top: 2px;">Polishing the chrome<span>.</span><span>.</span><span>.</span></div></div>
+      </div>
+      <figcaption style="margin-top: 10px; font-size: 13px; font-weight: 700; color: #5A6474;">Page loader (logo + tagline, from Torii)</figcaption>
+    </figure>
+
+    <!-- 7. Friendly form errors -->
+    <figure style="margin: 0;">
+      <div style="height: 390px; background: #FFFFFF; border-radius: 20px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px;">
+        <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 700;">Phone number
+          <input value="0801 234 56" style="height: 50px; border: 1.5px solid #B23B35; border-radius: 12px; padding: 0 14px; font: inherit; font-size: 15px; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(178,59,53,.12);">
+          <span style="display: flex; gap: 8px; align-items: flex-start; font-size: 13px; font-weight: 500; color: #B23B35;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="flex: none; margin-top: 1px;"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>That looks a little short. Nigerian numbers have 11 digits, like 0801 234 5678.</span>
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 700;">Email
+          <input value="tobi@gmail.com" style="height: 50px; border: 1.5px solid #1F9D61; border-radius: 12px; padding: 0 14px; font: inherit; font-size: 15px;">
+          <span style="font-size: 13px; font-weight: 500; color: #1F7A4D;">Looks good.</span>
+        </label>
+        <div role="alert" style="display: flex; gap: 12px; background: #FDF2F1; border: 1px solid #F1C9C6; border-radius: 14px; padding: 12px 14px; font-size: 13px; color: #7E2A26; line-height: 1.55;">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B23B35" stroke-width="2" stroke-linecap="round" style="flex: none;"><path d="M2 8.8a15 15 0 0120 0M5 12.5a10 10 0 0114 0M8.5 16a5 5 0 017 0M12 19.5h.01"></path></svg>
+          <span><strong>We couldn't reach the server.</strong> Your details are safe in this form. Check your data or Wi-Fi and tap Try again.</span>
+        </div>
+      </div>
+      <figcaption style="margin-top: 10px; font-size: 13px; font-weight: 700; color: #5A6474;">Form errors that explain, not blame</figcaption>
+    </figure>
+
+    <!-- 8. Toasts -->
+    <figure style="margin: 0;">
+      <div style="height: 390px; background: #F5F6F8; border-radius: 20px; padding: 26px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 12px;">
+        <div style="display: flex; gap: 12px; align-items: center; background: #FFFFFF; border-left: 4px solid #1F9D61; border-radius: 12px; padding: 14px 16px; box-shadow: 0 14px 30px -18px rgba(11,27,46,.35);"><span style="width: 32px; height: 32px; border-radius: 999px; background: #E8F6EE; display: flex; align-items: center; justify-content: center; flex: none;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F9D61" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span><span style="font-size: 14px;"><strong>Added to your garage.</strong> <span style="color: #5A6474;">Toyota Avalon XLE</span></span></div>
+        <div style="display: flex; gap: 12px; align-items: center; background: #FFFFFF; border-left: 4px solid #D4AF5A; border-radius: 12px; padding: 14px 16px; box-shadow: 0 14px 30px -18px rgba(11,27,46,.35);"><span style="width: 32px; height: 32px; border-radius: 999px; background: #FBF3E1; display: flex; align-items: center; justify-content: center; flex: none;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="2.4" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span><span style="font-size: 14px;"><strong>Your session ended.</strong> <span style="color: #5A6474;">Log in again to keep your garage.</span></span></div>
+        <div style="display: flex; gap: 12px; align-items: center; background: #0B1B2E; color: #FFFFFF; border-radius: 12px; padding: 14px 16px; box-shadow: 0 14px 30px -18px rgba(11,27,46,.6);"><span style="width: 32px; height: 32px; border-radius: 999px; background: rgba(212,175,90,.2); display: flex; align-items: center; justify-content: center; flex: none;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E5C27A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15l2 4h14l2-4M5 15V10h14v5M12 10V5"></path></svg></span><span style="font-size: 14px;"><strong>Your Lexus just docked at Tin Can!</strong> <span style="color: #C9D2DE;">Customs next.</span></span></div>
+        <div style="display: flex; gap: 12px; align-items: center; background: #FFFFFF; border-left: 4px solid #B23B35; border-radius: 12px; padding: 14px 16px; box-shadow: 0 14px 30px -18px rgba(11,27,46,.35);"><span style="width: 32px; height: 32px; border-radius: 999px; background: #FDF2F1; display: flex; align-items: center; justify-content: center; flex: none; color: #B23B35; font-weight: 800;">!</span><span style="font-size: 14px;"><strong>Couldn't upload the video.</strong> <span style="color: #5A6474;">It's over 60 seconds. Trim it and try again.</span></span></div>
+      </div>
+      <figcaption style="margin-top: 10px; font-size: 13px; font-weight: 700; color: #5A6474;">Toasts: success, gentle warning, good news, error</figcaption>
+    </figure>
+
+    <!-- 9. Empty garage -->
+    <figure style="margin: 0;">
+      <div style="height: 390px; background: #FFFFFF; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 26px; box-sizing: border-box;">
+        <svg aria-hidden="true" width="190" height="120" viewBox="0 0 190 120" fill="none">
+          <path d="M20 112V48L95 12l75 36v64" stroke="#0B1B2E" stroke-width="3" stroke-linejoin="round" fill="#F5F6F8"></path>
+          <rect x="44" y="56" width="102" height="56" rx="4" fill="#FFFFFF" stroke="#0B1B2E" stroke-width="2.5"></rect>
+          <path d="M44 70h102M44 84h102M44 98h102" stroke="#CBD2DC" stroke-width="2"></path>
+          <circle cx="95" cy="34" r="8" fill="#D4AF5A"></circle>
+          <path d="M150 104q10-14 20 0" stroke="#1F9D61" stroke-width="2.5" stroke-linecap="round"></path><path d="M158 104q4-12 10-4" stroke="#1F9D61" stroke-width="2.5" stroke-linecap="round"></path>
+        </svg>
+        <div style="font-size: 20px; font-weight: 800; margin-top: 16px;">Your garage is waiting</div>
+        <p style="margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: #5A6474; max-width: 290px;">Park the cars you love here, then reserve them together with one deposit.</p>
+        <span style="margin-top: 16px; height: 44px; padding: 0 18px; border-radius: 12px; background: #D4AF5A; color: #0B1B2E; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center;">Explore the showroom</span>
+      </div>
+      <figcaption style="margin-top: 10px; font-size: 13px; font-weight: 700; color: #5A6474;">Empty garage</figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1700}}'>
+class Component extends DCLogic { renderVals() { return {}; } }
+</script>
+</body>
+</html>
