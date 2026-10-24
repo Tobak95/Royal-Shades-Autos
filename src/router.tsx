@@ -3,6 +3,13 @@ import { RootLayout, type RouteHandle } from "@/components/layout/RootLayout";
 import { AdminRoute } from "@/components/routing/AdminRoute";
 import { ProtectedRoute } from "@/components/routing/ProtectedRoute";
 import AboutPage from "@/pages/AboutPage";
+import { AdminLayout } from "@/pages/admin/AdminLayout";
+import CarEditorPage from "@/pages/admin/cars/CarEditorPage";
+import CarsPage from "@/pages/admin/cars/CarsPage";
+import CustomersPage from "@/pages/admin/CustomersPage";
+import OverviewPage from "@/pages/admin/OverviewPage";
+import ReservationsPage from "@/pages/admin/ReservationsPage";
+import ShipmentsPage from "@/pages/admin/shipments/ShipmentsPage";
 import ForgotPasswordPage from "@/pages/auth/ForgotPasswordPage";
 import LoginPage from "@/pages/auth/LoginPage";
 import ResetPasswordPage from "@/pages/auth/ResetPasswordPage";
@@ -58,7 +65,7 @@ export const router = createBrowserRouter([
       { path: "reset-password/:token", element: <ResetPasswordPage />, handle: slim },
       { path: "verify-email/:token", element: <VerifyEmailPage />, handle: slim },
 
-      // TEMPORARY: account (Phase 4) and admin (Phase 5)
+      // TEMPORARY: account (Phase 4)
       {
         path: "account",
         element: (
@@ -67,13 +74,25 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+
+      // Admin (mock data until the admin API exists; see README)
       {
         path: "admin",
+        handle: slim,
         element: (
           <AdminRoute>
-            <PlaceholderPage title="Admin *dashboard*" crumb="Admin" />
+            <AdminLayout />
           </AdminRoute>
         ),
+        children: [
+          { index: true, element: <OverviewPage /> },
+          { path: "cars", element: <CarsPage /> },
+          { path: "cars/new", element: <CarEditorPage /> },
+          { path: "cars/:id/edit", element: <CarEditorPage /> },
+          { path: "shipments", element: <ShipmentsPage /> },
+          { path: "reservations", element: <ReservationsPage /> },
+          { path: "customers", element: <CustomersPage /> },
+        ],
       },
 
       { path: "*", element: <NotFoundPage /> },

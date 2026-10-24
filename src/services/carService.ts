@@ -1,6 +1,5 @@
 // The only place pages get car data from. Each function mirrors a future API
 // endpoint; swap the bodies for `api.get(...)` calls when the backend is ready.
-import { mockCars } from "@/data/mockCars";
 import { matchesStatusFilter } from "@/lib/status";
 import { wait } from "@/lib/utils";
 import type {
@@ -16,13 +15,10 @@ import type {
   StatusCounts,
   StatusFilter,
 } from "@/types";
+import { commit, logActivity, store } from "./mockStore";
 
 const LATENCY_MS = 400;
 export const DEFAULT_PAGE_SIZE = 9;
-
-// In-memory store so admin edits (Phase 5) persist for the session.
-const cars: Car[] = structuredClone(mockCars);
-const reservations: Reservation[] = [];
 
 const clone = <T>(value: T): T => structuredClone(value);
 
@@ -68,7 +64,7 @@ export async function getCars(filters: CarFilters = {}): Promise<CarListResult> 
   await wait(LATENCY_MS);
   const { status = "all", sort = "newest", page = 1, pageSize = DEFAULT_PAGE_SIZE } = filters;
 
-  const filtered = applyFilters(cars, filters);
+  const filtered = applyFilters(store.cars, filters);
   const countFor = (filter: StatusFilter) => filtered.filter((c) => matchesStatusFilter(c.status, filter)).length;
   const counts: StatusCounts = {
     all: filtered.length,
@@ -106,12 +102,14 @@ export interface FilterOptions {
 /** Choices for the showroom filter sidebar, derived from the inventory */
 export async function getFilterOptions(): Promise<FilterOptions> {
   await wait(LATENCY_MS);
-  const prices = cars.map((c) => c.price);
-  const years = cars.map((c) => c.year);
+  // Fallbacks keep the sliders sane if every car has been deleted in the admin
+  const prices = store.cars.length ? store.cars.map((c) => c.price) : [0, 100_000_000];
+  const thisYear = new Date().getFullYear();
+  const years = store.cars.length ? store.cars.map((c) => c.year) : [thisYear - 10, thisYear];
   const million = 1_000_000;
   return {
-    makes: [...new Set(cars.map((c) => c.make))].sort(),
-    origins: [...new Set(cars.map((c) => c.origin))].sort(),
+    makes: [...new Set(store.cars.map((c) => c.make))].sort(),
+    origins: [...new Set(store.cars.map((c) => c.origin))].sort(),
     minPrice: Math.floor(Math.min(...prices) / (5 * million)) * 5 * million,
     maxPrice: Math.ceil(Math.max(...prices) / (5 * million)) * 5 * million,
     minYear: Math.min(...years),
@@ -121,13 +119,13 @@ export async function getFilterOptions(): Promise<FilterOptions> {
 
 export async function getCarBySlug(slug: string): Promise<Car | null> {
   await wait(LATENCY_MS);
-  const car = cars.find((c) => c.slug === slug);
+  const car = store.cars.find((c) => c.slug === slug);
   return car ? clone(car) : null;
 }
 
 export async function getCarsByIds(ids: string[]): Promise<Car[]> {
   await wait(LATENCY_MS);
-  return clone(ids.map((id) => cars.find((c) => c.id === id)).filter((c): c is Car => c !== undefined));
+  return clone(ids.map((id) => store.cars.find((c) => c.id === id)).filter((c): c is Car => c !== undefined));
 }
 
 /** Cars still in play (never sold ones): same body type first, then same make, then ready-to-buy */
@@ -136,7 +134,7 @@ export async function getRelatedCars(car: Car, limit = 6): Promise<Car[]> {
   const score = (c: Car) =>
     (c.bodyType === car.bodyType ? 4 : 0) + (c.make === car.make ? 2 : 0) + (c.status === "available" ? 1 : 0);
   return clone(
-    cars
+    store.cars
       .filter((c) => c.id !== car.id && c.status !== "sold")
       .sort((a, b) => score(b) - score(a))
       .slice(0, limit),
@@ -152,7 +150,7 @@ export async function trackShipment(vinOrTrackingNumber: string): Promise<Tracki
   await wait(LATENCY_MS);
   const query = vinOrTrackingNumber.trim().toUpperCase();
   if (!query) return null;
-  const car = cars.find(
+  const car = store.cars.find(
     (c) => c.shipment && (c.vin.toUpperCase() === query || c.shipment.trackingNumber.toUpperCase() === query),
   );
   return car?.shipment ? clone({ car, shipment: car.shipment }) : null;
@@ -161,11 +159,11 @@ export async function trackShipment(vinOrTrackingNumber: string): Promise<Tracki
 export async function getStats(): Promise<InventoryStats> {
   await wait(LATENCY_MS);
   return {
-    available: cars.filter((c) => matchesStatusFilter(c.status, "available")).length,
-    arriving: cars.filter((c) => matchesStatusFilter(c.status, "arriving")).length,
-    inspection: cars.filter((c) => matchesStatusFilter(c.status, "inspection")).length,
-    sold: cars.filter((c) => matchesStatusFilter(c.status, "sold")).length,
-    total: cars.length,
+    available: store.cars.filter((c) => matchesStatusFilter(c.status, "available")).length,
+    arriving: store.cars.filter((c) => matchesStatusFilter(c.status, "arriving")).length,
+    inspection: store.cars.filter((c) => matchesStatusFilter(c.status, "inspection")).length,
+    sold: store.cars.filter((c) => matchesStatusFilter(c.status, "sold")).length,
+    total: store.cars.length,
     ports: ["Tin Can", "Apapa"],
   };
 }
@@ -178,6 +176,8 @@ export async function createReservation(input: NewReservation): Promise<Reservat
     status: "pending",
     createdAt: new Date().toISOString(),
   };
-  reservations.unshift(reservation);
+  store.reservations.unshift(reservation);
+  logActivity(`New reservation ${reservation.id} from ${reservation.fullName}`);
+  commit();
   return clone(reservation);
 }

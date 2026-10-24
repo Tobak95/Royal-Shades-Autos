@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/Input";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 import { useAuth } from "@/hooks/useAuth";
 import { getApiErrorMessage } from "@/lib/api";
-import { getRedirectPath, sessionExpired } from "@/lib/authRedirect";
+import { getRedirectPath, loginNotice, sessionExpired } from "@/lib/authRedirect";
 import { loginSchema, type LoginFormValues } from "@/lib/validators";
 import { login as loginRequest } from "@/services/authService";
 import { AuthScreen } from "./AuthScreen";
@@ -28,8 +28,27 @@ export default function LoginPage() {
   const { errors, isSubmitting } = formState;
   const redirectTo = getRedirectPath(location.state);
   const cameFromProtectedPage = redirectTo !== "/";
+  const notice = loginNotice(location.state);
 
   if (auth.isAuthenticated) return <Navigate to={redirectTo} replace />;
+
+  // DEV ONLY: signs in as a local admin so the mock-data dashboard can be tried without the backend
+  function loginAsDemoAdmin() {
+    auth.login(
+      "demo-admin-token",
+      {
+        id: "demo-admin",
+        fullName: "Demo Admin",
+        email: "admin@demo.local",
+        phoneNumber: "",
+        role: "admin",
+        isVerified: true,
+        createdAt: new Date().toISOString(),
+      },
+      false,
+    );
+    navigate("/admin", { replace: true });
+  }
 
   async function onSubmit(values: LoginFormValues) {
     setServerError(null);
@@ -57,7 +76,9 @@ export default function LoginPage() {
       }
     >
       <form noValidate onSubmit={handleSubmit(onSubmit)} className="mt-7 flex flex-col gap-4">
-        {sessionExpired(location.state) ? (
+        {notice ? (
+          <FormAlert tone="info">{notice}</FormAlert>
+        ) : sessionExpired(location.state) ? (
           <FormAlert tone="info">Your session has expired. Please log in again.</FormAlert>
         ) : (
           cameFromProtectedPage && <FormAlert tone="info">Please log in to continue.</FormAlert>
@@ -87,6 +108,11 @@ export default function LoginPage() {
         <Button type="submit" size="lg" fullWidth loading={isSubmitting}>
           {isSubmitting ? "Logging in…" : "Log in"}
         </Button>
+        {import.meta.env.DEV && (
+          <Button variant="outline" fullWidth onClick={loginAsDemoAdmin}>
+            Log in as demo admin <span className="text-xs font-semibold text-muted">(dev only)</span>
+          </Button>
+        )}
       </form>
 
       <p className="mt-[26px] flex items-center gap-3 border-t border-line pt-5 text-[13px] text-muted">

@@ -1,5 +1,7 @@
 import type { DestinationPort, Shipment, StageKey, TrackingStage } from "@/types";
 
+// Note: a current stage keeps its date as "when it started"; the tracker shows "Now" for it.
+
 export const STAGE_ORDER: StageKey[] = [
   "purchased",
   "to_origin_port",
@@ -20,7 +22,7 @@ export const STAGE_LABELS: Record<StageKey, string> = {
   ready: "Ready for pickup",
 };
 
-interface ShipmentInput {
+export interface ShipmentInput {
   trackingNumber: string;
   vesselName: string;
   /** Where the car was bought, e.g. "Copart auction · Maryland, USA" */
@@ -64,6 +66,55 @@ export function buildShipment(input: ShipmentInput): Shipment {
     destinationPort: input.destinationPort,
     eta: input.eta,
     progress: input.progress,
+    stages,
+  };
+}
+
+/** Rough voyage progress shown on the tracker for each current stage */
+export const STAGE_PROGRESS: Record<StageKey, number> = {
+  purchased: 8,
+  to_origin_port: 15,
+  departed_origin: 30,
+  at_sea: 55,
+  arrived_lagos: 80,
+  customs: 90,
+  ready: 100,
+};
+
+export interface ShipmentUpdate {
+  current: StageKey;
+  vesselName: string;
+  /** yyyy-mm-dd */
+  eta: string;
+}
+
+/**
+ * Moves a shipment to a new current stage. Earlier stages become completed (dated today
+ * if they had no date yet); later stages are cleared, except the ETA on "Arrived Lagos port".
+ */
+export function updateShipmentStage(shipment: Shipment, update: ShipmentUpdate, today: string): Shipment {
+  const currentIndex = STAGE_ORDER.indexOf(update.current);
+  const stages = shipment.stages.map((stage): TrackingStage => {
+    const index = STAGE_ORDER.indexOf(stage.key);
+    const location = stage.key === "departed_origin" ? `Loaded on ${update.vesselName}` : stage.location;
+    // Stages reached for the first time get today's date (an old date there was only an estimate)
+    const reachedBefore = stage.completed || stage.current;
+    const date = reachedBefore ? (stage.date ?? today) : today;
+    if (index < currentIndex) return { ...stage, location, completed: true, current: undefined, date };
+    if (index === currentIndex) return { ...stage, location, completed: false, current: true, date };
+    return {
+      ...stage,
+      location,
+      completed: false,
+      current: undefined,
+      date: stage.key === "arrived_lagos" ? update.eta : undefined,
+    };
+  });
+  return {
+    ...shipment,
+    vesselName: update.vesselName,
+    eta: update.eta,
+    progress: STAGE_PROGRESS[update.current],
     stages,
   };
 }

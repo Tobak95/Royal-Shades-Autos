@@ -4,6 +4,8 @@ import type { Location } from "react-router-dom";
 export interface LoginLocationState {
   from?: Pick<Location, "pathname" | "search" | "hash">;
   reason?: "expired";
+  /** A one-off confirmation shown above the form, e.g. after a password reset */
+  notice?: string;
 }
 
 function asLoginState(state: unknown): LoginLocationState {
@@ -19,4 +21,9 @@ export function getRedirectPath(state: unknown): string {
 
 export function sessionExpired(state: unknown): boolean {
   return asLoginState(state).reason === "expired";
+}
+
+export function loginNotice(state: unknown): string | null {
+  const notice = asLoginState(state).notice;
+  return typeof notice === "string" && notice ? notice : null;
 }

@@ -38,10 +38,17 @@ export interface Car {
   features: string[];
   /** ISO timestamp */
   createdAt: string;
+  /** ISO timestamp of the last admin change (falls back to createdAt) */
+  updatedAt?: string;
   /** ISO date (yyyy-mm-dd), set when the status changes to "sold" */
   soldAt?: string;
+  /** Show in the home hero carousel (only applies while the car is "available") */
+  featured?: boolean;
   shipment?: Shipment;
 }
+
+/** Everything an admin can set on a car; the server fills in id, slug and timestamps */
+export type CarInput = Omit<Car, "id" | "slug" | "createdAt" | "updatedAt">;
 
 /**
  * Showroom tabs. "arriving" covers both arriving and arrived cars;

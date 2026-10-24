@@ -7,7 +7,7 @@ import { useQuery } from "@/hooks/useQuery";
 import { getCars } from "@/services/carService";
 import { ArchCarousel } from "./ArchCarousel";
 
-const HERO_SLIDES = 5;
+const HERO_SLIDES = 6;
 
 const TRUST = [
   { icon: ShieldCheck, text: "Inspected before sale" },
@@ -16,11 +16,14 @@ const TRUST = [
 ];
 
 export function HomeHero() {
-  // Only "available" cars rotate in the hero; the dealership's own photos go first
+  // Only "available" cars rotate in the hero: the ones switched on in the admin ("Show in
+  // home hero"); if none are, fall back to available cars with the dealership's own photos first
   const { data } = useQuery("hero-cars", () => getCars({ statuses: ["available"], pageSize: 50 }));
-  const slides = data
-    ? [...data.cars].sort((a, b) => Number(isRealPhoto(b.images[0])) - Number(isRealPhoto(a.images[0]))).slice(0, HERO_SLIDES)
-    : [];
+  const featured = data?.cars.filter((car) => car.featured) ?? [];
+  const fallback = [...(data?.cars ?? [])].sort(
+    (a, b) => Number(isRealPhoto(b.images[0])) - Number(isRealPhoto(a.images[0])),
+  );
+  const slides = (featured.length ? featured : fallback).slice(0, HERO_SLIDES);
 
   return (
     <section className="relative overflow-hidden rounded-b-hero bg-[radial-gradient(120%_90%_at_85%_10%,#1B3556_0%,#0F2238_45%,#0B1B2E_100%)] text-white">

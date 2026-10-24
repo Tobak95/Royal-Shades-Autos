@@ -64,12 +64,15 @@ export async function resendVerificationEmail(email: string): Promise<void> {
 }
 
 /**
- * ASSUMED endpoint: the reset email links to /reset-password/:token on this site, and the
- * backend accepts the new password at POST /auth/reset-password/:token. Confirm with the backend.
+ * The reset email links to /reset-password/:token on this site; the page sends the new
+ * password to PATCH /auth/change-password with exactly { email, token, newPassword }.
+ * A 404 from the backend means the link is invalid or expired.
  */
-export async function resetPassword(token: string, password: string, confirmPassword: string): Promise<void> {
-  const response = await api.post(`/auth/reset-password/${encodeURIComponent(token)}`, { password, confirmPassword });
-  if (response.status !== 200) throw new AuthError("We couldn't reset your password. Please try again.");
+export async function resetPassword(email: string, token: string, newPassword: string): Promise<void> {
+  const response = await api.patch("/auth/change-password", { email, token, newPassword });
+  if (response.status < 200 || response.status >= 300) {
+    throw new AuthError("We couldn't change your password. Please try again.");
+  }
 }
 
 export async function forgotPassword(email: string): Promise<void> {

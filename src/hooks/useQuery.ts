@@ -9,7 +9,13 @@ interface QueryState<T> {
 export interface QueryResult<T> {
   data: T | undefined;
   error: unknown;
+  /** True until the result for the current key arrives */
   loading: boolean;
+}
+
+interface QueryOptions {
+  /** Keep showing the previous key's data while the new key loads (no skeleton flash on refetch) */
+  keepPrevious?: boolean;
 }
 
 /**
@@ -17,7 +23,7 @@ export interface QueryResult<T> {
  * `loading` is derived (the stored result belongs to an older key), so no
  * state is set synchronously inside the effect.
  */
-export function useQuery<T>(key: string, fetcher: () => Promise<T>): QueryResult<T> {
+export function useQuery<T>(key: string, fetcher: () => Promise<T>, options: QueryOptions = {}): QueryResult<T> {
   const [state, setState] = useState<QueryState<T> | null>(null);
   const run = useEffectEvent(fetcher);
 
@@ -34,7 +40,7 @@ export function useQuery<T>(key: string, fetcher: () => Promise<T>): QueryResult
 
   const ready = state?.key === key;
   return {
-    data: ready ? state.data : undefined,
+    data: ready || options.keepPrevious ? state?.data : undefined,
     error: ready ? state.error : undefined,
     loading: !ready,
   };
