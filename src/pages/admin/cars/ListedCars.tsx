@@ -9,10 +9,10 @@ import { useToast } from "@/hooks/useToast";
 import { STATUS_JOURNEY, STATUS_META } from "@/lib/status";
 import { cn } from "@/lib/utils";
 import { carName } from "@/lib/voyage";
-import { AdminError, adminListCars, deleteCar, setCarFeatured } from "@/services/adminCarService";
+import { AdminError, adminListCars, changeCarStatus, deleteCar, setCarFeatured } from "@/services/adminCarService";
 import type { Car, CarStatus } from "@/types";
 import { AdminPagination } from "../AdminPagination";
-import { ConfirmModal } from "../ConfirmModal";
+import { ConfirmDialog } from "@/components/feedback/ConfirmDialog";
 import { AdminCarCard } from "./AdminCarCard";
 import { useCarStatusChange } from "./useCarStatusChange";
 
@@ -74,9 +74,14 @@ export function ListedCars({ searchable = false }: { searchable?: boolean }) {
     }
   }
 
-  async function confirmDelete() {
+  /** Delete, or (if they ticked the alternative) mark it sold so it stays in "Recently sold" */
+  async function confirmDelete(markSoldInstead: boolean) {
     if (!toDelete) return;
-    await run(toDelete, () => deleteCar(toDelete.id), `${carName(toDelete)} deleted`);
+    if (markSoldInstead) {
+      await run(toDelete, () => changeCarStatus(toDelete.id, "sold"), `${carName(toDelete)} marked as sold`);
+    } else {
+      await run(toDelete, () => deleteCar(toDelete.id), `${carName(toDelete)} removed`);
+    }
     setToDelete(null);
   }
 
@@ -156,12 +161,18 @@ export function ListedCars({ searchable = false }: { searchable?: boolean }) {
       {data && data.totalPages > 1 && <AdminPagination page={data.page} totalPages={data.totalPages} onPage={changePage} />}
 
       {statusChange.dialogs}
-      <ConfirmModal
+      <ConfirmDialog
         open={toDelete !== null}
-        title="Delete this car?"
-        description={toDelete && <>The <strong className="text-ink">{carName(toDelete)}</strong> is removed from the showroom and can't be restored (except by resetting the demo data).</>}
-        confirmLabel="Delete car"
+        title={toDelete ? `Remove ${toDelete.make} ${toDelete.model}?` : "Remove this car?"}
+        description="It disappears from the website and from anyone's garage, and can't be restored (except by resetting the demo data)."
+        confirmLabel="Yes, remove"
+        cancelLabel="Keep it"
         danger
+        alternative={
+          toDelete && toDelete.status !== "sold"
+            ? { label: "Mark as Sold instead (keeps it in “Recently sold”)", confirmLabel: "Mark as sold" }
+            : undefined
+        }
         busy={toDelete ? busyId === toDelete.id : false}
         onConfirm={confirmDelete}
         onCancel={() => setToDelete(null)}

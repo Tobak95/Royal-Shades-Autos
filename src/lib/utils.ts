@@ -59,6 +59,18 @@ export function getInitials(fullName: string, email = ""): string {
   return letters.toUpperCase();
 }
 
+/** "Ayo Bello" → "Ayo"; empty when there's no name */
+export function firstName(fullName: string | undefined): string {
+  return fullName?.trim().split(/\s+/)[0] ?? "";
+}
+
+/** "akinola@gmail.com" → "ak*****@gmail.com" (first 2 characters, then asterisks) */
+export function maskEmail(email: string): string {
+  const [local, domain] = email.split("@");
+  if (!domain) return email;
+  return `${local.slice(0, 2)}${"*".repeat(Math.max(local.length - 2, 3))}@${domain}`;
+}
+
 export function wait(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }

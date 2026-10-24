@@ -15,12 +15,14 @@ interface ModalProps {
   children?: ReactNode;
   footer?: ReactNode;
   size?: "sm" | "md" | "lg";
+  /** Centred icon, text and buttons (success moments) */
+  centered?: boolean;
   className?: string;
 }
 
 const SIZES = { sm: "max-w-sm", md: "max-w-lg", lg: "max-w-3xl" };
 
-export function Modal({ open, onClose, title, description, icon, children, footer, size = "md", className }: ModalProps) {
+export function Modal({ open, onClose, title, description, icon, children, footer, size = "md", centered = false, className }: ModalProps) {
   const titleId = useId();
   const descriptionId = useId();
   const { ref, onKeyDown } = useDialog<HTMLDivElement>(open, onClose);
@@ -51,6 +53,7 @@ export function Modal({ open, onClose, title, description, icon, children, foote
             className={cn(
               "relative max-h-[90vh] w-full overflow-y-auto rounded-[28px] border border-line bg-surface p-6 shadow-float focus:outline-none sm:p-8",
               SIZES[size],
+              centered && "text-center",
               className,
             )}
           >
@@ -62,8 +65,8 @@ export function Modal({ open, onClose, title, description, icon, children, foote
             >
               <X aria-hidden="true" className="size-5" />
             </button>
-            {icon && <div className="mb-4">{icon}</div>}
-            <h2 id={titleId} className="pr-10 text-2xl font-extrabold tracking-[-0.02em]">
+            {icon && <div className={cn("mb-4", centered && "flex justify-center")}>{icon}</div>}
+            <h2 id={titleId} className={cn("text-2xl font-extrabold tracking-[-0.02em]", centered ? "px-8" : "pr-10")}>
               {title}
             </h2>
             {description && (
@@ -72,7 +75,7 @@ export function Modal({ open, onClose, title, description, icon, children, foote
               </p>
             )}
             {children && <div className="mt-5">{children}</div>}
-            {footer && <div className="mt-6 flex flex-wrap justify-end gap-3">{footer}</div>}
+            {footer && <div className={cn("mt-6 flex flex-wrap gap-3", centered ? "justify-center" : "justify-end")}>{footer}</div>}
           </motion.div>
         </motion.div>
       )}

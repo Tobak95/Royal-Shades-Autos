@@ -3,10 +3,11 @@ import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import { CalendarCheck } from "lucide-react";
+import { ApiErrorAlert } from "@/components/feedback/ApiErrorAlert";
 import { GarageIcon } from "@/components/icons";
 import { Container } from "@/components/layout/Container";
 import { AccentText } from "@/components/ui/AccentText";
-import { ArcLoader } from "@/components/ui/ArcLoader";
+import { PageLoader } from "@/components/feedback/PageLoader";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -31,7 +32,7 @@ export default function ReservePage() {
   const { user } = useAuth();
   const garage = useGarage();
   const navigate = useNavigate();
-  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [submitError, setSubmitError] = useState<unknown>(null);
   const { data, loading } = useQuery("reserve-cars", () => getCarsByIds(garage.carIds));
   const cars = (data ?? []).filter((c) => garage.has(c.id) && isReservable(c));
   const totals = getGarageTotals(cars);
@@ -61,14 +62,17 @@ export default function ReservePage() {
         carIds: cars.map((c) => c.id),
         deposit: totals.deposit,
       });
-      navigate("/thank-you", { replace: true, state: { reservationId: reservation.id } });
+      navigate("/thank-you", {
+        replace: true,
+        state: { reservationId: reservation.id, carNames: cars.map((c) => `${c.make} ${c.model}`) },
+      });
       garage.clear();
-    } catch {
-      setSubmitError("We couldn't place your reservation. Please try again or contact us.");
+    } catch (error) {
+      setSubmitError(error);
     }
   }
 
-  if (loading) return <ArcLoader fullScreen label="Loading your reservation" />;
+  if (loading) return <PageLoader label="Loading your reservation" />;
 
   return (
     <Container className="pt-10 pb-24">
@@ -121,11 +125,12 @@ export default function ReservePage() {
           <div className="flex flex-col gap-6 rounded-[22px] border border-line bg-surface p-6 shadow-[0_24px_50px_-36px_rgb(11_27_46/0.45)] sm:p-7 lg:sticky lg:top-28">
             <PaymentMethodField registration={register("paymentMethod")} selected={paymentMethod} />
             <ReserveSummary cars={cars} totals={totals} paymentMethod={paymentMethod} />
-            {submitError && (
-              <p role="alert" className="text-sm text-sold">
-                {submitError}
-              </p>
-            )}
+            <ApiErrorAlert
+              error={submitError}
+              fallback="We couldn't place your reservation. Your cars are still in your garage, so please try again or message us on WhatsApp."
+              onRetry={handleSubmit(onSubmit)}
+              retrying={isSubmitting}
+            />
             <Button type="submit" size="lg" fullWidth loading={isSubmitting}>
               {isSubmitting ? "Placing reservation…" : "Place reservation"}
             </Button>

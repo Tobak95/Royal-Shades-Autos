@@ -75,6 +75,7 @@ export function GarageCta({ car, variant = "navy", size = "sm", fullWidth, tinte
   function handleClick() {
     garage.add(car.id);
     if (reserve) navigate("/garage");
+    else showToast("Added to your garage.", { detail: `${car.make} ${car.model} ${car.trim}` });
   }
 
   return (

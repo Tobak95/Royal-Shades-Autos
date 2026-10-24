@@ -49,7 +49,7 @@ export function ShipmentCard({ car }: { car: Car & { shipment: NonNullable<Car["
     setSwitching(true);
     try {
       await changeCarStatus(car.id, "arrived");
-      showToast(`${carName(car)} is now arrived`);
+      showToast(`The ${car.make} ${car.model} just docked at ${shipment.destinationPort}!`, { tone: "news", detail: "Customs next." });
       setOfferArrived(false);
     } catch (error) {
       showToast(error instanceof AdminError ? error.message : "Couldn't change the status.", { tone: "error" });

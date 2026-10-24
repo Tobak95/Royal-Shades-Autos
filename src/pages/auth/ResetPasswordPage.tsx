@@ -3,11 +3,11 @@ import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { ApiErrorAlert } from "@/components/feedback/ApiErrorAlert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 import { CAR_IMAGES } from "@/data/carImages";
-import { getApiErrorMessage } from "@/lib/api";
 import type { LoginLocationState } from "@/lib/authRedirect";
 import { resetPasswordSchema, type ResetPasswordFormValues } from "@/lib/validators";
 import { resetPassword } from "@/services/authService";
@@ -23,7 +23,8 @@ export default function ResetPasswordPage() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const strengthId = useId();
-  const [serverError, setServerError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<unknown>(null);
+  const [linkInvalid, setLinkInvalid] = useState(false);
   const { register, handleSubmit, control, formState } = useForm<ResetPasswordFormValues>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: { email: params.get("email") ?? "", password: "", confirmPassword: "" },
@@ -33,14 +34,15 @@ export default function ResetPasswordPage() {
 
   async function onSubmit(values: ResetPasswordFormValues) {
     setServerError(null);
+    setLinkInvalid(false);
     try {
       // confirmPassword is checked here only; the backend gets email, token and newPassword
       await resetPassword(values.email.trim(), token, values.password);
       const state: LoginLocationState = { notice: "Password changed, please log in." };
       navigate("/login", { replace: true, state });
     } catch (error) {
-      const notFound = axios.isAxiosError(error) && error.response?.status === 404;
-      setServerError(notFound ? INVALID_LINK : getApiErrorMessage(error, "We couldn't change your password. Please try again."));
+      if (axios.isAxiosError(error) && error.response?.status === 404) setLinkInvalid(true);
+      else setServerError(error);
     }
   }
 
@@ -74,14 +76,20 @@ export default function ResetPasswordPage() {
           {...register("confirmPassword")}
           error={errors.confirmPassword?.message}
         />
-        {serverError && (
+        {linkInvalid && (
           <FormAlert tone="error">
-            {serverError}{" "}
+            {INVALID_LINK}{" "}
             <Link to="/forgot-password" className="font-semibold underline">
               Request a new link
             </Link>
           </FormAlert>
         )}
+        <ApiErrorAlert
+          error={serverError}
+          fallback="We couldn't change your password. Please try again."
+          onRetry={handleSubmit(onSubmit)}
+          retrying={isSubmitting}
+        />
         <Button type="submit" size="lg" fullWidth loading={isSubmitting}>
           {isSubmitting ? "Saving…" : "Save new password"}
         </Button>

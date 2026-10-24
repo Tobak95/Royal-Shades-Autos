@@ -1,29 +1,72 @@
-import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, CircleCheck } from "lucide-react";
 import streetImage from "@/assets/car.avif";
 import { ImportSteps } from "@/components/content/ImportSteps";
+import { SuccessModal } from "@/components/feedback/SuccessModal";
 import { Container } from "@/components/layout/Container";
 import { AccentText } from "@/components/ui/AccentText";
-import { ButtonLink } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { THANK_YOU_STEPS } from "@/data/content";
 import { POLICY } from "@/lib/site";
 
-function readReservationId(state: unknown): string | null {
-  if (typeof state === "object" && state !== null && "reservationId" in state) {
-    const id = (state as { reservationId: unknown }).reservationId;
-    return typeof id === "string" ? id : null;
-  }
-  return null;
+interface ThankYouState {
+  reservationId: string | null;
+  carNames: string[];
+  /** Set once the success modal has been closed, so a refresh doesn't show it again */
+  celebrated: boolean;
+}
+
+function readState(state: unknown): ThankYouState {
+  const s = typeof state === "object" && state !== null ? (state as Record<string, unknown>) : {};
+  return {
+    reservationId: typeof s.reservationId === "string" ? s.reservationId : null,
+    carNames: Array.isArray(s.carNames) ? s.carNames.filter((n): n is string => typeof n === "string") : [],
+    celebrated: s.celebrated === true,
+  };
+}
+
+/** "Toyota Avalon", "Toyota Avalon and Lexus RX", "Toyota Avalon, Lexus RX and 1 more" */
+function listCars(names: string[]): string {
+  if (names.length <= 2) return names.join(" and ");
+  return `${names.slice(0, 2).join(", ")} and ${names.length - 2} more`;
 }
 
 export default function ThankYouPage() {
-  const reservationId = readReservationId(useLocation().state);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { reservationId, carNames, celebrated } = readState(location.state);
+  const [celebrating, setCelebrating] = useState(Boolean(reservationId) && !celebrated);
+
+  function closeCelebration() {
+    setCelebrating(false);
+    navigate(location.pathname, { replace: true, state: { reservationId, carNames, celebrated: true } });
+  }
+
+  const reservedText = carNames.length
+    ? `Your ${listCars(carNames)} ${carNames.length === 1 ? "is" : "are"} reserved.`
+    : "Your cars are reserved.";
 
   return (
     <>
+      {reservationId && (
+        <SuccessModal
+          open={celebrating}
+          onClose={closeCelebration}
+          title="Congratulations, {name}!"
+          fallbackTitle="Congratulations!"
+          description={`${reservedText} We'll call you within ${POLICY.responseTime} to plan the inspection.`}
+          reference={{ label: "Reservation", value: reservationId }}
+          actions={
+            <Button variant="navy" onClick={closeCelebration}>
+              See what happens next
+            </Button>
+          }
+        />
+      )}
       <section
         className="overflow-hidden rounded-b-hero bg-navy bg-cover bg-center text-white"
         style={{

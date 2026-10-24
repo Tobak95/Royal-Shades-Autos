@@ -3,12 +3,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ShieldCheck } from "lucide-react";
+import { ApiErrorAlert } from "@/components/feedback/ApiErrorAlert";
 import { Button } from "@/components/ui/Button";
 import { Checkbox } from "@/components/ui/Checkbox";
 import { Input } from "@/components/ui/Input";
 import { PasswordInput } from "@/components/ui/PasswordInput";
 import { useAuth } from "@/hooks/useAuth";
-import { getApiErrorMessage } from "@/lib/api";
 import { getRedirectPath, loginNotice, sessionExpired } from "@/lib/authRedirect";
 import { loginSchema, type LoginFormValues } from "@/lib/validators";
 import { login as loginRequest } from "@/services/authService";
@@ -20,7 +20,7 @@ export default function LoginPage() {
   const auth = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [serverError, setServerError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<unknown>(null);
   const { register, handleSubmit, formState } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: { email: "", password: "", remember: true },
@@ -57,7 +57,7 @@ export default function LoginPage() {
       auth.login(token, user, values.remember);
       navigate(redirectTo, { replace: true });
     } catch (error) {
-      setServerError(getApiErrorMessage(error, "Incorrect email or password."));
+      setServerError(error);
     }
   }
 
@@ -104,7 +104,7 @@ export default function LoginPage() {
           }
         />
         <Checkbox label="Keep me signed in" {...register("remember")} />
-        {serverError && <FormAlert tone="error">{serverError}</FormAlert>}
+        <ApiErrorAlert error={serverError} fallback="That email and password don't match. Check for a typo, or reset your password." onRetry={handleSubmit(onSubmit)} retrying={isSubmitting} />
         <Button type="submit" size="lg" fullWidth loading={isSubmitting}>
           {isSubmitting ? "Logging in…" : "Log in"}
         </Button>

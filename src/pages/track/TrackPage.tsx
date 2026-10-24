@@ -3,7 +3,7 @@ import { Anchor, Compass } from "lucide-react";
 import { ImportSteps } from "@/components/content/ImportSteps";
 import { Container } from "@/components/layout/Container";
 import { PageHero } from "@/components/layout/PageHero";
-import { ArcLoader } from "@/components/ui/ArcLoader";
+import { PageLoader } from "@/components/feedback/PageLoader";
 import { ButtonLink } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -46,7 +46,7 @@ export default function TrackPage() {
             </div>
           </div>
         ) : loading ? (
-          <ArcLoader fullScreen label="Finding your car" className="min-h-[40vh]" />
+          <PageLoader label="Finding your car" className="min-h-[40vh]" />
         ) : result ? (
           <div aria-live="polite" className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
             <VoyageTracker car={result.car} shipment={result.shipment} showRoute />

@@ -3,7 +3,7 @@ import { ChevronDown, LogOut, Menu } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useMenuButton } from "@/hooks/useMenuButton";
 import { useSignOut } from "@/hooks/useSignOut";
-import { cn, getInitials } from "@/lib/utils";
+import { cn, firstName, getInitials } from "@/lib/utils";
 
 interface AdminTopBarProps {
   onOpenSidebar: () => void;
@@ -16,7 +16,7 @@ export function AdminTopBar({ onOpenSidebar, sidebarOpen }: AdminTopBarProps) {
   const signOut = useSignOut();
   const { open, close, wrapperRef, buttonRef, menuRef, buttonProps, menuProps } = useMenuButton();
   if (!user) return null;
-  const firstName = user.fullName.trim().split(/\s+/)[0] || user.email;
+  const name = firstName(user.fullName) || user.email;
 
   return (
     <header className="sticky top-0 z-30 flex min-h-[72px] items-center gap-3 border-b border-line bg-surface px-4 md:px-8">
@@ -31,7 +31,7 @@ export function AdminTopBar({ onOpenSidebar, sidebarOpen }: AdminTopBarProps) {
       </button>
 
       <p className="min-w-0 flex-1 truncate text-lg font-light md:text-xl">
-        Welcome back, <span className="font-semibold">{firstName}</span>
+        Welcome back, <span className="font-semibold">{name}</span>
       </p>
 
       <div ref={wrapperRef} className="relative">

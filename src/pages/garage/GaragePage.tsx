@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, ArrowRightLeft, ShieldCheck } from "lucide-react";
-import { GarageIcon } from "@/components/icons";
+import { EmptyGarage } from "@/components/feedback/EmptyStates";
 import { TotalsBreakdown } from "@/components/garage/TotalsBreakdown";
 import { Container } from "@/components/layout/Container";
 import { AccentText } from "@/components/ui/AccentText";
@@ -51,18 +51,7 @@ export default function GaragePage() {
           {cars.map((car) => (
             <GarageItem key={car.id} car={car} onRemove={() => garage.remove(car.id)} />
           ))}
-          {empty && (
-            <div className="rounded-panel border-[1.5px] border-dashed border-line-strong bg-surface px-6 py-[52px] text-center">
-              <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-gold-tint text-gold-text">
-                <GarageIcon size={26} />
-              </span>
-              <h2 className="mt-3.5 text-xl font-extrabold">Your garage is empty</h2>
-              <p className="mt-1.5 mb-5 text-sm text-muted">Add cars from the showroom to reserve them.</p>
-              <ButtonLink to="/cars" variant="navy">
-                Explore the showroom
-              </ButtonLink>
-            </div>
-          )}
+          {empty && <EmptyGarage />}
 
           {/* Swap add-on */}
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-panel bg-navy px-[22px] py-5 text-white">

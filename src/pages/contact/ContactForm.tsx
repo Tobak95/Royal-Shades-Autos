@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useSearchParams } from "react-router-dom";
 import { CircleCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -12,9 +13,17 @@ import { wait } from "@/lib/utils";
 /** No contact endpoint exists yet, so a successful submit is simulated */
 export function ContactForm() {
   const [sent, setSent] = useState(false);
+  // ?subject=&message= prefill, e.g. "Request this car" from an empty showroom search
+  const [params] = useSearchParams();
   const { register, handleSubmit, reset, formState } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { fullName: "", email: "", phone: "", subject: "", message: "" },
+    defaultValues: {
+      fullName: "",
+      email: "",
+      phone: "",
+      subject: params.get("subject")?.slice(0, 120) ?? "",
+      message: params.get("message")?.slice(0, 1000) ?? "",
+    },
   });
   const { errors, isSubmitting } = formState;
 

@@ -29,7 +29,8 @@ import TermsPage from "@/pages/TermsPage";
 import ThankYouPage from "@/pages/ThankYouPage";
 import TrackPage from "@/pages/track/TrackPage";
 
-const slim: RouteHandle = { footer: "slim" };
+// Auth pages and checkout: no "Ready for your next car?" card in the footer
+const noCta: RouteHandle = { footerCta: false };
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
       { path: "garage", element: <GaragePage /> },
       {
         path: "reserve",
+        handle: noCta,
         element: (
           <ProtectedRoute>
             <ReservePage />
@@ -59,11 +61,11 @@ export const router = createBrowserRouter([
       { path: "sell", element: <PlaceholderPage title="Sell your *car*" crumb="Sell" /> },
 
       // Auth
-      { path: "login", element: <LoginPage />, handle: slim },
-      { path: "register", element: <SignUpPage />, handle: slim },
-      { path: "forgot-password", element: <ForgotPasswordPage />, handle: slim },
-      { path: "reset-password/:token", element: <ResetPasswordPage />, handle: slim },
-      { path: "verify-email/:token", element: <VerifyEmailPage />, handle: slim },
+      { path: "login", element: <LoginPage />, handle: noCta },
+      { path: "register", element: <SignUpPage />, handle: noCta },
+      { path: "forgot-password", element: <ForgotPasswordPage />, handle: noCta },
+      { path: "reset-password/:token", element: <ResetPasswordPage />, handle: noCta },
+      { path: "verify-email/:token", element: <VerifyEmailPage />, handle: noCta },
 
       // TEMPORARY: account (Phase 4)
       {

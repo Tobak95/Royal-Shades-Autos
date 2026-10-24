@@ -1,19 +1,26 @@
 import { useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { SearchX } from "lucide-react";
 import { CarGrid } from "@/components/car/CarGrid";
+import { NoSearchResults } from "@/components/feedback/EmptyStates";
 import { Container } from "@/components/layout/Container";
 import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/Button";
 import { Drawer } from "@/components/ui/Drawer";
-import { EmptyState } from "@/components/ui/EmptyState";
 import { Pagination } from "@/components/ui/Pagination";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { useQuery } from "@/hooks/useQuery";
+import { formatNairaShort } from "@/lib/utils";
 import { DEFAULT_PAGE_SIZE, getCars, getFilterOptions } from "@/services/carService";
 import { FilterPanel } from "./FilterPanel";
 import { countActiveFilters, parseFilters, patchParams, SIDEBAR_KEYS, type FilterPatch } from "./filterParams";
 import { ShowroomToolbar } from "./ShowroomToolbar";
+
+/** "Lexus GX under ₦20M" from the search and main filters, for the empty state */
+function searchSummary(filters: ReturnType<typeof parseFilters>): string | undefined {
+  const what = [filters.q || filters.make.join(" or "), filters.body.join(" or ")].filter(Boolean).join(" ");
+  const price = filters.maxPrice ? `under ${formatNairaShort(filters.maxPrice)}` : "";
+  return [what, price].filter(Boolean).join(" ") || undefined;
+}
 
 export default function ShowroomPage() {
   const [params, setParams] = useSearchParams();
@@ -96,14 +103,7 @@ export default function ShowroomPage() {
               loading={loading}
               skeletonCount={DEFAULT_PAGE_SIZE}
               className="lg:grid-cols-2 xl:grid-cols-3"
-              empty={
-                <EmptyState
-                  icon={<SearchX aria-hidden="true" className="size-6" />}
-                  title="No cars match your search"
-                  description="Try removing a filter or searching for a different make or model. New cars land every few weeks."
-                  action={<Button onClick={clearAll}>Clear all filters</Button>}
-                />
-              }
+              empty={<NoSearchResults summary={searchSummary(filters)} onClear={clearAll} />}
             />
           </div>
 

@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { SearchX } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { FadeUp } from "@/components/motion/FadeUp";
-import { ArcLoader } from "@/components/ui/ArcLoader";
+import { PageLoader } from "@/components/feedback/PageLoader";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { ButtonLink } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
@@ -20,7 +20,7 @@ export default function CarDetailsPage() {
   const { slug = "" } = useParams();
   const { data: car, loading } = useQuery(`car-${slug}`, () => getCarBySlug(slug));
 
-  if (loading) return <ArcLoader fullScreen label="Loading car details" />;
+  if (loading) return <PageLoader label="Loading car details" />;
 
   if (!car) {
     return (

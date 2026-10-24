@@ -43,14 +43,24 @@ api.interceptors.response.use(
   },
 );
 
-/** Pulls the backend's `message` out of an axios error, with a readable fallback */
-export function getApiErrorMessage(error: unknown, fallback = "Something went wrong. Please try again."): string {
-  if (axios.isAxiosError<{ message?: string }>(error)) {
-    if (error.code === "ECONNABORTED" || error.code === "ETIMEDOUT") {
-      return "The server is taking too long to respond. It may be starting up, so please try again in a minute.";
-    }
-    if (!error.response) return "We couldn't reach the server. Check your connection and try again.";
-    return error.response.data?.message ?? fallback;
+/** No response at all: offline, flaky data, or the server is asleep / unreachable */
+export function isNetworkError(error: unknown): boolean {
+  return axios.isAxiosError(error) && !error.response;
+}
+
+/**
+ * A friendly, specific message for any failed request. The backend's own `message` is used
+ * for 4xx answers (it's usually specific, e.g. "Email already in use"); everything else
+ * gets plain words about what happened and what to do next.
+ */
+export function getApiErrorMessage(error: unknown, fallback = "Something went wrong on our side. Please try again."): string {
+  if (!axios.isAxiosError<{ message?: string }>(error)) return fallback;
+  if (error.code === "ECONNABORTED" || error.code === "ETIMEDOUT") {
+    return "The server is taking a while to wake up. Give it a minute, then try again.";
   }
-  return fallback;
+  if (!error.response) return "We couldn't reach the server. Check your data or Wi-Fi and try again.";
+  const { status, data } = error.response;
+  if (status === 429) return "That's a lot of tries in a short time. Wait a minute, then try again.";
+  if (status >= 500) return "Something went wrong on our side, not yours. Please try again in a minute.";
+  return data?.message ?? fallback;
 }

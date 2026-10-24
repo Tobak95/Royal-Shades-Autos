@@ -1,4 +1,5 @@
 import { useId, type ComponentProps, type ReactNode } from "react";
+import { CircleAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type CheckboxProps = Omit<ComponentProps<"input">, "type"> & {
@@ -25,7 +26,8 @@ export function Checkbox({ label, error, containerClassName, className, id, ...p
         <span>{label}</span>
       </label>
       {error && (
-        <p id={`${inputId}-error`} role="alert" className="text-xs font-medium text-sold">
+        <p id={`${inputId}-error`} role="alert" className="flex items-start gap-1.5 text-[13px] leading-snug font-medium text-sold">
+          <CircleAlert aria-hidden="true" className="mt-px size-4 flex-none" strokeWidth={2.2} />
           {error}
         </p>
       )}

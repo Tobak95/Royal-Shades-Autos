@@ -63,7 +63,7 @@ export default function AboutPage() {
 
       <ArcDivider />
 
-      <section className="pt-10 pb-20">
+      <section id="how-it-works" className="pt-10 pb-20">
         <Container>
           <SectionHeading eyebrow="Simple and transparent" title="How importing *works*" align="center" />
           <ImportSteps steps={IMPORT_STEPS} className="mt-12" />

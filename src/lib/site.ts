@@ -26,6 +26,8 @@ export const POLICY = {
   freeLagosDelivery: true,
   /** How quickly the team replies, used in sentences: "within one working day" */
   responseTime: "one working day",
+  /** Sell and swap: hours from inspection to our offer */
+  offerWithinHours: 72,
 } as const;
 
 /** "10%", derived from POLICY.depositRate */
@@ -49,30 +51,35 @@ export interface FooterColumn {
   links: NavItem[];
 }
 
+/** Link columns in the footer; "Visit or call" is built from CONTACT */
 export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     heading: "Cars",
     links: [
       { label: "Buy a car", to: "/cars" },
-      { label: "Swap", to: "/swap" },
-      { label: "Sell", to: "/sell" },
-    ],
-  },
-  {
-    heading: "Import",
-    links: [
-      { label: "Track a car", to: "/track" },
-      { label: "Incoming cars", to: "/cars?status=arriving" },
-      { label: "FAQs", to: "/faqs" },
+      { label: "Swap your car", to: "/swap" },
+      { label: "Sell your car", to: "/sell" },
+      { label: "Track an import", to: "/track" },
+      { label: "Recently sold", to: "/cars?status=sold" },
     ],
   },
   {
     heading: "Company",
     links: [
-      { label: "About", to: "/about" },
+      { label: "About us", to: "/about" },
+      { label: "How it works", to: "/about#how-it-works" },
+      { label: "FAQs", to: "/faqs" },
       { label: "Contact", to: "/contact" },
-      { label: "Privacy", to: "/privacy" },
-      { label: "Terms", to: "/terms" },
     ],
   },
+];
+
+export type SocialNetwork = "instagram" | "tiktok" | "facebook" | "youtube";
+
+/** Profile URLs not supplied yet; empty ones show as disabled icons */
+export const SOCIAL_LINKS: { network: SocialNetwork; label: string; url: string }[] = [
+  { network: "instagram", label: "Instagram", url: "" },
+  { network: "tiktok", label: "TikTok", url: "" },
+  { network: "facebook", label: "Facebook", url: "" },
+  { network: "youtube", label: "YouTube", url: "" },
 ];

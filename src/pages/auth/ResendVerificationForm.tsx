@@ -3,10 +3,11 @@ import { z } from "zod";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { getApiErrorMessage } from "@/lib/api";
+import { EMAIL_INVALID } from "@/lib/validators";
 import { resendVerificationEmail } from "@/services/authService";
 import { FormAlert } from "./FormAlert";
 
-const emailSchema = z.email("Enter a valid email address");
+const emailSchema = z.email(EMAIL_INVALID);
 
 type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "error"; message: string };
 

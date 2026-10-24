@@ -2,19 +2,19 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";
-import { ArrowLeft, MailCheck } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import { ApiErrorAlert } from "@/components/feedback/ApiErrorAlert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { getApiErrorMessage } from "@/lib/api";
 import { forgotPasswordSchema, type ForgotPasswordFormValues } from "@/lib/validators";
 import { forgotPassword } from "@/services/authService";
 import { CAR_IMAGES } from "@/data/carImages";
 import { AuthScreen } from "./AuthScreen";
-import { FormAlert } from "./FormAlert";
+import { CheckEmail } from "./CheckEmail";
 
 export default function ForgotPasswordPage() {
   const [sentTo, setSentTo] = useState<string | null>(null);
-  const [serverError, setServerError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<unknown>(null);
   const { register, handleSubmit, formState } = useForm<ForgotPasswordFormValues>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: { email: "" },
@@ -27,7 +27,7 @@ export default function ForgotPasswordPage() {
       await forgotPassword(email.trim());
       setSentTo(email.trim());
     } catch (error) {
-      setServerError(getApiErrorMessage(error, "We couldn't send the reset link. Please try again."));
+      setServerError(error);
     }
   }
 
@@ -46,16 +46,16 @@ export default function ForgotPasswordPage() {
       subtitle="Enter the email you signed up with and we'll send you a link to choose a new password."
     >
       {sentTo ? (
-        <div role="status" className="mt-7 flex flex-col items-start gap-3">
-          <span className="flex size-12 items-center justify-center rounded-full bg-gold-tint text-gold-text">
-            <MailCheck aria-hidden="true" className="size-6" />
-          </span>
-          <p className="text-sm leading-relaxed text-muted">
-            If an account exists for <strong className="text-ink">{sentTo}</strong>, a reset link is on its way. Check
-            your inbox and spam folder.
-          </p>
+        <>
+          <CheckEmail
+            email={sentTo}
+            purpose="reset"
+            onResend={() => forgotPassword(sentTo)}
+            onBack={() => setSentTo(null)}
+            backLabel="Use a different email"
+          />
           {backToLogin}
-        </div>
+        </>
       ) : (
         <>
           <form noValidate onSubmit={handleSubmit(onSubmit)} className="mt-7 flex flex-col gap-4">
@@ -67,7 +67,7 @@ export default function ForgotPasswordPage() {
               {...register("email")}
               error={errors.email?.message}
             />
-            {serverError && <FormAlert tone="error">{serverError}</FormAlert>}
+            <ApiErrorAlert error={serverError} fallback="We couldn't send the reset link. Please try again." onRetry={handleSubmit(onSubmit)} retrying={isSubmitting} />
             <Button type="submit" size="lg" fullWidth loading={isSubmitting}>
               {isSubmitting ? "Sending…" : "Send reset link"}
             </Button>

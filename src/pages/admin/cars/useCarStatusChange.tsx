@@ -4,7 +4,7 @@ import { STATUS_META } from "@/lib/status";
 import { carName } from "@/lib/voyage";
 import { AdminError, changeCarStatus, suggestTrackingNumber, type ShipmentDetails } from "@/services/adminCarService";
 import type { Car, CarStatus } from "@/types";
-import { ConfirmModal } from "../ConfirmModal";
+import { ConfirmDialog } from "@/components/feedback/ConfirmDialog";
 import { emptyShipment } from "./carFormSchema";
 import { ShipmentDialog } from "./ShipmentDialog";
 
@@ -48,7 +48,7 @@ export function useCarStatusChange(): { request: (car: Car, status: CarStatus) =
         onCancel={() => setPending(null)}
       />
     ) : (
-      <ConfirmModal
+      <ConfirmDialog
         open={pending?.status === "sold"}
         title="Mark this car as sold?"
         description={
@@ -60,7 +60,6 @@ export function useCarStatusChange(): { request: (car: Car, status: CarStatus) =
           )
         }
         confirmLabel="Mark as sold"
-        danger
         busy={pending ? busyId === pending.car.id : false}
         onConfirm={() => pending && void apply(pending.car, "sold")}
         onCancel={() => setPending(null)}

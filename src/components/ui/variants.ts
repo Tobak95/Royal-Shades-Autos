@@ -47,6 +47,6 @@ export function fieldVariants(hasError = false): string {
     "w-full rounded-control border bg-page px-4 text-sm text-ink transition-[border-color,box-shadow,background-color] duration-200",
     "placeholder:text-faint focus:border-gold focus:bg-surface focus:shadow-[0_0_0_3px_rgb(212_175_90/0.2)] focus:outline-none",
     "disabled:cursor-not-allowed disabled:opacity-60",
-    hasError ? "border-sold" : "border-line",
+    hasError ? "border-[1.5px] border-sold bg-surface shadow-[0_0_0_4px_rgb(178_59_53/0.12)]" : "border-line",
   );
 }

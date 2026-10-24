@@ -64,6 +64,43 @@
   --animate-rise: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-bob: bob 4.5s ease-in-out infinite;
   --animate-kenburns: kenburns 14s ease-in-out infinite alternate;
+  --animate-sway: sway 3s ease-in-out infinite;
+  --animate-drive: drive 3s ease-in-out infinite;
+  --animate-dot: dot 1.2s ease-in-out infinite;
+  --animate-spin-ring: spin 1.1s linear infinite;
+
+  /* 404 road sign swings from its base */
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(4deg);
+    }
+  }
+
+  /* Empty-search car rolls back and forth */
+  @keyframes drive {
+    0%,
+    100% {
+      transform: translateX(-10px);
+    }
+    50% {
+      transform: translateX(10px);
+    }
+  }
+
+  /* Loader "…" dots */
+  @keyframes dot {
+    0%,
+    100% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
 
   @keyframes pulse-gold {
     0% {

@@ -4,16 +4,15 @@ import { SessionGuard } from "@/components/routing/SessionGuard";
 import { Footer } from "./Footer";
 import { Navbar } from "./Navbar";
 import { ScrollManager } from "./ScrollManager";
-import { SlimFooter } from "./SlimFooter";
 import { TopInfoBar } from "./TopInfoBar";
 
 /**
  * Per-route layout options via `handle`:
- * - footer: "slim" for the one-line footer
+ * - footerCta: false hides the gold "Ready for your next car?" card (auth pages, reserve)
  * - topBar: true for the address / WhatsApp bar above the navbar (home page)
  */
 export interface RouteHandle {
-  footer?: "full" | "slim";
+  footerCta?: boolean;
   topBar?: boolean;
 }
 
@@ -26,7 +25,7 @@ export function RootLayout() {
   const handles = useMatches()
     .map((match) => match.handle)
     .filter(isRouteHandle);
-  const slimFooter = handles.some((h) => h.footer === "slim");
+  const hideCta = handles.some((h) => h.footerCta === false);
   const topBar = handles.some((h) => h.topBar);
 
   return (
@@ -52,7 +51,7 @@ export function RootLayout() {
           <Outlet />
         </motion.div>
       </main>
-      {slimFooter ? <SlimFooter /> : <Footer />}
+      <Footer showCta={!hideCta} />
     </div>
   );
 }
