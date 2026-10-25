@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Royal Shades Autos — Your Garage</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F6F8}
+a{color:#8A6620;text-decoration:none}a:hover{color:#5F4510}
+.nav a{color:#D8DEE8}.nav a:hover{color:#E5C27A}
+.btn-gold{transition:background .2s ease,transform .2s ease}.btn-gold:hover{background:#E5C27A!important;transform:translateY(-1px)}
+.btn-navy:hover{background:#1B3556!important}
+.rm:hover{color:#B23B35!important;border-color:#E7B4B1!important;background:#FDF2F1!important}
+.item{transition:box-shadow .25s ease}.item:hover{box-shadow:0 20px 40px -28px rgba(11,27,46,.35)}
+.item img{transition:transform .5s ease}.item:hover img{transform:scale(1.05)}
+@media (prefers-reduced-motion: reduce){.item,.item img{transition:none}}
+</style>
+</helmet>
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #0B1B2E; background: #F5F6F8; min-width: 0;">
+
+<header style="background: #0B1B2E;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;">
+    <a href="home-v2.html" aria-label="Royal Shades Autos home"><img src="../src/assets/logo.png" alt="The Royal Shades Autos Limited" style="height: 50px; width: auto; display: block;"></a>
+    <nav class="nav" aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 15px; font-weight: 600;">
+      <a href="home-v2.html">Buy a car</a><a href="home-v2.html">Swap</a><a href="home-v2.html">Sell</a><a href="home-v2.html">Track import</a>
+    </nav>
+    <span style="background: #D4AF5A; color: #0B1B2E; font-weight: 700; font-size: 14px; padding: 0 18px; height: 44px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px;">
+      <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg>Garage · {{count}}
+    </span>
+  </div>
+</header>
+
+<main style="max-width: 1240px; margin: 0 auto; padding: 30px 24px 90px;">
+  <nav aria-label="Breadcrumb" style="font-size: 14px; color: #5A6474;"><a href="home-v2.html" style="color: #5A6474;">Home</a> <span style="margin: 0 6px;">›</span> <span style="color: #0B1B2E; font-weight: 600;">Your Garage</span></nav>
+  <div style="font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #8A6620; margin-top: 22px;">Ready when you are</div>
+  <h1 style="margin: 8px 0 0; font-size: 46px; font-weight: 800; letter-spacing: -0.035em;">Your <span style="color: #8A6620;">Garage</span></h1>
+  <p style="margin: 8px 0 0; font-size: 16px; color: #5A6474;">{{countText}}</p>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 28px; margin-top: 30px; align-items: flex-start;">
+    <!-- Items -->
+    <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+      <sc-for list="{{items}}" as="it" hint-placeholder-count="2">
+        <article class="item" style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 20px; padding: 16px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+          <a href="car-details-v2.html" style="width: 210px; height: 140px; flex: none; border-radius: 14px; overflow: hidden; display: block; background: #E9ECF1;">
+            <img src="{{it.img}}" alt="{{it.alt}}" style="width: 100%; height: 100%; object-fit: cover; object-position: center 62%; display: block;">
+          </a>
+          <div style="flex: 1 1 220px; min-width: 0; display: flex; flex-direction: column; gap: 7px;">
+            <span style="{{it.badgeStyle}}"><span style="{{it.dotStyle}}"></span>{{it.statusLabel}}</span>
+            <h2 style="margin: 0; font-size: 20px; font-weight: 800;">{{it.name}}</h2>
+            <div style="font-size: 13px; color: #5A6474;">{{it.body}} · {{it.color}} · [Year]</div>
+            <div style="font-size: 13px; color: #3D4757; display: flex; align-items: center; gap: 6px;">
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>{{it.note}}
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 12px; margin-left: auto;">
+            <div style="font-size: 22px; font-weight: 800; letter-spacing: -0.02em;">{{it.priceText}}</div>
+            <button type="button" class="rm" onClick="{{it.remove}}" style="min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1.5px solid #E3E6EB; background: #FFFFFF; color: #5A6474; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+              <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"></path></svg>Remove
+            </button>
+          </div>
+        </article>
+      </sc-for>
+
+      <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+        <div style="background: #FFFFFF; border: 1.5px dashed #CBD2DC; border-radius: 20px; padding: 52px 24px; text-align: center;">
+          <span style="width: 56px; height: 56px; border-radius: 16px; background: #FBF3E1; display: inline-flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path><path d="M8 20v-5h8v5"></path></svg></span>
+          <div style="font-size: 20px; font-weight: 800; margin-top: 14px;">Your garage is empty</div>
+          <p style="margin: 6px 0 20px; font-size: 14px; color: #5A6474;">Add cars from the showroom to reserve them.</p>
+          <button type="button" class="btn-navy" onClick="{{reset}}" style="height: 48px; padding: 0 22px; border-radius: 12px; border: 0; background: #0B1B2E; color: #FFFFFF; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer;">Restore sample cars</button>
+        </div>
+      </sc-if>
+
+      <!-- Swap add-on -->
+      <div style="background: #0B1B2E; color: #FFFFFF; border-radius: 20px; padding: 20px 22px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+        <div style="display: flex; gap: 14px; align-items: center;">
+          <span style="width: 44px; height: 44px; border-radius: 12px; background: rgba(212,175,90,.16); display: flex; align-items: center; justify-content: center; flex: none;"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E5C27A" stroke-width="2" stroke-linecap="round"><path d="M4 7h11l-3-3M20 17H9l3 3"></path></svg></span>
+          <div><div style="font-weight: 800;">Swapping your current car?</div><div style="font-size: 14px; color: #AEB8C6; margin-top: 2px;">Add it here and we'll take its value off your balance.</div></div>
+        </div>
+        <a class="btn-gold" href="home-v2.html" style="background: #D4AF5A; color: #0B1B2E; font-weight: 700; font-size: 14px; padding: 0 18px; height: 46px; border-radius: 12px; display: inline-flex; align-items: center;">Add my car</a>
+      </div>
+
+      <a href="home-v2.html" style="font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; align-self: flex-start;">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>Continue browsing the showroom
+      </a>
+    </div>
+
+    <!-- Summary -->
+    <aside style="flex: 1 1 340px; background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 22px; padding: 26px; box-sizing: border-box; box-shadow: 0 24px 50px -36px rgba(11,27,46,.45);">
+      <h2 style="margin: 0; font-size: 20px; font-weight: 800;">Reservation summary</h2>
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 20px; font-size: 14px;">
+        <div style="display: flex; justify-content: space-between; gap: 12px;"><span style="color: #5A6474;">Cars ({{count}})</span><span style="font-weight: 700;">{{subtotalText}}</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px;"><span style="color: #5A6474;">Swap credit</span><span style="font-weight: 700; color: #8E99A9;">Not added</span></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px;"><span style="color: #5A6474;">Delivery within Lagos</span><span style="font-weight: 700;">[Policy]</span></div>
+        <div style="height: 1px; background: #EEF0F3;"></div>
+        <div style="display: flex; justify-content: space-between; gap: 12px;"><span style="color: #5A6474;">Balance on pickup</span><span style="font-weight: 700;">{{balanceText}}</span></div>
+      </div>
+      <div style="margin-top: 20px; background: #0B1B2E; color: #FFFFFF; border-radius: 16px; padding: 18px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+          <span style="font-size: 13px; color: #C9D2DE; font-weight: 600;">Due today · [10%] deposit</span>
+          <span style="font-size: 28px; font-weight: 800; color: #E5C27A; letter-spacing: -0.02em;">{{depositText}}</span>
+        </div>
+        <div style="font-size: 12px; color: #AEB8C6; margin-top: 6px; line-height: 1.5;">Holds your cars while we prepare the paperwork.</div>
+      </div>
+      <a class="btn-gold" href="home-v2.html" style="margin-top: 18px; height: 54px; border-radius: 12px; background: #D4AF5A; color: #0B1B2E; font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 10px;">Continue to reservation
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+      </a>
+      <div style="display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; font-size: 12px; color: #5A6474; line-height: 1.55;">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 1px;"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path></svg>
+        Pay by bank transfer. Incoming cars get a tracking number as soon as your deposit clears.
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer style="background: #0B1B2E; color: #8E99A9; border-radius: 32px 32px 0 0;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px;"><span>© 2026 The Royal Shades Autos Limited</span><span>Lagos, Nigeria</span></div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { removed: [] }; }
+  renderVals() {
+    var self = this;
+    var ALL = [
+      { id: 'avalon', name: 'Toyota Avalon XLE', body: 'Sedan', color: 'Plum', price: 32000000, status: 'available', note: 'In our Lagos yard. Inspect any day this week.', img: '../public/cars/avalon-front.jpg', alt: 'Plum Toyota Avalon XLE' },
+      { id: 'rx', name: 'Lexus RX 350', body: 'SUV', color: 'Silver', price: 68500000, status: 'arriving', note: 'On MV Grande Lagos. ETA 14 Nov 2026.', img: '../public/cars/lexus-rx.jpg', alt: 'Silver Lexus RX 350' }
+    ];
+    var META = {
+      available: { label: 'Available', fg: '#1F7A4D', bg: '#E8F6EE', dot: '#1F9D61' },
+      arriving: { label: 'Arriving', fg: '#1F4FA8', bg: '#EAF1FD', dot: '#2F6FDB' }
+    };
+    var fmt = function (n) { return '₦' + new Intl.NumberFormat('en-NG').format(Math.round(n)); };
+    var removed = this.state.removed;
+    var list = ALL.filter(function (c) { return removed.indexOf(c.id) === -1; });
+    var items = list.map(function (c) {
+      var m = META[c.status];
+      return Object.assign({}, c, {
+        priceText: fmt(c.price), statusLabel: m.label,
+        badgeStyle: 'align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 999px; color: ' + m.fg + '; background: ' + m.bg + ';',
+        dotStyle: 'width: 6px; height: 6px; border-radius: 999px; background: ' + m.dot + ';',
+        remove: function () { self.setState({ removed: removed.concat([c.id]) }); }
+      });
+    });
+    var subtotal = list.reduce(function (s, c) { return s + c.price; }, 0);
+    var deposit = subtotal * 0.1;
+    return {
+      items: items, count: list.length, empty: list.length === 0,
+      countText: list.length === 0 ? 'No cars saved yet.' : list.length + (list.length === 1 ? ' car' : ' cars') + ' saved. Every car is one of one, so there are no quantities.',
+      subtotalText: fmt(subtotal), depositText: fmt(deposit), balanceText: fmt(subtotal - deposit),
+      reset: function () { self.setState({ removed: [] }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

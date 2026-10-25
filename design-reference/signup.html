@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Royal Shades Autos — Sign up</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0A0A0B}
+a{color:#DEBB6E;text-decoration:none}a:hover{color:#F0D9A4}
+.auth-bg{background-image:linear-gradient(270deg,rgba(10,10,11,.1) 0%,rgba(10,10,11,.6) 45%,rgba(10,10,11,.96) 68%,#0A0A0B 100%),linear-gradient(0deg,#0A0A0B 0%,rgba(10,10,11,0) 35%),url("../src/assets/car.avif");background-size:cover;background-position:right center}
+.navlink{color:#D4D4D8}.navlink:hover{color:#DEBB6E}
+.btn-gold:hover{background:#F0D9A4!important}
+.field:focus{outline:none;border-color:#DEBB6E!important;box-shadow:0 0 0 3px rgba(222,187,110,.18)}
+</style>
+</helmet>
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #FFFFFF; background: #0A0A0B; min-width: 0;">
+
+<header style="border-bottom: 1px solid rgba(255,255,255,.06);">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+    <a href="home.html" aria-label="Royal Shades Autos home"><img src="../src/assets/logo.png" alt="The Royal Shades Autos Limited" style="height: 54px; width: auto; display: block;"></a>
+    <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 14px; font-weight: 500;">
+      <a class="navlink" href="home.html">Home</a><a class="navlink" href="home.html">Showroom</a><a class="navlink" href="home.html">Track</a><a class="navlink" href="home.html">Contact</a>
+    </nav>
+    <a href="login.html" style="font-size: 14px; font-weight: 600;">Log in</a>
+  </div>
+</header>
+
+<section class="auth-bg" style="min-height: 860px; display: flex; align-items: center;">
+  <div style="max-width: 1240px; width: 100%; margin: 0 auto; padding: 56px 24px; box-sizing: border-box; display: flex; justify-content: flex-start;">
+    <div style="flex: 0 1 560px; background: rgba(20,20,23,.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(222,187,110,.3); border-radius: 20px; padding: 40px 36px; box-sizing: border-box;">
+      <div style="font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: #DEBB6E; font-weight: 600;">Join Royal Shades</div>
+      <h1 style="margin: 10px 0 0; font-size: 38px; font-weight: 800; letter-spacing: -0.025em;">Create your <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; color: #DEBB6E; font-size: 1.15em;">account</span></h1>
+      <p style="margin: 8px 0 0; font-size: 14px; color: #A1A1AA;">Already have an account? <a href="login.html" style="font-weight: 600;">Log in</a></p>
+
+      <form style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 28px;">
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label for="su-name" style="font-size: 13px; font-weight: 600; color: #D4D4D8;">Full name</label>
+          <input id="su-name" class="field" type="text" placeholder="Ayo Bello" style="height: 50px; background: #1C1C21; border: 1px solid #2A2A30; border-radius: 10px; color: #FFFFFF; font: inherit; font-size: 14px; padding: 0 16px;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label for="su-phone" style="font-size: 13px; font-weight: 600; color: #D4D4D8;">Phone number</label>
+          <input id="su-phone" class="field" type="tel" placeholder="+234 801 234 5678" style="height: 50px; background: #1C1C21; border: 1px solid #2A2A30; border-radius: 10px; color: #FFFFFF; font: inherit; font-size: 14px; padding: 0 16px;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px; grid-column: 1 / -1;">
+          <label for="su-email" style="font-size: 13px; font-weight: 600; color: #D4D4D8;">Email</label>
+          <input id="su-email" class="field" type="email" placeholder="you@example.com" style="height: 50px; background: #1C1C21; border: 1px solid #2A2A30; border-radius: 10px; color: #FFFFFF; font: inherit; font-size: 14px; padding: 0 16px;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label for="su-pass" style="font-size: 13px; font-weight: 600; color: #D4D4D8;">Password</label>
+          <input id="su-pass" class="field" type="password" placeholder="At least 8 characters" style="height: 50px; background: #1C1C21; border: 1px solid #2A2A30; border-radius: 10px; color: #FFFFFF; font: inherit; font-size: 14px; padding: 0 16px;">
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label for="su-pass2" style="font-size: 13px; font-weight: 600; color: #D4D4D8;">Confirm password</label>
+          <input id="su-pass2" class="field" type="password" placeholder="Re-enter password" style="height: 50px; background: #1C1C21; border: 1px solid #2A2A30; border-radius: 10px; color: #FFFFFF; font: inherit; font-size: 14px; padding: 0 16px;">
+        </div>
+        <div style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 6px;">
+          <div style="display: flex; gap: 6px;">
+            <span style="flex: 1; height: 4px; border-radius: 4px; background: #DEBB6E;"></span>
+            <span style="flex: 1; height: 4px; border-radius: 4px; background: #DEBB6E;"></span>
+            <span style="flex: 1; height: 4px; border-radius: 4px; background: #2A2A30;"></span>
+            <span style="flex: 1; height: 4px; border-radius: 4px; background: #2A2A30;"></span>
+          </div>
+          <span style="font-size: 12px; color: #A1A1AA;">Password strength: <strong style="color: #DEBB6E; font-weight: 600;">Fair</strong>. Add a number or symbol.</span>
+        </div>
+        <label style="grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; font-size: 13px; color: #B4B4BC; min-height: 44px;">
+          <input type="checkbox" style="width: 18px; height: 18px; accent-color: #DEBB6E; flex: none;"> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+        </label>
+        <a class="btn-gold" href="home.html" style="grid-column: 1 / -1; height: 52px; border-radius: 10px; background: #DEBB6E; color: #0A0A0B; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center;">Create account</a>
+      </form>
+      <p style="margin: 18px 0 0; font-size: 13px; color: #A1A1AA; line-height: 1.6;">We'll send a verification link to your email before your first reservation.</p>
+    </div>
+  </div>
+</section>
+
+<footer style="border-top: 1px solid #1E1E23;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: #8A8A94;">
+    <span>© 2026 The Royal Shades Autos Limited</span><span>Lagos, Nigeria</span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,7 +1,275 @@
 @import "tailwindcss";
-@plugin "daisyui";
 
-.layout{
-    @apply lg:max-w-[1240px] w-full mx-auto 
+/* v2 "Light navy & gold" design tokens */
+@theme {
+  /* Navy */
+  --color-navy: #0b1b2e;
+  --color-navy-2: #132a45;
+  --color-navy-3: #1b3556;
+
+  /* Gold */
+  --color-gold: #d4af5a; /* buttons and accents on navy and white */
+  --color-gold-light: #e5c27a; /* gold text on navy */
+  --color-gold-text: #8a6620; /* gold text on white (passes contrast) */
+  --color-gold-hover: #5f4510; /* gold links on white, hovered */
+  --color-gold-tint: #fbf3e1;
+  --color-gold-border: #ebd9ae;
+
+  /* Surfaces and lines */
+  --color-page: #f5f6f8;
+  --color-admin-page: #f6f6f6; /* admin dashboard background */
+  --color-surface: #ffffff;
+  --color-line: #e3e6eb;
+  --color-line-soft: #eef0f3;
+  --color-line-strong: #cbd2dc; /* dashed outlines and outline buttons in the mockups */
+
+  /* Text */
+  --color-ink: #0b1b2e;
+  --color-muted: #5a6474;
+  --color-faint: #8e99a9;
+  --color-on-navy-muted: #aeb8c6;
+  --color-on-navy-soft: #c9d2de;
+
+  /* Status */
+  --color-available: #1f9d61;
+  --color-available-text: #1f7a4d;
+  --color-available-tint: #e8f6ee;
+  --color-arriving: #2f6fdb; /* arriving and arrived */
+  --color-arriving-text: #1f4fa8;
+  --color-arriving-tint: #eaf1fd;
+  --color-inspection: #d4af5a; /* shown as "Coming soon" */
+  --color-inspection-text: #8a6620;
+  --color-inspection-tint: #fbf3e1;
+  --color-sold: #b23b35;
+  --color-sold-tint: #fdf2f1;
+
+  /* Radii */
+  --radius-control: 12px; /* inputs and buttons */
+  --radius-card: 18px;
+  --radius-panel: 24px; /* 20–28px panels; use rounded-[28px] for the largest */
+  --radius-hero: 40px; /* navy hero bottom, navy footer top */
+
+  /* Type: Plus Jakarta Sans only */
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --tracking-eyebrow: 0.16em;
+
+  /* Shadows */
+  --shadow-card: 0 1px 0 rgb(11 27 46 / 0.03);
+  --shadow-lift: 0 24px 48px -24px rgb(11 27 46 / 0.35);
+  --shadow-float: 0 30px 60px -30px rgb(11 27 46 / 0.4);
+  --shadow-chip: 0 20px 40px -18px rgb(0 0 0 / 0.5);
+
+  --animate-pulse-gold: pulse-gold 1.8s infinite;
+  --animate-arc-sweep: arc-sweep 1.4s ease-in-out infinite alternate;
+  --animate-rise: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-bob: bob 4.5s ease-in-out infinite;
+  --animate-kenburns: kenburns 14s ease-in-out infinite alternate;
+  --animate-sway: sway 3s ease-in-out infinite;
+  --animate-drive: drive 3s ease-in-out infinite;
+  --animate-dot: dot 1.2s ease-in-out infinite;
+  --animate-spin-ring: spin 1.1s linear infinite;
+
+  /* 404 road sign swings from its base */
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(4deg);
+    }
+  }
+
+  /* Empty-search car rolls back and forth */
+  @keyframes drive {
+    0%,
+    100% {
+      transform: translateX(-10px);
+    }
+    50% {
+      transform: translateX(10px);
+    }
+  }
+
+  /* Loader "…" dots */
+  @keyframes dot {
+    0%,
+    100% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-gold {
+    0% {
+      box-shadow: 0 0 0 0 rgb(212 175 90 / 0.6);
+    }
+    70% {
+      box-shadow: 0 0 0 12px rgb(212 175 90 / 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgb(212 175 90 / 0);
+    }
+  }
+
+  @keyframes arc-sweep {
+    from {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: -175;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  @keyframes kenburns {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.08) translateY(-8px);
+    }
+  }
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Keeps #hash targets clear of the sticky navbar */
+    scroll-padding-top: 96px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: rgb(212 175 90 / 0.35);
+    color: var(--color-ink);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Light grey backdrop behind car photos while they load */
+@utility car-stage {
+  background: #e9ecf1;
+}
+
+/* Car cards lift 6px with a soft navy shadow; the photo zooms slightly */
+@utility card-lift {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  & img {
+    transition:
+      transform 0.6s ease,
+      opacity 0.5s ease;
+  }
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lift);
+  }
+  &:hover img {
+    transform: scale(1.06);
+  }
+}
+
+/* Feature cards lift 4px and pick up a gold border */
+@utility feature-lift {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+  &:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-gold);
+  }
+}
+
+/* Dual-thumb range slider: the inputs overlap, so only the thumbs take pointer events */
+@utility range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  pointer-events: none;
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: auto;
+    width: 22px;
+    height: 22px;
+    border-radius: 9999px;
+    background: var(--color-gold);
+    border: 3px solid var(--color-surface);
+    box-shadow: 0 0 0 1px var(--color-gold);
+    cursor: grab;
+  }
+  &::-moz-range-thumb {
+    pointer-events: auto;
+    width: 16px;
+    height: 16px;
+    border-radius: 9999px;
+    background: var(--color-gold);
+    border: 3px solid var(--color-surface);
+    box-shadow: 0 0 0 1px var(--color-gold);
+    cursor: grab;
+  }
+  &::-webkit-slider-runnable-track {
+    background: transparent;
+  }
+  &::-moz-range-track {
+    background: transparent;
+  }
+}

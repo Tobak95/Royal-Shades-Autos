@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Royal Shades Autos — Car details</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F6F8}
+a{color:#8A6620;text-decoration:none}a:hover{color:#5F4510}
+.nav a{color:#D8DEE8}.nav a:hover{color:#E5C27A}
+.btn-gold{transition:background .2s ease,transform .2s ease}.btn-gold:hover{background:#E5C27A!important;transform:translateY(-1px)}
+.btn-navy:hover{background:#1B3556!important}
+.btn-out:hover{border-color:#0B1B2E!important;background:#FFFFFF!important}
+.thumb{transition:opacity .2s ease,transform .2s ease}.thumb:hover{transform:translateY(-2px)}
+.car{transition:transform .3s ease,box-shadow .3s ease}.car:hover{transform:translateY(-6px);box-shadow:0 24px 48px -24px rgba(11,27,46,.35)!important}
+.car img{transition:transform .6s ease}.car:hover img{transform:scale(1.06)}
+@keyframes fade{0%{opacity:.35;transform:scale(1.02)}100%{opacity:1;transform:none}}
+.fade{animation:fade .6s ease both}
+@media (prefers-reduced-motion: reduce){.fade{animation:none}.car,.car img,.thumb{transition:none}}
+</style>
+</helmet>
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #0B1B2E; background: #F5F6F8; min-width: 0;">
+
+<header style="background: #0B1B2E;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;">
+    <a href="home-v2.html" aria-label="Royal Shades Autos home"><img src="../src/assets/logo.png" alt="The Royal Shades Autos Limited" style="height: 50px; width: auto; display: block;"></a>
+    <nav class="nav" aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 15px; font-weight: 600;">
+      <a href="home-v2.html" style="color: #FFFFFF;">Buy a car</a><a href="home-v2.html">Swap</a><a href="home-v2.html">Sell</a><a href="home-v2.html">Track import</a>
+    </nav>
+    <a class="btn-gold" href="garage-v2.html" style="background: #D4AF5A; color: #0B1B2E; font-weight: 700; font-size: 14px; padding: 0 18px; height: 44px; border-radius: 999px; display: inline-flex; align-items: center; gap: 8px;">
+      <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg>Garage · 2
+    </a>
+  </div>
+</header>
+
+<main style="max-width: 1240px; margin: 0 auto; padding: 26px 24px 80px;">
+  <nav aria-label="Breadcrumb" style="font-size: 14px; color: #5A6474;"><a href="home-v2.html" style="color: #5A6474;">Home</a> <span style="margin: 0 6px;">›</span> <a href="home-v2.html">Showroom</a> <span style="margin: 0 6px;">›</span> <span style="color: #0B1B2E; font-weight: 600;">Mercedes-Benz GLE 450</span></nav>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 36px; margin-top: 20px; align-items: flex-start;">
+    <!-- Gallery -->
+    <div style="flex: 999 1 560px; min-width: 0;">
+      <div style="position: relative; border-radius: 22px; overflow: hidden; background: #E9ECF1; height: 500px; box-shadow: 0 30px 60px -40px rgba(11,27,46,.6);">
+        <sc-for list="{{shots}}" as="g" hint-placeholder-count="3">
+          <img src="{{g.img}}" alt="{{g.alt}}" style="{{g.style}}">
+        </sc-for>
+        <div style="position: absolute; top: 16px; left: 16px; display: flex; gap: 8px;">
+          <span style="background: #FFFFFF; color: #1F7A4D; font-size: 12px; font-weight: 700; padding: 7px 12px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px;"><span style="width: 6px; height: 6px; border-radius: 999px; background: #1F9D61;"></span>Available</span>
+        </div>
+        <div style="position: absolute; bottom: 16px; right: 16px; display: flex; gap: 8px;">
+          <button type="button" aria-label="Previous photo" onClick="{{prev}}" style="width: 44px; height: 44px; border-radius: 999px; border: 0; background: rgba(255,255,255,.92); color: #0B1B2E; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"></path></svg></button>
+          <button type="button" aria-label="Next photo" onClick="{{next}}" style="width: 44px; height: 44px; border-radius: 999px; border: 0; background: #0B1B2E; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+          <span style="background: rgba(11,27,46,.75); color: #FFFFFF; font-size: 13px; font-weight: 600; padding: 0 14px; height: 44px; border-radius: 999px; display: inline-flex; align-items: center;">{{counter}}</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 12px; margin-top: 14px; flex-wrap: wrap;">
+        <sc-for list="{{thumbs}}" as="t" hint-placeholder-count="3">
+          <button type="button" class="thumb" aria-label="{{t.label}}" aria-current="{{t.current}}" onClick="{{t.pick}}" style="{{t.style}}"><img src="{{t.img}}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;"></button>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <aside style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+        <span style="background: #E8F6EE; color: #1F7A4D; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px;">Available</span>
+        <span style="background: #FFFFFF; border: 1px solid #E3E6EB; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px;">[Condition]</span>
+        <span style="background: #FBF3E1; color: #6B4E12; font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px;">Swap accepted</span>
+      </div>
+      <div>
+        <h1 style="margin: 0; font-size: 42px; line-height: 1.05; font-weight: 800; letter-spacing: -0.03em;">Mercedes-Benz GLE 450</h1>
+        <p style="margin: 8px 0 0; font-size: 16px; color: #5A6474;">[Year] · 4MATIC · Silver</p>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;">
+        <span style="font-size: 38px; font-weight: 800; letter-spacing: -0.02em;">₦ [Price]</span>
+        <span style="font-size: 13px; color: #5A6474;">or swap + top up</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
+        <div style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 14px; padding: 12px 14px;"><div style="font-size: 12px; color: #5A6474;">Fuel</div><div style="font-weight: 700; margin-top: 3px;">Petrol</div></div>
+        <div style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 14px; padding: 12px 14px;"><div style="font-size: 12px; color: #5A6474;">Gearbox</div><div style="font-weight: 700; margin-top: 3px;">Automatic</div></div>
+        <div style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 14px; padding: 12px 14px;"><div style="font-size: 12px; color: #5A6474;">Mileage</div><div style="font-weight: 700; margin-top: 3px;">[Mileage]</div></div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        <a class="btn-gold" href="garage-v2.html" style="flex: 1 1 180px; background: #D4AF5A; color: #0B1B2E; font-weight: 800; font-size: 15px; height: 54px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">Add to Garage</a>
+        <a class="btn-navy" href="home-v2.html" style="flex: 1 1 180px; background: #0B1B2E; color: #FFFFFF; font-weight: 700; font-size: 15px; height: 54px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h11l-3-3M20 17H9l3 3"></path></svg>Swap for this car
+        </a>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <a class="btn-out" href="#" style="flex: 1; border: 1.5px solid #CBD2DC; color: #0B1B2E; font-weight: 700; font-size: 14px; height: 50px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+          <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1F9D61" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1121 11.5z"></path></svg>Enquire on WhatsApp
+        </a>
+        <button type="button" aria-label="Save to wishlist" class="btn-out" style="width: 50px; height: 50px; border: 1.5px solid #CBD2DC; border-radius: 12px; background: transparent; color: #0B1B2E; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.2-8.6C1.3 8.3 3.2 5 6.5 5c2 0 3.3 1.1 4.1 2.3h2.8C14.2 6.1 15.5 5 17.5 5c3.3 0 5.2 3.3 3.7 6.4C19 15.6 12 20 12 20z"></path></svg></button>
+      </div>
+
+      <!-- Status journey (controlled in admin) -->
+      <div style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 16px; padding: 16px 18px;">
+        <div style="font-size: 13px; font-weight: 700; color: #5A6474;">This car's journey</div>
+        <div style="display: flex; align-items: center; gap: 6px; margin-top: 12px;">
+          <sc-for list="{{journey}}" as="j" hint-placeholder-count="5">
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 6px; min-width: 0;">
+              <span style="{{j.bar}}"></span>
+              <span style="{{j.text}}">{{j.label}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <p style="margin: 0; display: flex; gap: 10px; font-size: 13px; line-height: 1.6; color: #5A6474;">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; margin-top: 2px;"><path d="M12 3l8 3v6c0 4.5-3.4 8.3-8 9-4.6-.7-8-4.5-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+        Inspected before listing. A [10%] deposit holds this car for you. [Owner to confirm refund terms.]
+      </p>
+    </aside>
+  </div>
+
+  <!-- Specs + About -->
+  <div style="display: flex; flex-wrap: wrap; gap: 36px; margin-top: 56px; align-items: flex-start;">
+    <section style="flex: 999 1 560px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.025em;">Full <span style="color: #8A6620;">specification</span></h2>
+      <div style="margin-top: 18px; background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 18px; overflow: hidden; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));">
+        <sc-for list="{{specs}}" as="s" hint-placeholder-count="10">
+          <div style="display: flex; justify-content: space-between; gap: 12px; padding: 15px 20px; border-bottom: 1px solid #EEF0F3; border-right: 1px solid #EEF0F3; font-size: 14px;"><span style="color: #5A6474;">{{s.k}}</span><strong style="font-weight: 700; text-align: right;">{{s.v}}</strong></div>
+        </sc-for>
+      </div>
+    </section>
+    <section style="flex: 1 1 400px; min-width: 0;">
+      <h2 style="margin: 0; font-size: 30px; font-weight: 800; letter-spacing: -0.025em;">About this <span style="color: #8A6620;">car</span></h2>
+      <p style="margin: 16px 0 0; font-size: 16px; line-height: 1.75; color: #3D4757;">[Short description from the admin dashboard: condition, history, why it's a good buy.]</p>
+      <h3 style="margin: 24px 0 0; font-size: 17px; font-weight: 800;">Features</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;">
+        <span style="background: #FFFFFF; border: 1px solid #E3E6EB; padding: 8px 12px; border-radius: 999px; font-size: 13px; font-weight: 600;">Leather seats</span>
+        <span style="background: #FFFFFF; border: 1px solid #E3E6EB; padding: 8px 12px; border-radius: 999px; font-size: 13px; font-weight: 600;">Ambient lighting</span>
+        <span style="background: #FFFFFF; border: 1px solid #E3E6EB; padding: 8px 12px; border-radius: 999px; font-size: 13px; font-weight: 600;">Digital cockpit</span>
+        <span style="background: #FFFFFF; border: 1px solid #E3E6EB; padding: 8px 12px; border-radius: 999px; font-size: 13px; font-weight: 600;">[Feature]</span>
+        <span style="background: #FFFFFF; border: 1px solid #E3E6EB; padding: 8px 12px; border-radius: 999px; font-size: 13px; font-weight: 600;">[Feature]</span>
+      </div>
+      <div style="margin-top: 26px; background: #0B1B2E; color: #FFFFFF; border-radius: 18px; padding: 22px;">
+        <div style="font-size: 18px; font-weight: 800;">Have a car to swap?</div>
+        <p style="margin: 6px 0 14px; font-size: 14px; color: #AEB8C6;">Tell us what you drive and we'll send a trade-in value for this GLE.</p>
+        <a class="btn-gold" href="home-v2.html" style="background: #D4AF5A; color: #0B1B2E; font-weight: 700; font-size: 14px; padding: 0 18px; height: 46px; border-radius: 12px; display: inline-flex; align-items: center;">Get my swap value</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Related -->
+  <section aria-roledescription="carousel" aria-label="You might also like" style="margin-top: 72px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap;">
+      <div>
+        <div style="font-size: 13px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #8A6620;">Keep exploring</div>
+        <h2 style="margin: 10px 0 0; font-size: 34px; font-weight: 800; letter-spacing: -0.03em;">You might also <span style="color: #8A6620;">like</span></h2>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <span style="font-size: 13px; color: #5A6474; margin-right: 6px;">{{relPos}}</span>
+        <button type="button" aria-label="Previous cars" onClick="{{relPrev}}" style="{{relPrevStyle}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"></path></svg></button>
+        <button type="button" aria-label="Next cars" onClick="{{relNext}}" style="{{relNextStyle}}"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"></path></svg></button>
+      </div>
+    </div>
+    <div style="overflow: hidden; margin-top: 26px; padding: 6px 4px 20px; margin-left: -4px; margin-right: -4px;">
+      <div style="{{trackStyle}}">
+        <sc-for list="{{related}}" as="r" hint-placeholder-count="4">
+          <article class="car" style="flex: 0 0 300px; background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column;">
+            <div style="position: relative; height: 196px; overflow: hidden; background: #E9ECF1;">
+              <img src="{{r.img}}" alt="{{r.alt}}" style="width: 100%; height: 100%; object-fit: cover; object-position: {{r.pos}}; display: block;">
+              <span style="{{r.badgeStyle}}"><span style="{{r.dotStyle}}"></span>{{r.statusLabel}}</span>
+              <button type="button" aria-label="Save {{r.name}} to wishlist" style="position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; border-radius: 999px; border: 0; background: rgba(255,255,255,.92); color: #0B1B2E; display: flex; align-items: center; justify-content: center; cursor: pointer;"><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.2-8.6C1.3 8.3 3.2 5 6.5 5c2 0 3.3 1.1 4.1 2.3h2.8C14.2 6.1 15.5 5 17.5 5c3.3 0 5.2 3.3 3.7 6.4C19 15.6 12 20 12 20z"></path></svg></button>
+            </div>
+            <div style="padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px;"><h3 style="margin: 0; font-size: 17px; font-weight: 800;">{{r.name}}</h3><span style="font-size: 13px; color: #5A6474;">[Year]</span></div>
+                <div style="font-size: 13px; color: #8A6620; font-weight: 700; margin-top: 3px;">{{r.body}} · [Origin]</div>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: #5A6474;">
+                <span style="display: inline-flex; align-items: center; gap: 5px;"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="1.9" stroke-linecap="round"><path d="M4 20V5a1 1 0 011-1h8a1 1 0 011 1v15M3 20h12M14 9h2.5a1.5 1.5 0 011.5 1.5V17a1.5 1.5 0 003 0V8l-3-3M7 8h4"></path></svg>{{r.fuel}}</span>
+                <span style="display: inline-flex; align-items: center; gap: 5px;"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="1.9" stroke-linecap="round"><circle cx="6" cy="6" r="2"></circle><circle cx="12" cy="6" r="2"></circle><circle cx="18" cy="6" r="2"></circle><path d="M6 8v8M12 8v8M18 8v4H6"></path></svg>Automatic</span>
+                <span style="display: inline-flex; align-items: center; gap: 5px;"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="1.9" stroke-linecap="round"><path d="M4 16a8 8 0 1116 0"></path><path d="M12 16l4-5"></path></svg>[Mileage]</span>
+              </div>
+              <sc-if value="{{r.incoming}}" hint-placeholder-val="{{false}}">
+                <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: #5A6474;">
+                  <div style="flex: 1; height: 5px; background: #E3E6EB; border-radius: 99px; overflow: hidden;"><div style="height: 100%; width: 70%; background: #2F6FDB; border-radius: 99px;"></div></div>
+                  <span>ETA <strong style="color: #1F4FA8;">14 Nov</strong></span>
+                </div>
+              </sc-if>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 12px; border-top: 1px solid #EEF0F3;">
+                <div style="font-size: 19px; font-weight: 800;">₦ [Price]</div>
+                <button type="button" onClick="{{r.toggle}}" style="{{r.ctaStyle}}">{{r.cta}}</button>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="background: #0B1B2E; color: #8E99A9; border-radius: 32px 32px 0 0;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px;"><span>© 2026 The Royal Shades Autos Limited</span><span>Lagos, Nigeria</span></div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2350}}'>
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { shot: 0 }; }
+  renderVals() {
+    var self = this, shot = this.state.shot;
+    var SHOTS = [
+      { img: '../public/cars/gle-front.jpg', alt: 'Mercedes-Benz GLE 450, front view' },
+      { img: '../public/cars/gle-rear.jpg', alt: 'Mercedes-Benz GLE 450, rear three-quarter view' },
+      { img: '../public/cars/gle-dash.jpg', alt: 'Mercedes-Benz GLE 450, dashboard and steering wheel' }
+    ];
+    var shots = SHOTS.map(function (s, i) {
+      return { img: s.img, alt: s.alt, style: 'position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .6s ease; opacity: ' + (i === shot ? '1' : '0') + ';' };
+    });
+    var thumbs = SHOTS.map(function (s, i) {
+      var on = i === shot;
+      return { img: s.img, label: 'Photo ' + (i + 1), current: on ? 'true' : 'false', pick: function () { self.setState({ shot: i }); },
+        style: 'width: 120px; height: 84px; padding: 0; border-radius: 12px; overflow: hidden; cursor: pointer; background: #E9ECF1; ' + (on ? 'border: 2.5px solid #D4AF5A; opacity: 1;' : 'border: 2.5px solid transparent; opacity: .7;') };
+    });
+    var N = SHOTS.length;
+    var JOURNEY = ['Arriving', 'Arrived', 'Inspection', 'Available', 'Sold'];
+    var current = 3;
+    var journey = JOURNEY.map(function (j, i) {
+      return { label: j,
+        bar: 'height: 6px; border-radius: 999px; ' + (i < current ? 'background: #0B1B2E;' : i === current ? 'background: #1F9D61;' : 'background: #E3E6EB;'),
+        text: 'font-size: 11px; font-weight: ' + (i === current ? '800' : '600') + '; color: ' + (i === current ? '#1F7A4D' : i < current ? '#0B1B2E' : '#8E99A9') + '; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;' };
+    });
+    var specs = [
+      ['Make', 'Mercedes-Benz'], ['Model', 'GLE 450'], ['Year', '[Year]'], ['Body type', 'SUV'],
+      ['Condition', '[Condition]'], ['Colour', 'Silver'], ['Engine', '[Engine]'], ['Drive', '4MATIC (AWD)'],
+      ['Gearbox', 'Automatic'], ['Mileage', '[Mileage]'], ['Seats', '[Seats]'], ['VIN', '[VIN]']
+    ].map(function (r) { return { k: r[0], v: r[1] }; });
+    var REL = [
+      { id: 'rx', name: 'Lexus RX 350', body: 'SUV', fuel: 'Petrol', status: 'available', img: '../public/cars/lexus-rx.jpg', alt: 'Silver Lexus RX 350', pos: 'center 62%' },
+      { id: 'avalon', name: 'Toyota Avalon XLE', body: 'Sedan', fuel: 'Petrol', status: 'available', img: '../public/cars/avalon-front.jpg', alt: 'Plum Toyota Avalon XLE', pos: 'center 62%' },
+      { id: 'rx2', name: 'Lexus RX 350', body: 'SUV', fuel: 'Petrol', status: 'arriving', img: '../public/cars/lexus-rx.jpg', alt: 'Silver Lexus RX 350 on its way', pos: '30% 62%' },
+      { id: 'venza', name: 'Toyota Venza', body: 'SUV', fuel: 'Petrol', status: 'inspection', img: '../public/cars/venza-black.jpg', alt: 'Black Toyota Venza', pos: 'center 62%' },
+      { id: 'sonata', name: 'Hyundai Sonata Sport', body: 'Sedan', fuel: 'Petrol', status: 'available', img: '../public/cars/sonata-grey.jpg', alt: 'Grey Hyundai Sonata Sport', pos: 'center 62%' }
+    ];
+    var ST = {
+      available: { label: 'Available', fg: '#1F7A4D', dot: '#1F9D61' },
+      arriving: { label: 'Arriving', fg: '#1F4FA8', dot: '#2F6FDB' },
+      inspection: { label: 'Coming soon', fg: '#8A6620', dot: '#D4AF5A' }
+    };
+    var garage = this.state.garage || ['rx'];
+    var rel = this.state.rel || 0;
+    var maxRel = REL.length - 1;
+    var related = REL.map(function (c) {
+      var m = ST[c.status], inG = garage.indexOf(c.id) !== -1;
+      var cta = c.status === 'inspection' ? 'Notify me' : inG ? 'In Garage ✓' : c.status === 'arriving' ? 'Reserve' : 'Add to Garage';
+      var ctaStyle = 'min-height: 44px; padding: 0 16px; border-radius: 10px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; ' +
+        (inG ? 'background: #FBF3E1; color: #6B4E12; border: 1.5px solid #D4AF5A;' : c.status === 'inspection' ? 'background: #FFFFFF; color: #0B1B2E; border: 1.5px solid #CBD2DC;' : 'background: #0B1B2E; color: #FFFFFF; border: 1.5px solid #0B1B2E;');
+      return Object.assign({}, c, {
+        statusLabel: m.label, incoming: c.status === 'arriving', cta: cta, ctaStyle: ctaStyle,
+        badgeStyle: 'position: absolute; top: 12px; left: 12px; background: #FFFFFF; color: ' + m.fg + '; font-size: 12px; font-weight: 700; padding: 6px 11px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px;',
+        dotStyle: 'width: 6px; height: 6px; border-radius: 999px; background: ' + m.dot + ';',
+        toggle: function () {
+          if (c.status === 'inspection') return;
+          self.setState({ garage: inG ? garage.filter(function (g) { return g !== c.id; }) : garage.concat([c.id]) });
+        }
+      });
+    });
+    var arrow = function (disabled) {
+      return 'width: 46px; height: 46px; border-radius: 999px; display: flex; align-items: center; justify-content: center; cursor: ' + (disabled ? 'default' : 'pointer') + '; ' +
+        (disabled ? 'background: #FFFFFF; color: #B7BEC9; border: 1.5px solid #E3E6EB;' : 'background: #0B1B2E; color: #FFFFFF; border: 1.5px solid #0B1B2E;');
+    };
+    return {
+      related: related,
+      trackStyle: 'display: flex; gap: 20px; transition: transform .5s cubic-bezier(.22,1,.36,1); transform: translateX(-' + (rel * 320) + 'px);',
+      relPos: (rel + 1) + ' / ' + REL.length,
+      relPrev: function () { if (rel > 0) self.setState({ rel: rel - 1 }); },
+      relNext: function () { if (rel < maxRel) self.setState({ rel: rel + 1 }); },
+      relPrevStyle: arrow(rel === 0), relNextStyle: arrow(rel === maxRel),
+      shots: shots, thumbs: thumbs, counter: (shot + 1) + ' / ' + N,
+      next: function () { self.setState({ shot: (shot + 1) % N }); },
+      prev: function () { self.setState({ shot: (shot + N - 1) % N }); },
+      journey: journey, specs: specs
+    };
+  }
+}
+</script>
+</body>
+</html>

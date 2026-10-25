@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Royal Shades Autos — Sell or swap</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5F6F8}
+a{color:#8A6620;text-decoration:none}a:hover{color:#5F4510}
+.nav a{color:#D8DEE8}.nav a:hover{color:#E5C27A}
+.btn-gold{transition:background .2s ease,transform .2s ease}.btn-gold:hover{background:#E5C27A!important;transform:translateY(-1px)}
+.btn-navy:hover{background:#1B3556!important}
+.slot{transition:border-color .2s ease,background .2s ease,transform .2s ease}.slot:hover{border-color:#D4AF5A!important;transform:translateY(-2px)}
+.pick{transition:border-color .2s ease,box-shadow .2s ease}.pick:hover{border-color:#0B1B2E!important}
+@keyframes rise{0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:none}}
+.rise{animation:rise .45s cubic-bezier(.22,1,.36,1) both}
+@keyframes stripes{0%{background-position:0 0}100%{background-position:28px 0}}
+.uploading{background-image:linear-gradient(45deg,rgba(255,255,255,.25) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.25) 50%,rgba(255,255,255,.25) 75%,transparent 75%);background-size:28px 28px;animation:stripes 1s linear infinite}
+@media (prefers-reduced-motion: reduce){.rise,.uploading{animation:none}.slot,.pick{transition:none}}
+</style>
+</helmet>
+<div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #0B1B2E; background: #F5F6F8; min-width: 0;">
+
+<!-- HERO -->
+<section style="background: radial-gradient(120% 120% at 85% 0%, #1B3556 0%, #0F2238 50%, #0B1B2E 100%); color: #FFFFFF; border-radius: 0 0 40px 40px;">
+  <header>
+    <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px;">
+      <a href="HomeV2.dc.html" aria-label="Royal Shades Autos home"><img src="../src/assets/logo.png" alt="The Royal Shades Autos Limited" style="height: 52px; width: auto; display: block;"></a>
+      <nav class="nav" aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 28px; font-size: 15px; font-weight: 600;">
+        <a href="HomeV2.dc.html">Buy a car</a>
+        <a href="#" onClick="{{toSwap}}" style="{{navSwap}}">Swap</a>
+        <a href="#" onClick="{{toSell}}" style="{{navSell}}">Sell</a>
+        <a href="HomeV2.dc.html">Track import</a>
+      </nav>
+      <span style="display: inline-flex; align-items: center; gap: 10px; font-size: 14px; color: #C9D2DE;">
+        <span style="width: 40px; height: 40px; border-radius: 999px; background: #D4AF5A; color: #0B1B2E; font-weight: 800; display: flex; align-items: center; justify-content: center;">TA</span>Signed in
+      </span>
+    </div>
+  </header>
+  <div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px 110px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 32px;">
+    <div style="flex: 1 1 520px; max-width: 640px;">
+      <div role="tablist" aria-label="Sell or swap" style="display: inline-flex; gap: 4px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); padding: 4px; border-radius: 999px;">
+        <button type="button" role="tab" aria-selected="{{sellSelected}}" onClick="{{toSell}}" style="{{sellTab}}">Sell my car</button>
+        <button type="button" role="tab" aria-selected="{{swapSelected}}" onClick="{{toSwap}}" style="{{swapTab}}">Swap my car</button>
+      </div>
+      <sc-if value="{{isSwap}}" hint-placeholder-val="{{false}}">
+        <h1 class="rise" style="margin: 22px 0 0; font-size: 52px; line-height: 1.06; font-weight: 800; letter-spacing: -0.035em;">Swap your car.<br><span style="color: #E5C27A;">Drive out in a better one.</span></h1>
+        <p style="margin: 16px 0 0; font-size: 17px; line-height: 1.65; color: #C9D2DE; max-width: 540px;">Tell us about your car, pick the one you want, and we'll send your trade-in offer and top-up amount within 72 hours.</p>
+      </sc-if>
+      <sc-if value="{{isSell}}" hint-placeholder-val="{{true}}">
+        <h1 class="rise" style="margin: 22px 0 0; font-size: 52px; line-height: 1.06; font-weight: 800; letter-spacing: -0.035em;">Sell your car.<br><span style="color: #E5C27A;">Get an offer in 72 hours.</span></h1>
+        <p style="margin: 16px 0 0; font-size: 17px; line-height: 1.65; color: #C9D2DE; max-width: 540px;">No strangers, no endless calls. Send the details and a short video, we inspect at our yard or at your place, and you get a clear offer.</p>
+      </sc-if>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+      <div style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 14px 18px; min-width: 150px;"><div style="font-size: 26px; font-weight: 800; color: #E5C27A;">72 hrs</div><div style="font-size: 13px; color: #C9D2DE;">to your offer</div></div>
+      <div style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 14px 18px; min-width: 150px;"><div style="font-size: 26px; font-weight: 800; color: #E5C27A;">Free</div><div style="font-size: 13px; color: #C9D2DE;">valuation, no obligation</div></div>
+      <div style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 16px; padding: 14px 18px; min-width: 150px;"><div style="font-size: 26px; font-weight: 800; color: #E5C27A;">Yard or home</div><div style="font-size: 13px; color: #C9D2DE;">inspection in Lagos</div></div>
+    </div>
+  </div>
+</section>
+
+<main style="max-width: 1240px; margin: -72px auto 0; padding: 0 24px 90px; position: relative; z-index: 2;">
+  <div style="display: flex; flex-wrap: wrap; gap: 26px; align-items: flex-start;">
+
+    <!-- WIZARD -->
+    <div style="flex: 999 1 640px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 24px; box-shadow: 0 30px 60px -36px rgba(11,27,46,.45); overflow: hidden;">
+      <sc-if value="{{notDone}}" hint-placeholder-val="{{true}}">
+        <!-- stepper -->
+        <ol aria-label="Progress" style="list-style: none; margin: 0; padding: 20px 24px; display: flex; gap: 8px; border-bottom: 1px solid #EEF0F3; overflow-x: auto;">
+          <sc-for list="{{stepper}}" as="s" hint-placeholder-count="4">
+            <li style="flex: 1 1 0; min-width: 110px;">
+              <button type="button" onClick="{{s.go}}" aria-current="{{s.current}}" style="width: 100%; border: 0; background: transparent; padding: 0; cursor: pointer; text-align: left; font: inherit;">
+                <span style="{{s.bar}}"></span>
+                <span style="display: flex; align-items: center; gap: 8px; margin-top: 10px;"><span style="{{s.num}}">{{s.n}}</span><span style="{{s.text}}">{{s.label}}</span></span>
+              </button>
+            </li>
+          </sc-for>
+        </ol>
+
+        <div style="padding: 28px 28px 8px;">
+          <!-- STEP: your car -->
+          <sc-if value="{{isCar}}" hint-placeholder-val="{{true}}">
+            <div class="rise">
+              <h2 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">Tell us about your car</h2>
+              <p style="margin: 6px 0 0; color: #5A6474; font-size: 15px;">The more accurate this is, the closer your offer will be after inspection.</p>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 22px;">
+                <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 700;">Make<input value="Hyundai" style="height: 50px; border: 1px solid #E3E6EB; border-radius: 12px; background: #F5F6F8; padding: 0 14px; font: inherit; font-size: 15px; font-weight: 500;"></label>
+                <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 700;">Model<input value="Sonata" style="height: 50px; border: 1px solid #E3E6EB; border-radius: 12px; background: #F5F6F8; padding: 0 14px; font: inherit; font-size: 15px; font-weight: 500;"></label>
+                <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 700;">Year<input value="2016" style="height: 50px; border: 1px solid #E3E6EB; border-radius: 12px; background: #F5F6F8; padding: 0 14px; font: inherit; font-size: 15px; font-weight: 500;"></label>
+                <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 700;">Trim (optional)<input value="Sport 2.4" style="height: 50px; border: 1px solid #E3E6EB; border-radius: 12px; background: #F5F6F8; padding: 0 14px; font: inherit; font-size: 15px; font-weight: 500;"></label>
+                <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 700;">Mileage<input value="84,000 km" style="height: 50px; border: 1px solid #E3E6EB; border-radius: 12px; background: #F5F6F8; padding: 0 14px; font: inherit; font-size: 15px; font-weight: 500;"></label>
+                <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 700;">Colour<input value="Blue" style="height: 50px; border: 1px solid #E3E6EB; border-radius: 12px; background: #F5F6F8; padding: 0 14px; font: inherit; font-size: 15px; font-weight: 500;"></label>
+                <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 700; grid-column: 1 / -1;">VIN (optional, speeds up your offer)<input placeholder="17-character VIN" style="height: 50px; border: 1px solid #E3E6EB; border-radius: 12px; background: #F5F6F8; padding: 0 14px; font: inherit; font-size: 15px;"></label>
+              </div>
+              <div style="margin-top: 18px; font-size: 13px; font-weight: 700;">How was it used in Nigeria?</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                <sc-for list="{{origins}}" as="o" hint-placeholder-count="3">
+                  <button type="button" aria-pressed="{{o.on}}" onClick="{{o.pick}}" style="{{o.style}}">{{o.label}}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- STEP: car you want (swap) -->
+          <sc-if value="{{isWant}}" hint-placeholder-val="{{false}}">
+            <div class="rise">
+              <h2 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">Which car do you want?</h2>
+              <p style="margin: 6px 0 0; color: #5A6474; font-size: 15px;">Pick from cars available now. Your top-up is the car's price minus your trade-in offer.</p>
+              <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; margin-top: 22px;">
+                <sc-for list="{{wantCars}}" as="w" hint-placeholder-count="4">
+                  <button type="button" class="pick" aria-pressed="{{w.on}}" onClick="{{w.pick}}" style="{{w.style}}">
+                    <span style="display: block; height: 130px; overflow: hidden; border-radius: 12px; position: relative;"><img src="{{w.img}}" alt="{{w.name}}" style="width: 100%; height: 100%; object-fit: cover; object-position: center 60%; display: block;">
+                      <sc-if value="{{w.selected}}" hint-placeholder-val="{{false}}"><span style="position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 999px; background: #D4AF5A; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0B1B2E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span></sc-if>
+                    </span>
+                    <span style="display: block; padding: 10px 4px 2px; font-weight: 800; font-size: 15px;">{{w.name}}</span>
+                    <span style="display: block; padding: 0 4px 4px; font-size: 13px; color: #5A6474;">{{w.body}} · ₦ [Price]</span>
+                  </button>
+                </sc-for>
+                <button type="button" class="pick" style="border: 1.5px dashed #CBD2DC; background: #F5F6F8; border-radius: 16px; padding: 18px; cursor: pointer; font: inherit; color: #0B1B2E; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 200px;">
+                  <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+                  <span style="font-weight: 800;">Help me choose</span><span style="font-size: 13px; color: #5A6474;">Tell us your budget</span>
+                </button>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- STEP: condition -->
+          <sc-if value="{{isCondition}}" hint-placeholder-val="{{false}}">
+            <div class="rise">
+              <h2 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">How's the condition?</h2>
+              <p style="margin: 6px 0 0; color: #5A6474; font-size: 15px;">Be honest. We'll check at inspection, and surprises lower offers.</p>
+              <div style="margin-top: 20px; border: 1px solid #E3E6EB; border-radius: 16px; overflow: hidden;">
+                <sc-for list="{{questions}}" as="q" hint-placeholder-count="6">
+                  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #EEF0F3;">
+                    <span style="font-size: 15px; font-weight: 600;">{{q.text}}</span>
+                    <span style="display: flex; gap: 6px;">
+                      <button type="button" aria-pressed="{{q.yesOn}}" onClick="{{q.yes}}" style="{{q.yesStyle}}">Yes</button>
+                      <button type="button" aria-pressed="{{q.noOn}}" onClick="{{q.no}}" style="{{q.noStyle}}">No</button>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="margin-top: 20px; font-size: 13px; font-weight: 700;">Overall, how would you rate it?</div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 10px;">
+                <sc-for list="{{grades}}" as="g" hint-placeholder-count="3">
+                  <button type="button" aria-pressed="{{g.on}}" onClick="{{g.pick}}" style="{{g.style}}"><span style="display: block; font-weight: 800;">{{g.label}}</span><span style="display: block; font-size: 12px; margin-top: 3px; opacity: .8;">{{g.hint}}</span></button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <!-- STEP: media -->
+          <sc-if value="{{isMedia}}" hint-placeholder-val="{{false}}">
+            <div class="rise">
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px;">
+                <div>
+                  <h2 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">Photos and a short video</h2>
+                  <p style="margin: 6px 0 0; color: #5A6474; font-size: 15px;">Follow the shot list. On your phone, each box opens the camera.</p>
+                </div>
+                <span style="background: #FBF3E1; color: #6B4E12; font-weight: 800; font-size: 13px; padding: 8px 12px; border-radius: 999px;">{{photoCount}} of 8 photos</span>
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; margin-top: 20px;">
+                <sc-for list="{{slots}}" as="p" hint-placeholder-count="8">
+                  <button type="button" class="slot" onClick="{{p.toggle}}" aria-label="{{p.aria}}" style="{{p.style}}">
+                    <sc-if value="{{p.hasImg}}" hint-placeholder-val="{{false}}"><img src="{{p.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;"></sc-if>
+                    <sc-if value="{{p.added}}" hint-placeholder-val="{{false}}">
+                      <span style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,27,46,0) 40%, rgba(11,27,46,.85) 100%);"></span>
+                      <span style="position: absolute; top: 8px; right: 8px; width: 26px; height: 26px; border-radius: 999px; background: #1F9D61; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
+                      <span style="position: absolute; left: 10px; bottom: 9px; color: #FFFFFF; font-size: 13px; font-weight: 800;">{{p.label}}</span>
+                    </sc-if>
+                    <sc-if value="{{p.empty}}" hint-placeholder-val="{{true}}">
+                      <span style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; height: 100%;">
+                        <svg aria-hidden="true" width="46" height="24" viewBox="0 0 64 30" fill="none" stroke="#B7BEC9" stroke-width="2" stroke-linejoin="round"><path d="{{p.icon}}"></path><circle cx="16" cy="24" r="4"></circle><circle cx="48" cy="24" r="4"></circle></svg>
+                        <span style="font-size: 13px; font-weight: 800; color: #0B1B2E;">{{p.label}}</span>
+                        <span style="font-size: 12px; color: #8A6620; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>Add photo</span>
+                      </span>
+                    </sc-if>
+                  </button>
+                </sc-for>
+              </div>
+
+              <div style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch;">
+                <div style="flex: 1 1 360px; background: #0B1B2E; color: #FFFFFF; border-radius: 16px; padding: 18px; display: flex; gap: 14px; align-items: center;">
+                  <span style="width: 56px; height: 56px; flex: none; border-radius: 14px; background: rgba(212,175,90,.18); display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E5C27A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2"></rect><path d="M16 10l5-3v10l-5-3z"></path></svg></span>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 14px;"><strong>walkaround.mp4 · 52s</strong><span style="color: #E5C27A; font-weight: 700;">{{videoPct}}%</span></div>
+                    <div style="height: 8px; background: rgba(255,255,255,.14); border-radius: 99px; overflow: hidden; margin-top: 8px;"><div class="uploading" style="{{videoBar}}"></div></div>
+                    <div style="font-size: 12px; color: #AEB8C6; margin-top: 6px;">{{videoNote}}</div>
+                  </div>
+                </div>
+                <div style="flex: 1 1 260px; border: 1px solid #E3E6EB; border-radius: 16px; padding: 16px 18px; font-size: 13px; color: #3D4757; line-height: 1.7;">
+                  <div style="font-weight: 800; color: #0B1B2E; font-size: 14px;">Video checklist (45–60 sec)</div>
+                  Walk all the way round · Start the engine so we hear it · Show the dashboard with the mileage · MP4 or MOV
+                </div>
+              </div>
+              <p style="margin: 14px 0 0; font-size: 13px; color: #5A6474;">Prefer chatting? <a href="#" style="font-weight: 700;">Send your photos on WhatsApp</a> and we'll attach them to this request.</p>
+            </div>
+          </sc-if>
+
+          <!-- STEP: inspection -->
+          <sc-if value="{{isInspection}}" hint-placeholder-val="{{false}}">
+            <div class="rise">
+              <h2 style="margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.02em;">Where should we inspect it?</h2>
+              <p style="margin: 6px 0 0; color: #5A6474; font-size: 15px;">Inspection is free and takes about 45 minutes. Your offer follows within 72 hours.</p>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 20px;">
+                <sc-for list="{{places}}" as="l" hint-placeholder-count="2">
+                  <button type="button" aria-pressed="{{l.on}}" onClick="{{l.pick}}" style="{{l.style}}"><span style="display: block; font-weight: 800; font-size: 16px;">{{l.label}}</span><span style="display: block; font-size: 13px; margin-top: 4px; opacity: .8;">{{l.hint}}</span></button>
+                </sc-for>
+              </div>
+              <sc-if value="{{atHome}}" hint-placeholder-val="{{false}}">
+                <label style="display: flex; flex-direction: column; gap: 7px; font-size: 13px; font-weight: 700; margin-top: 16px;">Your address in Lagos<input placeholder="Street, area (e.g. Lekki Phase 1)" style="height: 50px; border: 1px solid #E3E6EB; border-radius: 12px; background: #F5F6F8; padding: 0 14px; font: inherit; font-size: 15px;"></label>
+              </sc-if>
+              <div style="margin-top: 20px; font-size: 13px; font-weight: 700;">Pick a day</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                <sc-for list="{{days}}" as="d" hint-placeholder-count="5">
+                  <button type="button" aria-pressed="{{d.on}}" onClick="{{d.pick}}" style="{{d.style}}"><span style="display: block; font-size: 12px; opacity: .8;">{{d.dow}}</span><span style="display: block; font-size: 18px; font-weight: 800;">{{d.date}}</span></button>
+                </sc-for>
+              </div>
+              <div style="margin-top: 16px; font-size: 13px; font-weight: 700;">Pick a time</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                <sc-for list="{{times}}" as="t" hint-placeholder-count="4">
+                  <button type="button" aria-pressed="{{t.on}}" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}</button>
+                </sc-for>
+              </div>
+              <div style="margin-top: 22px; background: #F5F6F8; border-radius: 16px; padding: 16px 18px;">
+                <div style="font-weight: 800; font-size: 14px;">Bring to the inspection</div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 4px 16px; margin-top: 8px;">
+                  <label style="display: flex; align-items: center; gap: 10px; font-size: 14px; min-height: 40px;"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #0B1B2E;"> Customs papers</label>
+                  <label style="display: flex; align-items: center; gap: 10px; font-size: 14px; min-height: 40px;"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #0B1B2E;"> Vehicle licence</label>
+                  <label style="display: flex; align-items: center; gap: 10px; font-size: 14px; min-height: 40px;"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #0B1B2E;"> Proof of ownership</label>
+                  <label style="display: flex; align-items: center; gap: 10px; font-size: 14px; min-height: 40px;"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #0B1B2E;"> Spare key</label>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <!-- nav buttons -->
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 20px 28px 26px; flex-wrap: wrap;">
+          <button type="button" onClick="{{back}}" style="{{backStyle}}">← Back</button>
+          <span style="font-size: 13px; color: #5A6474;">Draft saved automatically</span>
+          <button type="button" class="btn-gold" onClick="{{forward}}" style="height: 52px; padding: 0 26px; border: 0; border-radius: 12px; background: #D4AF5A; color: #0B1B2E; font: inherit; font-weight: 800; font-size: 15px; cursor: pointer;">{{forwardLabel}}</button>
+        </div>
+      </sc-if>
+
+      <!-- DONE -->
+      <sc-if value="{{isDone}}" hint-placeholder-val="{{false}}">
+        <div class="rise" style="padding: 40px 32px;">
+          <span style="width: 64px; height: 64px; border-radius: 18px; background: #E8F6EE; display: inline-flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1F9D61" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
+          <h2 style="margin: 18px 0 0; font-size: 32px; font-weight: 800; letter-spacing: -0.025em;">Request <span style="color: #8A6620;">{{ref}}</span> received</h2>
+          <p style="margin: 8px 0 0; font-size: 16px; color: #5A6474;">We'll confirm your inspection on WhatsApp, and your offer arrives within 72 hours. Follow it any time under My account → Requests.</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 26px;">
+            <div style="background: #0B1B2E; color: #FFFFFF; border-radius: 12px; padding: 12px;"><div style="font-size: 12px; font-weight: 800;">Submitted</div><div style="font-size: 11px; opacity: .8; margin-top: 3px;">Just now</div></div>
+            <div style="background: #D4AF5A; color: #0B1B2E; border-radius: 12px; padding: 12px;"><div style="font-size: 12px; font-weight: 800;">Reviewing</div><div style="font-size: 11px; opacity: .8; margin-top: 3px;">Next</div></div>
+            <div style="background: #F5F6F8; color: #5A6474; border: 1px dashed #CBD2DC; border-radius: 12px; padding: 12px;"><div style="font-size: 12px; font-weight: 800;">Inspection</div><div style="font-size: 11px; margin-top: 3px;">{{slotText}}</div></div>
+            <div style="background: #F5F6F8; color: #5A6474; border: 1px dashed #CBD2DC; border-radius: 12px; padding: 12px;"><div style="font-size: 12px; font-weight: 800;">Offer sent</div><div style="font-size: 11px; margin-top: 3px;">Within 72 hrs</div></div>
+            <div style="background: #F5F6F8; color: #5A6474; border: 1px dashed #CBD2DC; border-radius: 12px; padding: 12px;"><div style="font-size: 12px; font-weight: 800;">Accept &amp; get paid</div><div style="font-size: 11px; margin-top: 3px;">Your choice</div></div>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px;">
+            <button type="button" class="btn-navy" onClick="{{restart}}" style="height: 50px; padding: 0 22px; border: 0; border-radius: 12px; background: #0B1B2E; color: #FFFFFF; font: inherit; font-weight: 700; cursor: pointer;">Start another request</button>
+            <a href="HomeV2.dc.html" style="height: 50px; padding: 0 22px; border: 1.5px solid #CBD2DC; border-radius: 12px; color: #0B1B2E; font-weight: 700; display: inline-flex; align-items: center;">Back to home</a>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <!-- SUMMARY -->
+    <aside style="flex: 1 1 330px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 22px; padding: 22px; box-shadow: 0 24px 50px -36px rgba(11,27,46,.4);">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px;">
+          <h2 style="margin: 0; font-size: 18px; font-weight: 800;">Your request</h2>
+          <span style="background: #FBF3E1; color: #6B4E12; font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 999px;">{{modeLabel}}</span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; margin-top: 16px;">
+          <img src="../public/cars/sonata-blue.jpg" alt="Your car: blue Hyundai Sonata" style="width: 64px; height: 64px; border-radius: 14px; object-fit: cover;">
+          <div><div style="font-size: 12px; color: #5A6474;">Your car</div><div style="font-weight: 800;">2016 Hyundai Sonata</div><div style="font-size: 13px; color: #5A6474;">84,000 km · {{originText}}</div></div>
+        </div>
+        <sc-if value="{{isSwap}}" hint-placeholder-val="{{false}}">
+          <div style="display: flex; justify-content: center; padding: 6px 0;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8A6620" stroke-width="2" stroke-linecap="round"><path d="M7 4v16M3 16l4 4 4-4M17 20V4M13 8l4-4 4 4"></path></svg></div>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <img src="{{want.img}}" alt="{{want.name}}" style="width: 64px; height: 64px; border-radius: 14px; object-fit: cover;">
+            <div><div style="font-size: 12px; color: #5A6474;">You want</div><div style="font-weight: 800;">{{want.name}}</div><div style="font-size: 13px; color: #5A6474;">₦ [Price]</div></div>
+          </div>
+          <div style="margin-top: 14px; background: #F5F6F8; border-radius: 14px; padding: 12px 14px; font-size: 13px; line-height: 1.7;">
+            <div style="display: flex; justify-content: space-between;"><span style="color: #5A6474;">Car you want</span><strong>₦ [Price]</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span style="color: #5A6474;">Your trade-in offer</span><strong>After inspection</strong></div>
+            <div style="height: 1px; background: #E3E6EB; margin: 6px 0;"></div>
+            <div style="display: flex; justify-content: space-between;"><span style="font-weight: 700;">Your top-up</span><strong style="color: #8A6620;">Sent with your offer</strong></div>
+          </div>
+        </sc-if>
+        <div style="height: 1px; background: #EEF0F3; margin: 16px 0;"></div>
+        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px;">
+          <div style="display: flex; justify-content: space-between;"><span style="color: #5A6474;">Condition</span><strong>{{gradeText}}</strong></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #5A6474;">Photos</span><strong>{{photoCount}} / 8</strong></div>
+          <div style="display: flex; justify-content: space-between;"><span style="color: #5A6474;">Video</span><strong>{{videoShort}}</strong></div>
+          <div style="display: flex; justify-content: space-between; gap: 10px;"><span style="color: #5A6474;">Inspection</span><strong style="text-align: right;">{{slotText}}</strong></div>
+        </div>
+        <div style="margin-top: 16px; background: #0B1B2E; color: #FFFFFF; border-radius: 14px; padding: 14px 16px; display: flex; gap: 12px; align-items: center;">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E5C27A" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+          <div><div style="font-weight: 800;">Offer within 72 hours</div><div style="font-size: 12px; color: #AEB8C6;">Free and no obligation to accept</div></div>
+        </div>
+      </div>
+      <div style="background: #FFFFFF; border: 1px solid #E3E6EB; border-radius: 22px; padding: 20px 22px;">
+        <div style="font-weight: 800;">Good to know</div>
+        <ul style="margin: 10px 0 0; padding-left: 18px; font-size: 14px; color: #3D4757; line-height: 1.8;">
+          <li>Requests are saved to your account.</li>
+          <li>Clear photos in daylight get better offers.</li>
+          <li>Offers are valid for [7] days.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer style="background: #0B1B2E; color: #8E99A9; border-radius: 32px 32px 0 0;">
+  <div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px;"><span>© 2026 The Royal Shades Autos Limited</span><span>Lagos, Nigeria</span></div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'swap', step: 0, done: false, origin: 'tokunbo', want: 'gle', answers: { accident: 'no', flood: 'no', ac: 'yes', lights: 'no', papers: 'yes', service: 'yes' }, grade: 'good', added: { front: true, interior: true }, video: 64, place: 'yard', day: 1, time: 1 };
+  }
+  componentDidMount() {
+    var self = this;
+    this.t = setInterval(function () { if (self.state.video < 100) self.setState({ video: Math.min(100, self.state.video + 4) }); }, 700);
+  }
+  componentWillUnmount() { clearInterval(this.t); }
+  renderVals() {
+    var self = this, s = this.state;
+    var pill = function (on) { return 'min-height: 44px; padding: 0 16px; border-radius: 999px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; ' + (on ? 'background: #0B1B2E; color: #FFFFFF; border: 1.5px solid #0B1B2E;' : 'background: #FFFFFF; color: #0B1B2E; border: 1.5px solid #E3E6EB;'); };
+    var card = function (on) { return 'text-align: left; padding: 16px 18px; border-radius: 16px; font: inherit; cursor: pointer; ' + (on ? 'background: #0B1B2E; color: #FFFFFF; border: 1.5px solid #0B1B2E;' : 'background: #FFFFFF; color: #0B1B2E; border: 1.5px solid #E3E6EB;'); };
+    var isSwap = s.mode === 'swap';
+    var STEPS = isSwap ? [['car', 'Your car'], ['want', 'Car you want'], ['condition', 'Condition'], ['media', 'Photos & video'], ['inspection', 'Inspection']] : [['car', 'Your car'], ['condition', 'Condition'], ['media', 'Photos & video'], ['inspection', 'Inspection']];
+    var step = Math.min(s.step, STEPS.length - 1), key = STEPS[step][0];
+    var stepper = STEPS.map(function (st, i) {
+      var st2 = i < step ? 'done' : i === step ? 'now' : 'next';
+      return { n: i < step ? '✓' : String(i + 1), label: st[1], current: i === step ? 'step' : 'false', go: function () { self.setState({ step: i }); },
+        bar: 'display: block; height: 5px; border-radius: 99px; background: ' + (st2 === 'next' ? '#E3E6EB' : st2 === 'now' ? '#D4AF5A' : '#0B1B2E') + ';',
+        num: 'width: 24px; height: 24px; flex: none; border-radius: 999px; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; ' + (st2 === 'next' ? 'background: #F5F6F8; color: #8E99A9;' : st2 === 'now' ? 'background: #D4AF5A; color: #0B1B2E;' : 'background: #0B1B2E; color: #FFFFFF;'),
+        text: 'font-size: 13px; font-weight: ' + (st2 === 'now' ? '800' : '600') + '; color: ' + (st2 === 'next' ? '#8E99A9' : '#0B1B2E') + '; white-space: nowrap;' };
+    });
+    var ORIG = [['tokunbo', 'Foreign used (Tokunbo)'], ['nigerian', 'Nigerian used'], ['new', 'Bought new']];
+    var origins = ORIG.map(function (o) { var on = s.origin === o[0]; return { label: o[1], on: on ? 'true' : 'false', pick: function () { self.setState({ origin: o[0] }); }, style: pill(on) }; });
+    var CARS = {
+      gle: { name: 'Mercedes-Benz GLE 450', body: 'SUV', img: '../public/cars/gle-front.jpg' },
+      avalon: { name: 'Toyota Avalon XLE', body: 'Sedan', img: '../public/cars/avalon-front.jpg' },
+      rx: { name: 'Lexus RX 350', body: 'SUV', img: '../public/cars/lexus-rx.jpg' },
+      sonata: { name: 'Hyundai Sonata Sport', body: 'Sedan', img: '../public/cars/sonata-grey.jpg' }
+    };
+    var wantCars = Object.keys(CARS).map(function (k) { var on = s.want === k; var c = CARS[k];
+      return { name: c.name, body: c.body, img: c.img, selected: on, on: on ? 'true' : 'false', pick: function () { self.setState({ want: k }); },
+        style: 'text-align: left; padding: 8px; border-radius: 16px; background: #FFFFFF; cursor: pointer; font: inherit; color: #0B1B2E; ' + (on ? 'border: 2px solid #D4AF5A; box-shadow: 0 0 0 4px rgba(212,175,90,.2);' : 'border: 2px solid #E3E6EB;') }; });
+    var Q = [['accident', 'Has it been in an accident?'], ['flood', 'Any flood damage?'], ['ac', 'Is the AC working well?'], ['lights', 'Any warning lights on the dashboard?'], ['papers', 'Are the papers complete?'], ['service', 'Serviced in the last 6 months?']];
+    var yn = function (on) { return 'min-width: 64px; min-height: 40px; padding: 0 14px; border-radius: 999px; font: inherit; font-size: 13px; font-weight: 700; cursor: pointer; ' + (on ? 'background: #0B1B2E; color: #FFFFFF; border: 1.5px solid #0B1B2E;' : 'background: #FFFFFF; color: #5A6474; border: 1.5px solid #E3E6EB;'); };
+    var questions = Q.map(function (q) { var a = s.answers[q[0]];
+      var set = function (v) { return function () { var n = Object.assign({}, s.answers); n[q[0]] = v; self.setState({ answers: n }); }; };
+      return { text: q[1], yesOn: a === 'yes' ? 'true' : 'false', noOn: a === 'no' ? 'true' : 'false', yes: set('yes'), no: set('no'), yesStyle: yn(a === 'yes'), noStyle: yn(a === 'no') }; });
+    var G = [['excellent', 'Excellent', 'Like new, no repairs needed'], ['good', 'Good', 'Minor wear, drives well'], ['fair', 'Fair', 'Needs some work']];
+    var grades = G.map(function (g) { var on = s.grade === g[0]; return { label: g[1], hint: g[2], on: on ? 'true' : 'false', pick: function () { self.setState({ grade: g[0] }); }, style: card(on) }; });
+    var CAR_FRONT = 'M6 22 L8 16 Q10 12 16 11 L24 6 Q28 4 34 4 L44 4 Q50 4 54 9 L58 13 Q62 15 62 22 Z';
+    var SL = [['front', 'Front'], ['back', 'Back'], ['left', 'Left side'], ['right', 'Right side'], ['interior', 'Interior'], ['dash', 'Dashboard & mileage'], ['engine', 'Engine'], ['tyres', 'Tyres']];
+    var slots = SL.map(function (p) { var added = !!s.added[p[0]];
+      return { label: p[1], added: added, empty: !added, hasImg: added && p[0] === 'front', img: '../public/cars/sonata-blue.jpg', icon: CAR_FRONT,
+        aria: added ? 'Remove ' + p[1] + ' photo' : 'Add ' + p[1] + ' photo',
+        toggle: function () { var n = Object.assign({}, s.added); n[p[0]] = !added; self.setState({ added: n }); },
+        style: 'position: relative; height: 130px; border-radius: 14px; overflow: hidden; cursor: pointer; font: inherit; padding: 0; ' + (added ? 'border: 1.5px solid #0B1B2E; background: linear-gradient(135deg, #1B3556, #0B1B2E);' : 'border: 1.5px dashed #CBD2DC; background: #F5F6F8;') }; });
+    var photoCount = SL.filter(function (p) { return s.added[p[0]]; }).length;
+    var PL = [['yard', 'At our yard', '[Yard address], Lagos'], ['home', 'At my location', 'Anywhere in Lagos. We come to you']];
+    var places = PL.map(function (l) { var on = s.place === l[0]; return { label: l[1], hint: l[2], on: on ? 'true' : 'false', pick: function () { self.setState({ place: l[0] }); }, style: card(on) }; });
+    var D = [['Mon', '26'], ['Tue', '27'], ['Wed', '28'], ['Thu', '29'], ['Fri', '30'], ['Sat', '31']];
+    var days = D.map(function (d, i) { var on = s.day === i; return { dow: d[0], date: d[1], on: on ? 'true' : 'false', pick: function () { self.setState({ day: i }); },
+      style: 'width: 64px; padding: 8px 0; border-radius: 14px; font: inherit; cursor: pointer; text-align: center; ' + (on ? 'background: #0B1B2E; color: #FFFFFF; border: 1.5px solid #0B1B2E;' : 'background: #FFFFFF; color: #0B1B2E; border: 1.5px solid #E3E6EB;') }; });
+    var T = ['10:00 am', '12:00 pm', '2:00 pm', '4:00 pm'];
+    var times = T.map(function (t, i) { var on = s.time === i; return { label: t, on: on ? 'true' : 'false', pick: function () { self.setState({ time: i }); }, style: pill(on) }; });
+    var last = step === STEPS.length - 1;
+    var slotText = D[s.day][0] + ' ' + D[s.day][1] + ' Oct, ' + T[s.time] + (s.place === 'yard' ? ' · Yard' : ' · Your place');
+    var gradeName = { excellent: 'Excellent', good: 'Good', fair: 'Fair' }[s.grade];
+    var tab = function (on) { return 'min-height: 44px; padding: 0 20px; border-radius: 999px; border: 0; font: inherit; font-size: 14px; font-weight: 800; cursor: pointer; ' + (on ? 'background: #D4AF5A; color: #0B1B2E;' : 'background: transparent; color: #D8DEE8;'); };
+    return {
+      isSwap: isSwap, isSell: !isSwap, sellSelected: isSwap ? 'false' : 'true', swapSelected: isSwap ? 'true' : 'false',
+      sellTab: tab(!isSwap), swapTab: tab(isSwap),
+      navSwap: isSwap ? 'color: #E5C27A;' : '', navSell: !isSwap ? 'color: #E5C27A;' : '',
+      toSell: function (e) { if (e && e.preventDefault) e.preventDefault(); self.setState({ mode: 'sell', step: 0, done: false }); },
+      toSwap: function (e) { if (e && e.preventDefault) e.preventDefault(); self.setState({ mode: 'swap', step: 0, done: false }); },
+      modeLabel: isSwap ? 'Swap' : 'Sell',
+      notDone: !s.done, isDone: s.done, ref: isSwap ? 'RS-SW-1043' : 'RS-SL-1043',
+      stepper: stepper,
+      isCar: key === 'car', isWant: key === 'want', isCondition: key === 'condition', isMedia: key === 'media', isInspection: key === 'inspection',
+      origins: origins, originText: { tokunbo: 'Foreign used', nigerian: 'Nigerian used', new: 'Bought new' }[s.origin],
+      wantCars: wantCars, want: CARS[s.want],
+      questions: questions, grades: grades, gradeText: gradeName,
+      slots: slots, photoCount: photoCount,
+      videoPct: s.video, videoBar: 'height: 100%; width: ' + s.video + '%; background: #D4AF5A; border-radius: 99px; transition: width .6s ease;',
+      videoNote: s.video < 100 ? 'Uploading on mobile data… you can keep filling the form.' : 'Uploaded. Engine sound and walk-around received.',
+      videoShort: s.video < 100 ? 'Uploading ' + s.video + '%' : '52s ✓',
+      places: places, atHome: s.place === 'home', days: days, times: times, slotText: slotText,
+      back: function () { if (step > 0) self.setState({ step: step - 1 }); },
+      backStyle: 'height: 52px; padding: 0 20px; border-radius: 12px; font: inherit; font-weight: 700; cursor: pointer; background: #FFFFFF; border: 1.5px solid #E3E6EB; color: ' + (step === 0 ? '#B7BEC9' : '#0B1B2E') + ';',
+      forward: function () { if (last) self.setState({ done: true }); else self.setState({ step: step + 1 }); },
+      forwardLabel: last ? 'Submit request' : 'Continue →',
+      restart: function () { self.setState({ done: false, step: 0 }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
