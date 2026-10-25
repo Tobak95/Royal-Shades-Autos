@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from "@/assets/logo.png";
 import { BRAND, FOOTER_COLUMNS } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Container } from "./Container";
@@ -23,7 +22,7 @@ function Statement({ className }: { className?: string }) {
 
 /**
  * v3 footer (design-reference-v3/footer.html and footer-mobile.html): gold CTA card over the
- * top edge, big statement, link columns (an accordion on phones) and a faint wordmark.
+ * top edge, big statement and link columns (an accordion on phones).
  */
 export function Footer({ showCta = true }: { showCta?: boolean }) {
   const year = new Date().getFullYear();
@@ -35,10 +34,7 @@ export function Footer({ showCta = true }: { showCta?: boolean }) {
 
         {/* Phones */}
         <div className={cn("pb-6 md:hidden", showCta && "-mt-5")}>
-          <Link to="/" aria-label={`${BRAND.shortName} home`} className="inline-block">
-            <img src={logo} alt={BRAND.name} className="block h-[54px] w-auto" />
-          </Link>
-          <Statement className="mt-3.5 text-[32px]" />
+          <Statement className="text-[32px]" />
           <QuickContact />
           <FooterAccordion />
           <SocialLinks className="mt-[22px] justify-center" />
@@ -59,15 +55,14 @@ export function Footer({ showCta = true }: { showCta?: boolean }) {
         <div className="hidden pb-7 md:block">
           <div className="flex flex-wrap justify-between gap-12">
             <div className="max-w-[460px] flex-[1_1_360px]">
-              <Link to="/" aria-label={`${BRAND.shortName} home`} className="inline-block">
-                <img src={logo} alt={BRAND.name} className="block h-[62px] w-auto" />
-              </Link>
-              <Statement className="mt-[22px] text-[44px]" />
+              <Statement className="text-[44px]" />
               <p className="mt-4 max-w-[380px] text-[15px] leading-[1.7] text-[#AEB8C6]">
                 Clean, inspected cars in Lagos. Swap the one you have, sell it fast, or import one and watch it sail home.
               </p>
               <SocialLinks className="mt-[22px]" />
             </div>
+
+
 
             <div className="grid flex-[2_1_600px] grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-8">
               {FOOTER_COLUMNS.map((column) => (
@@ -107,12 +102,6 @@ export function Footer({ showCta = true }: { showCta?: boolean }) {
           </div>
         </div>
       </Container>
-
-      {/* Oversized faint wordmark */}
-      <div aria-hidden="true" className="overflow-hidden text-center leading-[0.78] font-extrabold tracking-[-0.05em] whitespace-nowrap text-gold-light/[0.08] select-none">
-        <span className="text-[64px] md:hidden">ROYAL</span>
-        <span className="hidden text-[min(13.5vw,168px)] md:inline">ROYAL SHADES</span>
-      </div>
     </footer>
   );
 }
